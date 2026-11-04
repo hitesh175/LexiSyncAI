@@ -29,7 +29,13 @@ if "active" not in st.session_state:
 case, docs, structure, index = st.session_state.active
 st.subheader(case)
 with st.expander("Detected document structure"):
-    st.dataframe(structure, hide_index=True)
+    columns = ("document", "page", "sections", "tables", "image_only", "empty", "columns")
+    headers = ("Document", "PDF page", "Sections", "Tables", "Image only", "No text", "Columns")
+    rows = ["| " + " | ".join(headers) + " |", "| " + " | ".join("---" for _ in headers) + " |"]
+    for row in structure:
+        cells = [str(row[column]).replace("|", "&#124;").replace("\n", " ") for column in columns]
+        rows.append("| " + " | ".join(cells) + " |")
+    st.markdown("\n".join(rows))
     if any(row["image_only"] for row in structure):
         st.warning("Image-only pages are shown above. Their text is excluded from retrieval.")
 
@@ -75,3 +81,4 @@ if "result" in st.session_state:
                 st.image(bitmap.to_pil().copy(), use_container_width=True)
                 bitmap.close()
                 page.close()
+
