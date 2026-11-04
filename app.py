@@ -1,3 +1,5 @@
+from contextlib import closing
+
 import streamlit as st
 import pypdfium2 as pdfium
 
@@ -75,10 +77,8 @@ if "result" in st.session_state:
             selected = st.selectbox("Open cited PDF page", range(len(citations)),
                                     format_func=lambda i: citations[i][0])
             p = citations[selected][1]
-            with pdfium.PdfDocument(docs[p.document]) as pdf:
-                page = pdf[p.page - 1]
-                bitmap = page.render(scale=1.4)
-                st.image(bitmap.to_pil().copy(), use_container_width=True)
-                bitmap.close()
-                page.close()
-
+            with closing(pdfium.PdfDocument(docs[p.document])) as pdf:
+                with closing(pdf[p.page - 1]) as page:
+                    with closing(page.render(scale=1.4)) as bitmap:
+                        preview = bitmap.to_pil().copy()
+            st.image(preview, use_container_width=True)

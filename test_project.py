@@ -1,3 +1,4 @@
+from contextlib import closing
 import csv
 from pathlib import Path
 import unittest
@@ -22,8 +23,9 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(len(questions), 15)
         for q in questions:
             self.assertTrue(set(filter(None, q["gold"].split(";"))) <= keys, q)
-        with pdfium.PdfDocument(docs["17-USC-106.pdf"]) as pdf:
-            self.assertGreater(pdf[0].render(scale=.5).width, 0)
+        with closing(pdfium.PdfDocument(docs["17-USC-106.pdf"])) as pdf:
+            with closing(pdf[0]) as page, closing(page.render(scale=.5)) as bitmap:
+                self.assertGreater(bitmap.width, 0)
 
     def test_grounded_claim(self):
         passage = Passage("sample.pdf", 1, "Section 7", "The cap is EUR 2 million.")
@@ -43,3 +45,4 @@ class ProjectTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
