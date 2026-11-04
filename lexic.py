@@ -88,8 +88,10 @@ def models():
     from sentence_transformers import CrossEncoder, SentenceTransformer
     from transformers import set_seed
     set_seed(42)
-    return (SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", device="cpu"),
-            CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2", device="cpu"))
+    return (SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2",
+                                revision="1110a243fdf4706b3f48f1d95db1a4f5529b4d41", device="cpu"),
+            CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2",
+                         revision="233902d25c440f23af6f7d6e94d2946bac0bee0a", device="cpu"))
 
 
 class Index:
@@ -177,6 +179,7 @@ def answer(question, passages, generate=ask_model):
     except (KeyError, TypeError, AttributeError, json.JSONDecodeError):
         return refused
     return {"confidence": verdict.upper(), "claims": draft}
+
 
 
 
