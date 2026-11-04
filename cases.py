@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import sqlite3
 
-from lexic import Passage
+from lexic import ABSTAIN, Passage
 
 
 class CaseStore:
@@ -71,3 +71,21 @@ class CaseStore:
                 "SELECT question, hits, result FROM answers WHERE case_id = ? AND id = ?",
                 (case_id, answer_id)).fetchone()
         return question, [Passage(**p) for p in json.loads(hits)], json.loads(result)
+
+
+def export_answer(case, documents, question, hits, result):
+    """Build a portable plain-text record from the saved evidence."""
+    lines = [f"LexiSyncAI | {case}", "", "Question", question, "",
+             f"Confidence: {result['confidence']}", "",
+             "Documents searched", *(f"- {name}" for name in documents), "", "Answer"]
+    if not result["claims"]:
+        lines.append(ABSTAIN)
+    for claim in result["claims"]:
+        lines.extend([claim["text"], ""])
+        for citation in claim["evidence"]:
+            passage = hits[citation["id"] - 1]
+            lines.extend([f"- {passage.document} | PDF page {passage.page} | {passage.section}",
+                          f"  {citation['quote']}"])
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+

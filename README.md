@@ -55,3 +55,5 @@ See [measured benchmark results](RESULTS.md).
 Create a case with **Index and save case**. Use **Saved cases** and **Open case** after restarting. Question history includes abstentions, exact evidence excerpts, and access to the original cited pages. The first new question after reopening a case rebuilds the search index from saved passages.
 
 PDFs and answers are stored in `.lexisync/cases.sqlite3` in the project folder. Back up this file while the app is closed. Keep the app on localhost and use public documents. For a custom database location, set `LEXISYNC_CASE_DB`. For Docker, mount a persistent volume at `/app/.lexisync`.
+
+Select a saved answer and choose **Download answer and citations** for a plain-text record of the question, searched files, answer, and quoted evidence.

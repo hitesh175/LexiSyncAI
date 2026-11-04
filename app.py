@@ -5,7 +5,7 @@ import os
 import streamlit as st
 import pypdfium2 as pdfium
 
-from cases import CaseStore
+from cases import CaseStore, export_answer
 from lexic import ABSTAIN, Index, answer, ingest
 
 st.set_page_config(page_title="LexiSyncAI", layout="wide")
@@ -87,6 +87,10 @@ if history:
     question, hits, result = store.open_answer(case_id, selected_answer)
     st.text(question)
     st.badge(result["confidence"])
+    st.download_button("Download answer and citations",
+                       data=export_answer(case, docs, question, hits, result),
+                       file_name=f"lexisync-case-{case_id}-answer-{selected_answer}.txt",
+                       mime="text/plain; charset=utf-8")
     if not result["claims"]:
         st.write(ABSTAIN)
         st.caption("Searched " + ", ".join(docs))
@@ -111,4 +115,5 @@ if history:
                     with closing(page.render(scale=1.4)) as bitmap:
                         preview = bitmap.to_pil().copy()
             st.image(preview, use_container_width=True)
+
 
