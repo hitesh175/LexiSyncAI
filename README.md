@@ -33,7 +33,7 @@ The 15-question fixture has nine factual, three cross-document, and three unansw
 .\.venv\Scripts\python.exe evaluate.py
 ```
 
-Use `--retrieval-only` to skip generation. The script reports clause recall at 1, 5 and 10 for BM25, dense, fusion and hybrid with reranking. Complete gold coverage at 10 tracks whether every required hop is present. Dense versus reranked hybrid holds the generator and candidate budget constant. End-to-end runs report mean latency and both true and false abstentions. Warm models first for a separate steady-state timing run. The index timer includes model startup. For manual grading, open each review CSV, mark answer correctness as 0 or 1, and count citations that substantively support their attached claims. A correct refusal gets 1 on an unanswerable item. Calculate correctness across all 15 items and citation precision as supported citations divided by total emitted citations. Record the reviewer and hardware with the results.
+Use `--retrieval-only` to skip generation. The script reports clause recall at 1, 5 and 10 for BM25, dense, fusion and hybrid with reranking. Complete gold coverage at 10 tracks whether every required hop is present. Dense versus reranked hybrid holds the generator and ten-passage context limit constant. End-to-end runs report mean latency and both true and false abstentions. Warm models first for a separate steady-state timing run. The index timer includes model startup. For manual grading, open each review CSV, mark answer correctness as 0 or 1, and count citations that substantively support their attached claims. A correct refusal gets 1 on an unanswerable item. Calculate correctness across all 15 items and citation precision as supported citations divided by total emitted citations. Record the reviewer and hardware with the results.
 
 - [GovInfo 2023 U.S. Code, 17 USC §106](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec106.pdf)
 - [GovInfo 2023 U.S. Code, 17 USC §107](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec107.pdf)
@@ -43,3 +43,4 @@ The extracts include adjacent sections and legislative notes. Use the statutory 
 See [the five-minute demo outline](DEMO.md) for the walkthrough and theory prompts.
 
 See [measured benchmark results](RESULTS.md).
+
