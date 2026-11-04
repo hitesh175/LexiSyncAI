@@ -4,6 +4,10 @@ A local research prototype that answers questions about public legal PDFs and sh
 
 ## Run on Windows
 
+Double-click **Launch LexiSyncAI.cmd**. Keep the launcher window open while using the app. On a fresh Windows machine, install Python 3.11 or 3.12 and Ollama first. The launcher prepares the local environment and downloads missing dependencies and the Ollama model on first use. The retrieval models download when you first index a case.
+
+### Manual setup
+
 Install Python 3.11 or 3.12 and Ollama. Start Ollama and make the model available with `ollama pull kamekichi128/qwen3-4b-instruct-2507:latest`. The default matches the model available on the development machine. Set `OLLAMA_MODEL` to use another instruction model with JSON support.
 
 From this folder in PowerShell:
@@ -43,4 +47,5 @@ The extracts include adjacent sections and legislative notes. Use the statutory 
 See [the five-minute demo outline](DEMO.md) for the walkthrough and theory prompts.
 
 See [measured benchmark results](RESULTS.md).
+
 
