@@ -47,6 +47,22 @@ try {
     $venvPython = Join-Path $PSScriptRoot '.venv\Scripts\python.exe'
     $cachedPython = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
     $workspaceRuntime = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..\work\runtime'))
+    if (Test-Path -LiteralPath 'local-runtime.txt') {
+        $workspaceRuntime = (Get-Content -LiteralPath 'local-runtime.txt' -Raw).Trim()
+    }
+    if ((Test-Path -LiteralPath $cachedPython) -and
+        -not (Test-Path -LiteralPath (Join-Path $workspaceRuntime 'streamlit\__init__.py'))) {
+        $workspaceRuntime = Join-Path $PSScriptRoot '.runtime'
+        $stamp = Join-Path $workspaceRuntime 'requirements.sha256'
+        $hash = (Get-FileHash -LiteralPath 'requirements.txt' -Algorithm SHA256).Hash
+        if (-not (Test-Path -LiteralPath (Join-Path $workspaceRuntime 'streamlit\__init__.py')) -or
+            -not (Test-Path -LiteralPath $stamp) -or (Get-Content -LiteralPath $stamp -Raw).Trim() -ne $hash) {
+            Write-Host 'Preparing dependencies with the available Python runtime. This is a one-time setup.'
+            & $cachedPython -m pip install --disable-pip-version-check --upgrade --target $workspaceRuntime -r requirements.txt
+            if ($LASTEXITCODE -ne 0) { throw 'Dependency setup failed. Check your internet connection and run the launcher again.' }
+            Set-Content -LiteralPath $stamp -Value $hash -Encoding ascii
+        }
+    }
     $headlessValue = $Headless.IsPresent.ToString().ToLowerInvariant()
     $port = 0
     $listener = [Net.Sockets.TcpListener]::new([Net.IPAddress]::Loopback, 0)
@@ -62,13 +78,20 @@ try {
     if ((Test-Path -LiteralPath $cachedPython) -and
         (Test-Path -LiteralPath (Join-Path $workspaceRuntime 'streamlit\__init__.py'))) {
         $env:LEXISYNC_LOCAL_RUNTIME = $workspaceRuntime
-        if (-not $env:HF_HOME) { $env:HF_HOME = Join-Path (Split-Path $workspaceRuntime) 'hf' }
+        if (-not $env:HF_HOME -and (Test-Path -LiteralPath (Join-Path (Split-Path $workspaceRuntime) 'hf'))) {
+            $env:HF_HOME = Join-Path (Split-Path $workspaceRuntime) 'hf'
+        }
         & $cachedPython -c "import os,sys,runpy; sys.path.insert(0,os.environ['LEXISYNC_LOCAL_RUNTIME']); runpy.run_module('streamlit',run_name='__main__')" @streamlitArgs
     } else {
         if (-not (Test-Path -LiteralPath $venvPython)) {
             $created = $false
             if (Get-Command py.exe -ErrorAction SilentlyContinue) {
                 foreach ($version in '-3.12', '-3.11') {
+                    $previousPreference = $ErrorActionPreference
+                    $ErrorActionPreference = 'Continue'
+                    & py.exe $version -c "import venv" 2>$null
+                    $ErrorActionPreference = $previousPreference
+                    if ($LASTEXITCODE -ne 0) { continue }
                     & py.exe $version -m venv .venv
                     if ($LASTEXITCODE -eq 0) { $created = $true; break }
                 }
@@ -92,6 +115,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red
     exit 1
 }
+
 
 
 
