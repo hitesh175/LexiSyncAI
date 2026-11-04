@@ -58,7 +58,7 @@ try {
     }
     $streamlitArgs = @('run', 'app.py', '--server.address=127.0.0.1', "--server.headless=$headlessValue", '--browser.gatherUsageStats=false', '--global.developmentMode=false', '--server.enableCORS=true', "--server.port=$port", "--browser.serverPort=$port")
 
-    Write-Host 'LexiSyncAI will be available at http://127.0.0.1:${port}. Keep this window open while using the app.'
+    Write-Host "LexiSyncAI will be available at http://127.0.0.1:$port. Keep this window open while using the app."
     if ((Test-Path -LiteralPath $cachedPython) -and
         (Test-Path -LiteralPath (Join-Path $workspaceRuntime 'streamlit\__init__.py'))) {
         $env:LEXISYNC_LOCAL_RUNTIME = $workspaceRuntime
