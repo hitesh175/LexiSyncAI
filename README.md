@@ -41,3 +41,5 @@ Use `--retrieval-only` to skip generation. The script reports clause recall at 1
 The extracts include adjacent sections and legislative notes. Use the statutory text when the question asks what the statute says. The included PDFs are research snapshots.
 
 See [the five-minute demo outline](DEMO.md) for the walkthrough and theory prompts.
+
+See [measured benchmark results](RESULTS.md).

@@ -1,0 +1,31 @@
+{
+  "index_seconds": 97.79350750002777,
+  "bm25": {
+    "recall@1": 0.125,
+    "recall@5": 0.4583333333333333,
+    "recall@10": 0.5416666666666666,
+    "all_gold_retrieved@10": 0.5,
+    "mean_retrieval_seconds": 0.006922133325133473
+  },
+  "dense": {
+    "recall@1": 0.4166666666666667,
+    "recall@5": 0.625,
+    "recall@10": 0.625,
+    "all_gold_retrieved@10": 0.5,
+    "mean_retrieval_seconds": 0.0061363799963146445
+  },
+  "fusion": {
+    "recall@1": 0.2916666666666667,
+    "recall@5": 0.5416666666666666,
+    "recall@10": 0.625,
+    "all_gold_retrieved@10": 0.5833333333333334,
+    "mean_retrieval_seconds": 0.006758366664871574
+  },
+  "hybrid": {
+    "recall@1": 0.4166666666666667,
+    "recall@5": 0.5,
+    "recall@10": 0.7083333333333334,
+    "all_gold_retrieved@10": 0.6666666666666666,
+    "mean_retrieval_seconds": 0.5577532866659264
+  }
+}
