@@ -48,9 +48,12 @@ try {
     $cachedPython = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
     $workspaceRuntime = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..\work\runtime'))
     $headlessValue = $Headless.IsPresent.ToString().ToLowerInvariant()
-    $streamlitArgs = @('run', 'app.py', '--server.address=127.0.0.1', "--server.headless=$headlessValue", '--browser.gatherUsageStats=false')
+    $occupied = [Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpListeners().Port
+    $port = 8501..8520 | Where-Object { $_ -notin $occupied } | Select-Object -First 1
+    if (-not $port) { throw 'No local port is available between 8501 and 8520.' }
+    $streamlitArgs = @('run', 'app.py', '--server.address=127.0.0.1', "--server.headless=$headlessValue", '--browser.gatherUsageStats=false', '--global.developmentMode=false', '--server.enableCORS=true', "--server.port=$port", "--browser.serverPort=$port")
 
-    Write-Host 'LexiSyncAI will be available at http://127.0.0.1:8501. Keep this window open while using the app.'
+    Write-Host 'LexiSyncAI will be available at http://127.0.0.1:${port}. Keep this window open while using the app.'
     if ((Test-Path -LiteralPath $cachedPython) -and
         (Test-Path -LiteralPath (Join-Path $workspaceRuntime 'streamlit\__init__.py'))) {
         $env:LEXISYNC_LOCAL_RUNTIME = $workspaceRuntime
@@ -84,3 +87,5 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red
     exit 1
 }
+
+
