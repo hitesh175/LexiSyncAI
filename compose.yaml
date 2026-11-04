@@ -9,5 +9,8 @@ services:
       HF_HOME: /models
     volumes:
       - models:/models
+      - cases:/app/.lexisync
 volumes:
   models:
+  cases:
+

@@ -4,3 +4,4 @@ evaluation-results/
 .env
 .runtime/
 local-runtime.txt
+.lexisync/
