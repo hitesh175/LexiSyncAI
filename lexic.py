@@ -11,6 +11,10 @@ import pdfplumber
 
 HEADING = re.compile(r"^(?:§\s*\d+[\w.]*|(?:article|section|clause|table)\s+\d+[\w.]*|\d+(?:\.\d+)+\.?)(?=\s|$)", re.I)
 ITEM = re.compile(r"^\([0-9a-z]+\)\s", re.I)
+PARAGRAPH = re.compile(r"^(\d+)\.\s+")
+JOURNAL_HEADER = re.compile(r"Official Journal of the European Union.*L\s+\d+/\d+|L\s+\d+/\d+.*Official Journal of the European Union", re.I)
+MONETARY_QUESTION = re.compile(r"\b(how much|maximum|max|amount|limit|cap|how high)\b", re.I)
+PENALTY_QUESTION = re.compile(r"\b(fin(?:e|es|ed)|penalt(?:y|ies)|penali[sz]\w*|sanction\w*)\b", re.I)
 
 
 @dataclass(frozen=True)
@@ -25,6 +29,7 @@ def ingest(documents):
     passages, structure = [], []
     for name, content in documents.items():
         section = "Unnumbered text"
+        paragraph = ""
         with pdfplumber.open(BytesIO(content)) as pdf:
             for page in pdf.pages:
                 header = page.crop((0, 0, page.width, min(48, page.height))).extract_text() or ""
@@ -37,9 +42,10 @@ def ingest(documents):
                 regions = [body.crop((0, body.bbox[1], middle, body.bbox[3])),
                            body.crop((middle, body.bbox[1], page.width, body.bbox[3]))] if two_columns else [body]
                 raw = "\n".join(region.extract_text() or "" for region in regions)
+                journal_page = any(JOURNAL_HEADER.search(line) for line in raw.splitlines())
                 labels = []
                 lines = []
-                clause = section
+                clause = f"{section} {paragraph}".strip()
 
                 def flush():
                     if lines:
@@ -49,17 +55,26 @@ def ingest(documents):
 
                 for line in raw.splitlines():
                     line = line.strip().replace("\x02", "")
+                    if JOURNAL_HEADER.search(line):
+                        continue
                     heading = HEADING.match(line)
+                    if journal_page and heading and heading.group().lower().startswith("article ") and line != heading.group():
+                        heading = None
+                    numbered = PARAGRAPH.match(line) if section.lower().startswith("article ") else None
                     item = ITEM.match(line)
                     notes = line.casefold() in {"editorial notes", "historical and revision notes", "statutory notes and related subsidiaries"}
-                    if heading or notes or item or sum(map(len, lines)) + len(line) > 950:
+                    if heading or notes or item or numbered or sum(map(len, lines)) + len(line) > 950:
                         flush()
                     if heading or notes:
                         section = line if notes else heading.group().rstrip(".")
+                        paragraph = ""
                         clause = section
                         labels.append(section)
+                    elif numbered:
+                        paragraph = f"({numbered.group(1)})"
+                        clause = f"{section} {paragraph}"
                     elif item:
-                        clause = f"{section} {item.group().strip()}"
+                        clause = f"{section} {paragraph}{item.group().strip()}" if paragraph else f"{section} {item.group().strip()}"
                     if line:
                         lines.append(line)
                 flush()
@@ -105,11 +120,14 @@ class Index:
         self.dense = models()[0].encode(self.texts, normalize_embeddings=True)
 
     def retrieve(self, question, k=10, mode="hybrid"):
-        query = models()[0].encode(question, normalize_embeddings=True)
+        search = question
+        if mode in ("fusion", "hybrid") and MONETARY_QUESTION.search(question) and PENALTY_QUESTION.search(question):
+            search += " What are the maximum administrative fines for infringements, including any percentage of annual turnover?"
+        query = models()[0].encode(search, normalize_embeddings=True)
         dense = np.argsort(-(self.dense @ query), kind="stable")
         if mode == "dense":
             return [self.passages[i] for i in dense[:k]]
-        sparse = np.argsort(-self.bm25.get_scores(tokens(question)), kind="stable")
+        sparse = np.argsort(-self.bm25.get_scores(tokens(search)), kind="stable")
         if mode == "bm25":
             return [self.passages[i] for i in sparse[:k]]
         fused = {}
@@ -118,7 +136,7 @@ class Index:
                 fused[i] = fused.get(i, 0) + 1 / (60 + rank)
         candidates = sorted(fused, key=fused.get, reverse=True)[:30]
         if mode == "hybrid":
-            scores = models()[1].predict([(question, self.texts[i]) for i in candidates])
+            scores = models()[1].predict([(search, self.texts[i]) for i in candidates])
             candidates = [candidates[i] for i in np.argsort(-scores, kind="stable")]
         return [self.passages[i] for i in candidates[:k]]
 
@@ -179,6 +197,8 @@ def answer(question, passages, generate=ask_model):
     except (KeyError, TypeError, AttributeError, json.JSONDecodeError):
         return refused
     return {"confidence": verdict.upper(), "claims": draft}
+
+
 
 
 
