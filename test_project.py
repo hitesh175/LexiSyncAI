@@ -1,0 +1,45 @@
+import csv
+from pathlib import Path
+import unittest
+
+import pypdfium2 as pdfium
+from lexic import Passage, answer, ingest
+
+ROOT = Path(__file__).resolve().parent
+
+
+class ProjectTests(unittest.TestCase):
+    def test_benchmark_labels_and_page_render(self):
+        docs = {p.name: p.read_bytes() for p in (ROOT / "data").glob("*.pdf")}
+        self.assertEqual(len(docs), 2)
+        passages, structure = ingest(docs)
+        self.assertEqual(len(structure), 9)
+        self.assertTrue(all(row["columns"] == 2 for row in structure))
+        self.assertFalse(any("TITLE 17—CO" in p.text for p in passages))
+        keys = {f"{p.document[7:10]}:{p.page}:{p.section}" for p in passages}
+        with (ROOT / "questions.psv").open(encoding="utf-8-sig") as file:
+            questions = list(csv.DictReader(file, delimiter="|"))
+        self.assertEqual(len(questions), 15)
+        for q in questions:
+            self.assertTrue(set(filter(None, q["gold"].split(";"))) <= keys, q)
+        with pdfium.PdfDocument(docs["17-USC-106.pdf"]) as pdf:
+            self.assertGreater(pdf[0].render(scale=.5).width, 0)
+
+    def test_grounded_claim(self):
+        passage = Passage("sample.pdf", 1, "Section 7", "The cap is EUR 2 million.")
+        claim = {"text": "The cap is EUR 2 million.",
+                 "evidence": [{"id": 1, "quote": "EUR 2 million"}]}
+        responses = iter([{"claims": [claim]}, {"verdict": "high"}])
+        self.assertEqual(answer("What is the cap?", [passage], lambda *_: next(responses))["claims"], [claim])
+
+    def test_fabricated_quote_and_verifier_rejection(self):
+        passage = Passage("sample.pdf", 1, "Section 7", "The cap is EUR 2 million.")
+        for quote in ("EUR 2 million", "EUR 8 million"):
+            claim = {"text": "The cap is EUR 8 million.",
+                     "evidence": [{"id": 1, "quote": quote}]}
+            responses = iter([{"claims": [claim]}, {"verdict": "reject"}])
+            self.assertEqual(answer("What is the cap?", [passage], lambda *_: next(responses))["claims"], [])
+
+
+if __name__ == "__main__":
+    unittest.main()

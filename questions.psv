@@ -1,0 +1,16 @@
+id|kind|question|gold|reference
+1|factual|What is the exclusive reproduction right under 17 USC 106(1)?|106:1:§106 (1)|Reproduce the copyrighted work in copies or phonorecords.
+2|factual|Which numbered provision gives the copyright owner the right to prepare derivative works?|106:1:§106 (2)|Section 106(2).
+3|factual|Which methods of transferring copies to the public does section 106(3) list?|106:1:§106 (3)|Sale or other transfer of ownership, rental, lease, or lending.
+4|factual|How is the public performance right for sound recordings framed in section 106(6)?|106:1:§106 (6)|Public performance by digital audio transmission.
+5|factual|What does the second fair use factor consider?|107:1:§107 (2)|Nature of the copyrighted work.
+6|factual|What does the third fair use factor require the decision-maker to consider?|107:1:§107 (3)|Amount and substantiality of the portion used in relation to the whole.
+7|factual|What market considerations does the fourth fair use factor name?|107:1:§107 (4)|Effect upon the potential market for or value of the work.
+8|factual|Does the unpublished status of a work by itself foreclose fair use?|107:1:§107 (4)|No, if fair use is found after considering all the factors.
+9|factual|What distinction between commercial and educational use appears in the first fair use factor?|107:1:§107 (1)|Whether the use is commercial or for nonprofit educational purposes.
+10|multi|Which right ordinarily covers reproducing a work in copies, and what is the legal effect if a teaching use of such copies qualifies as fair use?|106:1:§106 (1);107:1:§107|Reproduction in copies is an exclusive right. If the teaching use qualifies as fair use, it is not infringement.
+11|multi|Which provision covers the owner's right to create derivative works, and can fair use apply notwithstanding that exclusive right?|106:1:§106 (2);107:1:§107|Section 106(2) covers preparation of derivative works. Section 107 expressly limits the rights in section 106 when the use qualifies as fair use.
+12|multi|What right covers distributing copies by sale and what question about market harm is expressly relevant to a fair use analysis?|106:1:§106 (3);107:1:§107 (4)|Distribution by sale is an exclusive right. Consider the use's effect on the potential market for or value of the work.
+13|unanswerable|What royalty rate did the parties agree to in the Acme–Northwind licensing contract?||The contract is absent.
+14|unanswerable|What law governs the subcontract signed by Contoso on 14 May 2025?||The subcontract is absent.
+15|unanswerable|How many fair use claims were filed in federal court during calendar year 2025?||No filing count is provided.

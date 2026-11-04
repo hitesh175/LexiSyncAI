@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8501:8501"
+    environment:
+      OLLAMA_URL: http://host.docker.internal:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-kamekichi128/qwen3-4b-instruct-2507:latest}
+      HF_HOME: /models
+    volumes:
+      - models:/models
+volumes:
+  models:

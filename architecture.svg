@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="700" viewBox="0 0 1100 700" role="img" aria-labelledby="title">
+<title id="title">LexiSyncAI architecture</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526981"/></marker></defs>
+<rect width="1100" height="700" fill="#f3f6fa"/>
+<g font-family="Segoe UI, Arial" fill="#152c45">
+<text x="65" y="83" font-size="48" font-weight="700">LexiSyncAI</text>
+<text x="67" y="118" font-size="22" fill="#526981">Architecture for evidence-grounded document analysis</text>
+<g fill="#fff" stroke="#a9bed0" stroke-width="2">
+<rect x="65" y="170" width="293" height="135" rx="12"/><rect x="404" y="170" width="293" height="135" rx="12"/><rect x="743" y="170" width="292" height="135" rx="12"/>
+<rect x="65" y="382" width="293" height="135" rx="12"/><rect x="404" y="382" width="293" height="135" rx="12"/><rect x="743" y="382" width="292" height="135" rx="12"/>
+</g>
+<g font-size="22" font-weight="700">
+<text x="88" y="211">1  Index public PDFs</text><text x="427" y="211">2  Retrieve passages</text><text x="766" y="211">3  Rerank evidence</text>
+<text x="88" y="423">6  Show answer or abstain</text><text x="427" y="423">5  Verify support</text><text x="766" y="423">4  Draft cited claims</text>
+</g>
+<g font-size="17" fill="#425d78">
+<text x="88" y="247">Page layout, clauses, tables</text><text x="88" y="274">Page and section metadata</text>
+<text x="427" y="247">Question → BM25 + MiniLM</text><text x="427" y="274">Reciprocal rank fusion</text>
+<text x="766" y="247">Cross-encoder scores pairs</text><text x="766" y="274">Keep ten passages</text>
+<text x="88" y="459">Confidence and exact excerpts</text><text x="88" y="486">Original PDF pages beside claims</text>
+<text x="427" y="459">Validate IDs and exact quotes</text><text x="427" y="486">Check entailment and coverage</text>
+<text x="766" y="459">Local Ollama model</text><text x="766" y="486">Each claim carries evidence IDs</text>
+</g>
+<g stroke="#526981" stroke-width="2" marker-end="url(#arrow)">
+<path d="M362 238H398"/><path d="M701 238H737"/><path d="M889 310V376"/><path d="M738 450H703"/><path d="M399 450H364"/>
+</g>
+<rect x="65" y="562" width="970" height="78" rx="12" fill="#dcefe9"/>
+<text x="88" y="594" font-size="20" font-weight="700">Evaluation on 15 labeled questions</text>
+<text x="88" y="619" font-size="17">Clause recall · Complete evidence coverage · Answer and citation review · Abstention · Latency</text>
+</g></svg>
