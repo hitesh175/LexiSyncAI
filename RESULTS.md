@@ -44,4 +44,20 @@ The original manually graded results above describe the baseline. The updated ap
 | False abstentions on answerable questions | 5/12 | 4/12 |
 | Mean end-to-end latency | 11.81 s | 10.64 s |
 
-The hybrid repair trace shows that the first draft for the missing royalty-rate question was rejected, repaired once, and then withheld. The rerun still produced numbered-factor errors. Fewer false abstentions do not establish higher correctness. The rerun includes review sheets, while the manual correctness and precision figures above apply to the baseline only.
+The hybrid repair trace shows that the first draft for the missing royalty-rate question was rejected, repaired once, and then withheld. The rerun still produced numbered-factor errors. Fewer false abstentions do not establish higher correctness. The manual review below scores this rerun separately from the baseline.
+
+
+### Manual review of the rerun
+
+| Metric | Dense | Reranked hybrid |
+|---|---:|---:|
+| Correct answers, including correct abstentions | 7/15 (46.7%) | 8/15 (53.3%) |
+| Citation precision | 20/26 (76.9%) | 21/29 (72.4%) |
+
+A correct answer resolves the requested question without material factual errors. Citation precision counts a quote only when it supports the attached claim or one of its necessary premises. A correct answer can still contain a weak citation. This is a single manual review of the recorded outputs. The graded CSVs are in `verifier-rerun/`.
+
+Hybrid questions 5 and 6 both used factor (4) as evidence for a different numbered fair-use factor. These examples were selected for a deterministic validation check. The scores above precede that check.
+
+### Numbered-factor guard
+
+A follow-up run on questions 5 and 6 showed why the guard needs to recognize two forms of reference. For question 5 it rejected the mismatched numbered quotation and abstained after one repair. For question 6 it rejected the original draft, but the model then cited a historical note describing the first factor in words and mislabeled it as the third. The guard now checks both leading numbers and phrases such as “first of the criteria” in fair-use citations. Regression tests cover successful repair and withholding a repeated mismatch. The full 15-question scores above have not been rerun with this final guard.

@@ -70,6 +70,33 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(refused["claims"], [])
         self.assertIn("Abstained after repair.", refused["trace"])
 
+    def test_numbered_factor_cannot_use_another_factors_quote(self):
+        wrong = Passage("sample.pdf", 1, "Factors", "(4) The potential market effect.")
+        correct = Passage("sample.pdf", 1, "Factors", "(3) The amount used.")
+        wrong_claim = {"text": "The third fair use factor is the market effect.",
+                       "evidence": [{"id": 1, "quote": wrong.text}]}
+        corrected_claim = {"text": "The third fair use factor is the amount used.",
+                           "evidence": [{"id": 2, "quote": correct.text}]}
+        calls = []
+        responses = iter([{"claims": [wrong_claim]}, {"claims": [corrected_claim]}, {"verdict": "high"}])
+
+        def generate(prompt, payload):
+            calls.append(payload)
+            return next(responses)
+
+        result = answer("What is the third fair use factor?", [wrong, correct], generate)
+        self.assertEqual(len(calls), 3)
+        self.assertIn("factor 3", calls[1]["retry_feedback"])
+        self.assertEqual(result["claims"], [corrected_claim])
+        self.assertIn("The cited factor number did not match the draft.", result["trace"])
+
+        notes = Passage("sample.pdf", 2, "Historical notes",
+                        "The Committee amended the first of the criteria.")
+        wrong_claim["evidence"] = [{"id": 1, "quote": notes.text}]
+        result = answer("What is the third fair use factor?", [notes], lambda *_: {"claims": [wrong_claim]})
+        self.assertEqual(result["claims"], [])
+        self.assertIn("Abstained after repair.", result["trace"])
+
     def test_citation_highlight_and_missing_quote(self):
         pdf = (ROOT / "data" / "17-USC-106.pdf").read_bytes()
         marked, found = render_citation(pdf, 1, "Exclusive rights in copyrighted works")
@@ -82,6 +109,8 @@ class ProjectTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
 
 
 
