@@ -34,20 +34,24 @@ with st.sidebar:
             st.session_state.pop("case_data", None)
             st.session_state.pop("index", None)
     with st.expander("New case", expanded=not saved):
-        case = st.text_input("Case name", max_chars=120)
+        case = st.text_input("Case name (optional)", max_chars=120,
+                             help="Leave blank to use the first PDF filename.")
         uploads = st.file_uploader("Upload public PDFs", type="pdf", accept_multiple_files=True)
         if st.button("Index and save case"):
-            if not case.strip() or not 1 <= len(uploads) <= 5 or len({f.name for f in uploads}) != len(uploads):
-                st.error("Enter a case name and select 1–5 uniquely named PDFs.")
+            if not 1 <= len(uploads) <= 5:
+                st.error("Select 1–5 PDFs before indexing.")
+            elif len({f.name for f in uploads}) != len(uploads):
+                st.error("Each PDF needs a different filename. Rename one of the duplicate files and try again.")
             else:
+                case_name = case.strip() or Path(uploads[0].name).stem[:120] or "Untitled case"
                 try:
                     with st.spinner("Extracting pages and building the index…"):
                         docs = {f.name: f.getvalue() for f in uploads}
                         passages, structure = ingest(docs)
                         index = Index(passages)
-                        case_id = store.save_case(case.strip(), docs, passages, structure)
+                        case_id = store.save_case(case_name, docs, passages, structure)
                         st.session_state.case_id = case_id
-                        st.session_state.case_data = (case.strip(), docs, passages, structure)
+                        st.session_state.case_data = (case_name, docs, passages, structure)
                         st.session_state.index = index
                     st.rerun()
                 except Exception as exc:
@@ -145,6 +149,7 @@ if history:
             preview, marked = render_citation(docs[passage.document], passage.page, quote)
             st.caption("Quoted text highlighted" if marked else "Full page shown · quote region unavailable")
             st.image(preview, use_container_width=True)
+
 
 
 
