@@ -32,3 +32,16 @@ The project author reviewed each output against the reference and its cited quot
 Hybrid retrieved more gold evidence at ten passages, but its generator and verifier still made errors. For example, one draft labeled the potential-market factor as the third factor even though its quote began with “(4),” and the verifier accepted it. That failure separates evidence availability and quote authenticity from correct interpretation. Both configurations missed answerable questions, so the confidence labels require human review.
 
 The run used Windows, the pinned Python dependencies, CPU retrieval with four OpenMP threads, and the default local Qwen model. Index startup with cached model weights took 32.83 seconds. This is a single run on a small fixture.
+
+## Verifier repair rerun, November 7, 2026
+
+The original manually graded results above describe the baseline. The updated app reran all 15 questions with the same fixture. Per-question outputs and review sheets are in `verifier-rerun/`.
+
+| Metric | Dense | Reranked hybrid |
+|---|---:|---:|
+| Clause recall at 10 | 62.5% | 70.8% |
+| Correct abstentions on unanswerable questions | 3/3 | 3/3 |
+| False abstentions on answerable questions | 5/12 | 4/12 |
+| Mean end-to-end latency | 11.81 s | 10.64 s |
+
+The hybrid repair trace shows that the first draft for the missing royalty-rate question was rejected, repaired once, and then withheld. The rerun still produced numbered-factor errors. Fewer false abstentions do not establish higher correctness. The rerun includes review sheets, while the manual correctness and precision figures above apply to the baseline only.

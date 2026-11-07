@@ -1,0 +1,37 @@
+{
+  "index_seconds": 31.76215720000073,
+  "bm25": {
+    "recall@1": 0.125,
+    "recall@5": 0.4583333333333333,
+    "recall@10": 0.5416666666666666,
+    "all_gold_retrieved@10": 0.5,
+    "mean_retrieval_seconds": 0.013901640000040062
+  },
+  "dense": {
+    "recall@1": 0.4166666666666667,
+    "recall@5": 0.625,
+    "recall@10": 0.625,
+    "all_gold_retrieved@10": 0.5,
+    "mean_retrieval_seconds": 0.018146699999973256,
+    "mean_end_to_end_seconds": 11.806272819999746,
+    "unanswerable_abstention_accuracy": 1,
+    "answerable_false_abstention": 0.4166666666666667
+  },
+  "fusion": {
+    "recall@1": 0.2916666666666667,
+    "recall@5": 0.5416666666666666,
+    "recall@10": 0.625,
+    "all_gold_retrieved@10": 0.5833333333333334,
+    "mean_retrieval_seconds": 0.019722266666455348
+  },
+  "hybrid": {
+    "recall@1": 0.4166666666666667,
+    "recall@5": 0.5,
+    "recall@10": 0.7083333333333334,
+    "all_gold_retrieved@10": 0.6666666666666666,
+    "mean_retrieval_seconds": 1.2978681199994753,
+    "mean_end_to_end_seconds": 10.636134186666458,
+    "unanswerable_abstention_accuracy": 1,
+    "answerable_false_abstention": 0.3333333333333333
+  }
+}

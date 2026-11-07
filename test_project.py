@@ -62,6 +62,14 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(result["claims"], [claim])
         self.assertIn("Accepted the revised draft.", result["trace"])
 
+        calls.clear()
+        rejection = {"verdict": "reject", "reason": "Check the cap."}
+        responses = iter([{"claims": [claim]}, rejection, {"claims": [claim]}, rejection])
+        refused = answer("What is the cap?", [passage], generate)
+        self.assertEqual(len(calls), 4)
+        self.assertEqual(refused["claims"], [])
+        self.assertIn("Abstained after repair.", refused["trace"])
+
     def test_citation_highlight_and_missing_quote(self):
         pdf = (ROOT / "data" / "17-USC-106.pdf").read_bytes()
         marked, found = render_citation(pdf, 1, "Exclusive rights in copyrighted works")
@@ -74,5 +82,6 @@ class ProjectTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
 
 
