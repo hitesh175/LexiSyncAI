@@ -80,12 +80,15 @@ def export_answer(case, documents, question, hits, result):
              "Documents searched", *(f"- {name}" for name in documents), "", "Answer"]
     if not result["claims"]:
         lines.append(ABSTAIN)
+    reference = 0
     for claim in result["claims"]:
         lines.extend([claim["text"], ""])
         for citation in claim["evidence"]:
+            reference += 1
             passage = hits[citation["id"] - 1]
-            lines.extend([f"- {passage.document} | PDF page {passage.page} | {passage.section}",
+            lines.extend([f"[{reference}] {passage.document} | PDF page {passage.page} | {passage.section}",
                           f"  {citation['quote']}"])
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
+
 

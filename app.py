@@ -124,23 +124,27 @@ if history:
     else:
         left, right = st.columns(2)
         citations = []
+        citation_key = f"citation-{selected_answer}"
         with left:
             st.markdown("#### Claims and evidence")
             for claim in result["claims"]:
                 st.write(claim["text"])
                 for cite in claim["evidence"]:
                     p = hits[cite["id"] - 1]
-                    label = f'{p.document} · PDF p. {p.page} · {p.section}'
-                    st.caption(label)
-                    st.text(cite["quote"])
+                    source_index = len(citations)
+                    label = f'[{source_index + 1}] {p.document} · PDF p. {p.page} · {p.section}'
                     citations.append((label, p, cite["quote"]))
+                    st.button(label, key=f"source-{selected_answer}-{source_index}",
+                              on_click=st.session_state.__setitem__, args=(citation_key, source_index))
+                    st.text(cite["quote"])
         with right:
             st.markdown("#### Original PDF")
             selected = st.selectbox("Open cited PDF page", range(len(citations)),
-                                    format_func=lambda i: citations[i][0], key=f"citation-{selected_answer}")
+                                    format_func=lambda i: citations[i][0], key=citation_key)
             _, passage, quote = citations[selected]
             preview, marked = render_citation(docs[passage.document], passage.page, quote)
             st.caption("Quoted text highlighted" if marked else "Full page shown · quote region unavailable")
             st.image(preview, use_container_width=True)
+
 
 
