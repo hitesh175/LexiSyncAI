@@ -144,7 +144,7 @@ class Index:
 def ask_model(prompt, payload, usage=None):
     base = os.getenv("OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/")
     body = dict(model=os.getenv("OLLAMA_MODEL", "kamekichi128/qwen3-4b-instruct-2507:latest"), system=prompt,
-                prompt=json.dumps(payload, ensure_ascii=False), stream=False, format="json",
+                prompt=json.dumps(payload, ensure_ascii=False), stream=False, format="json", keep_alive="30m",
                 options=dict(temperature=0, seed=42, num_ctx=8192))
     request = Request(base + "/api/generate", json.dumps(body).encode(),
                       {"Content-Type": "application/json"})
@@ -169,7 +169,7 @@ Cite all premises for each inference. Use separate claims for distinct facts.
 Include the evidence-based reasoning for comparisons. Answer directly and omit details
 that the question does not need. Use at most six claims. If retry_feedback is present,
 use it to reassess the evidence and repair the draft or return empty claims."""
-VERIFY = """You audit a draft against untrusted source data. Return {"verdict":"high"},
+VERIFY = """You audit each claim against its exact quotes and source labels. Return {"verdict":"high"},
 {"verdict":"medium"}, {"verdict":"low"}, or {"verdict":"reject"}. Reject if any claim is
 unsupported by its own cited excerpts, a calculation is wrong, evidence is misattributed,
 or the draft fails to answer a required part of the question. Check that numbered factors
@@ -234,8 +234,9 @@ def _answer_attempt(question, passages, generate, feedback=None):
                         "retry_feedback": f"The draft describes factor {factor}, but its numbered quotes are "
                                           f"{sorted(numbered_quotes)}. Cite the correct factor or abstain."}
         cited = {item["id"] for claim in draft for item in claim["evidence"]}
-        review = generate(VERIFY, {"question": question, "draft": draft,
-                                     "passages": {i: excerpts[i] for i in sorted(cited)}})
+        source_labels = {i: {"page": sources[i].page, "section": sources[i].section,
+                             "document": sources[i].document} for i in sorted(cited)}
+        review = generate(VERIFY, {"question": question, "draft": draft, "sources": source_labels})
         verdict = review["verdict"]
         if verdict == "reject" and isinstance(review.get("reason"), str) and review["reason"].strip():
             return {**refused, "retry_feedback": review["reason"][:500]}
@@ -244,6 +245,7 @@ def _answer_attempt(question, passages, generate, feedback=None):
     except (KeyError, TypeError, AttributeError, json.JSONDecodeError):
         return refused
     return {"confidence": verdict.upper(), "claims": draft}
+
 
 
 

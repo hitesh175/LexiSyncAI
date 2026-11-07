@@ -8,6 +8,7 @@ import streamlit as st
 from cases import CaseStore, export_answer
 from lexic import ABSTAIN, Index, answer, ask_model, ingest
 from preview import render_citation
+from pdf_import import fetch_pdf
 
 st.set_page_config(page_title="LexiSyncAI", layout="wide")
 st.html("""
@@ -23,6 +24,11 @@ st.caption("Legal document research with page-level evidence")
 default_db = Path(__file__).resolve().parent / ".lexisync" / "cases.sqlite3"
 store = CaseStore(os.getenv("LEXISYNC_CASE_DB") or default_db)
 
+@st.cache_resource(max_entries=4, show_spinner=False)
+def case_index(passages):
+    return Index(passages)
+
+
 with st.sidebar:
     st.header("Case library")
     st.caption("PDFs and question history are saved on this device.")
@@ -32,34 +38,48 @@ with st.sidebar:
         if st.button("Open case"):
             st.session_state.case_id = selected_case
             st.session_state.pop("case_data", None)
-            st.session_state.pop("index", None)
+
     with st.expander("New case", expanded=not saved):
         case = st.text_input("Case name (optional)", max_chars=120,
                              help="Leave blank to use the first PDF filename.")
         uploads = st.file_uploader("Upload public PDFs", type="pdf", accept_multiple_files=True)
+        links = st.text_area("Official PDF links (optional)", max_chars=5000,
+                             help="One direct HTTPS PDF link per line. Supported publishers include EUR-Lex, EDPB, GovInfo, UK legislation and German federal legislation.")
         if st.button("Index and save case"):
-            if not 1 <= len(uploads) <= 5:
-                st.error("Select 1–5 PDFs before indexing.")
+            urls = [line.strip() for line in links.splitlines() if line.strip()]
+            if not 1 <= len(uploads) + len(urls) <= 5:
+                st.error("Add 1–5 PDFs in total, using uploads, links, or both.")
             elif len({f.name for f in uploads}) != len(uploads):
                 st.error("Each PDF needs a different filename. Rename one of the duplicate files and try again.")
             else:
-                case_name = case.strip() or Path(uploads[0].name).stem[:120] or "Untitled case"
                 try:
-                    with st.spinner("Extracting pages and building the index…"):
+                    with st.spinner("Importing PDFs and preparing the case…"):
                         docs = {f.name: f.getvalue() for f in uploads}
+                        sources = {}
+                        for url in urls:
+                            filename, content = fetch_pdf(url)
+                            stem = Path(filename).stem
+                            suffix = 2
+                            while filename in docs:
+                                filename = f"{stem}-{suffix}.pdf"
+                                suffix += 1
+                            docs[filename] = content
+                            sources[filename] = url
+                        case_name = case.strip() or Path(next(iter(docs))).stem[:120] or "Untitled case"
                         passages, structure = ingest(docs)
-                        index = Index(passages)
-                        case_id = store.save_case(case_name, docs, passages, structure)
+                        if not passages:
+                            raise ValueError("No searchable text was found in these PDFs.")
+                        case_index(tuple(passages))
+                        case_id = store.save_case(case_name, docs, passages, structure, sources)
                         st.session_state.case_id = case_id
                         st.session_state.case_data = (case_name, docs, passages, structure)
-                        st.session_state.index = index
                     st.rerun()
                 except Exception as exc:
                     st.error(f"Indexing failed: {exc}")
 
 if "case_id" not in st.session_state:
     st.subheader("Start with a document")
-    st.write("Open a saved case or upload up to five public PDFs in the case library.")
+    st.write("Open a saved case or add up to five public PDFs using files or official links.")
     st.write("Ask a question, then check the quoted evidence against the original page.")
     st.stop()
 
@@ -67,6 +87,7 @@ case_id = st.session_state.case_id
 if "case_data" not in st.session_state:
     st.session_state.case_data = store.open_case(case_id)
 case, docs, passages, structure = st.session_state.case_data
+sources = store.document_sources(case_id)
 st.header(case)
 st.caption(f"Case #{case_id} · {len(docs)} document(s) · {len(structure)} PDF pages")
 with st.expander("Detected document structure"):
@@ -77,6 +98,8 @@ with st.expander("Detected document structure"):
         cells = [str(row[column]).replace("|", "&#124;").replace("\n", " ") for column in columns]
         rows.append("| " + " | ".join(cells) + " |")
     st.markdown("\n".join(rows))
+    for filename, url in sources.items():
+        st.link_button(f"Official source for {filename}", url)
     if any(row["image_only"] for row in structure):
         st.warning("Image-only pages are shown above. Their text is excluded from retrieval.")
 
@@ -88,10 +111,9 @@ history_key = f"history-{case_id}"
 if submitted and question.strip():
     try:
         with st.spinner("Retrieving, drafting and checking evidence…"):
-            if "index" not in st.session_state:
-                st.session_state.index = Index(passages)
             started = perf_counter()
-            hits = st.session_state.index.retrieve(question.strip())
+            index = case_index(tuple(passages))
+            hits = index.retrieve(question.strip())
             retrieved = perf_counter()
             usage = {"calls": 0, "input_tokens": 0, "output_tokens": 0}
             result = answer(question.strip(), hits, generate=partial(ask_model, usage=usage))
@@ -111,7 +133,7 @@ if history:
     st.text(question)
     st.badge(result["confidence"])
     st.download_button("Download answer and citations",
-                       data=export_answer(case, docs, question, hits, result),
+                       data=export_answer(case, docs, question, hits, result, sources),
                        file_name=f"lexisync-case-{case_id}-answer-{selected_answer}.txt",
                        mime="text/plain; charset=utf-8")
     if result.get("trace") or result.get("timing"):
@@ -149,6 +171,8 @@ if history:
             preview, marked = render_citation(docs[passage.document], passage.page, quote)
             st.caption("Quoted text highlighted" if marked else "Full page shown · quote region unavailable")
             st.image(preview, use_container_width=True)
+
+
 
 
 

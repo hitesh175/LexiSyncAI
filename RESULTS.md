@@ -61,3 +61,7 @@ Hybrid questions 5 and 6 both used factor (4) as evidence for a different number
 ### Numbered-factor guard
 
 A follow-up run on questions 5 and 6 showed why the guard needs to recognize two forms of reference. For question 5 it rejected the mismatched numbered quotation and abstained after one repair. For question 6 it rejected the original draft, but the model then cited a historical note describing the first factor in words and mislabeled it as the third. The guard now checks both leading numbers and phrases such as “first of the criteria” in fair-use citations. Regression tests cover successful repair and withholding a repeated mismatch. The full 15-question scores above have not been rerun with this final guard.
+
+## URL import release latency check
+
+In a warm local comparison on one question with the same supplied passages, the draft and verification steps took 1.33 s before the change and 1.16 s after it. Input tokens decreased from 1,202 to 1,025, with two model calls, 69 output tokens and a HIGH result in each run. This measures only one answer with a warm model and excludes retrieval, index construction and downloads.

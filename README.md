@@ -59,3 +59,9 @@ PDFs and answers are stored in `.lexisync/cases.sqlite3` in the project folder. 
 Select a saved answer and choose **Download answer and citations** for a plain-text record of the question, searched files, answer, and quoted evidence.
 
 See [assignment coverage](RUBRIC.md) for the rubric, verified features, and open bonus items.
+
+## Import official PDF links
+
+In **New case**, enter one direct HTTPS PDF URL per line in **Official PDF links**. You can mix links and uploads, up to five files total. The app supports EUR-Lex, EDPB, GovInfo, UK legislation and the listed German federal publishers. Linked PDFs are limited to 25 MB each. If a publisher serves a web page or blocks downloads, save the PDF and upload it. The source link is retained with the case and included in answer exports.
+
+The app keeps up to four prepared search indexes in memory until restart and asks Ollama to keep the local model loaded for 30 minutes. Under **Analysis details**, retrieval time includes index preparation on a cold case. Model time includes generation, verification and any repair.

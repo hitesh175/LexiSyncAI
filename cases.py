@@ -22,6 +22,11 @@ class CaseStore:
                     case_id INTEGER NOT NULL REFERENCES cases(id),
                     name TEXT NOT NULL, pdf BLOB NOT NULL, PRIMARY KEY(case_id, name)
                 );
+                CREATE TABLE IF NOT EXISTS document_sources (
+                    case_id INTEGER NOT NULL, name TEXT NOT NULL, url TEXT NOT NULL,
+                    PRIMARY KEY(case_id, name),
+                    FOREIGN KEY(case_id, name) REFERENCES documents(case_id, name)
+                );
                 CREATE TABLE IF NOT EXISTS answers (
                     id INTEGER PRIMARY KEY, case_id INTEGER NOT NULL REFERENCES cases(id),
                     question TEXT NOT NULL, hits TEXT NOT NULL, result TEXT NOT NULL
@@ -40,13 +45,19 @@ class CaseStore:
         with self.connection() as db:
             return db.execute("SELECT id, name FROM cases ORDER BY id DESC").fetchall()
 
-    def save_case(self, name, docs, passages, structure):
+    def save_case(self, name, docs, passages, structure, sources=None):
         with self.connection() as db:
             case_id = db.execute("INSERT INTO cases(name, passages, structure) VALUES (?, ?, ?)",
                                  (name, json.dumps([asdict(p) for p in passages]), json.dumps(structure))).lastrowid
             db.executemany("INSERT INTO documents VALUES (?, ?, ?)",
                            [(case_id, filename, data) for filename, data in docs.items()])
+            db.executemany("INSERT INTO document_sources VALUES (?, ?, ?)",
+                           [(case_id, filename, url) for filename, url in (sources or {}).items()])
             return case_id
+
+    def document_sources(self, case_id):
+        with self.connection() as db:
+            return dict(db.execute("SELECT name, url FROM document_sources WHERE case_id = ?", (case_id,)))
 
     def open_case(self, case_id):
         with self.connection() as db:
@@ -73,11 +84,12 @@ class CaseStore:
         return question, [Passage(**p) for p in json.loads(hits)], json.loads(result)
 
 
-def export_answer(case, documents, question, hits, result):
+def export_answer(case, documents, question, hits, result, sources=None):
     """Build a portable plain-text record from the saved evidence."""
+    sources = sources or {}
     lines = [f"LexiSyncAI | {case}", "", "Question", question, "",
              f"Confidence: {result['confidence']}", "",
-             "Documents searched", *(f"- {name}" for name in documents), "", "Answer"]
+             "Documents searched", *(f"- {name}" + (f" | {sources[name]}" if name in sources else "") for name in documents), "", "Answer"]
     if not result["claims"]:
         lines.append(ABSTAIN)
     reference = 0
@@ -90,5 +102,7 @@ def export_answer(case, documents, question, hits, result):
                           f"  {citation['quote']}"])
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
+
+
 
 
