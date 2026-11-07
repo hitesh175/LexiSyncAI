@@ -28,11 +28,9 @@
 .lexi-brand-name { display: block; font: 700 1.35rem/1.15 Georgia, serif; letter-spacing: -.025em; color: var(--ink); }
 .lexi-brand-note { display: block; margin-top: .24rem; color: var(--quiet); font-size: .76rem; }
 .lexi-case { padding: .3rem 0 1.1rem; border-bottom: 1px solid var(--line); }
-.lexi-case h1, .lexi-empty h1 { font: 600 2.2rem/1.15 Georgia, serif; letter-spacing: -.035em; color: var(--ink); padding: 0; margin: 0; overflow-wrap: anywhere; }
+.lexi-case h1 { font: 600 2.2rem/1.15 Georgia, serif; letter-spacing: -.035em; color: var(--ink); padding: 0; margin: 0; overflow-wrap: anywhere; }
 .lexi-case p { margin: .65rem 0 0; color: var(--quiet); font-size: .9rem; }
-.lexi-empty { max-width: 45rem; padding: 1.65rem 0 1rem; }
-.lexi-empty p { max-width: 46ch; color: var(--quiet); margin: .9rem 0 1.3rem; line-height: 1.6; }
-.lexi-empty ol { padding-left: 1.35rem; margin: 0; line-height: 1.8; color: var(--ink); }
+.st-key-lexi_intake { max-width: 45rem; }
 .lexi-review-title { scroll-margin-top: 3.5rem; padding-top: .8rem; border-top: 1px solid var(--line); }
 .lexi-review-title h2 { font: 600 1.65rem/1.2 Georgia, serif; margin: 0; padding: 0; color: var(--ink); }
 .lexi-question { color: var(--ink); font-size: 1.08rem; line-height: 1.45; margin: .35rem 0 0; max-width: 72ch; overflow-wrap: anywhere; }
@@ -47,11 +45,12 @@
 }
 @media (max-width: 700px) {
   [data-testid="stMainBlockContainer"] { padding: 3.4rem 1rem 2rem; }
-  .lexi-case h1, .lexi-empty h1 { font-size: 2rem; }
+  .lexi-case h1 { font-size: 2rem; }
   .st-key-lexi_review [data-testid="stHorizontalBlock"] { flex-wrap: wrap; gap: 1.1rem; }
   .st-key-lexi_review [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] { flex: 1 1 100%; min-width: 0; }
 }
 </style>
+
 
 
 

@@ -18,7 +18,7 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Open http://localhost:8501. Upload the two PDFs in `data`, name the case, and select **Index case**. First indexing downloads the retrieval models from Hugging Face. The app keeps the case in the browser session. The one-document option supports the unseen-PDF demo.
+Open http://localhost:8501. Upload the two PDFs in `data` and select **Save documents**. First indexing downloads the retrieval models from Hugging Face. The app keeps the case in the browser session. The one-document option supports the unseen-PDF demo.
 
 With Docker Desktop and a running host Ollama service, run `docker compose up --build`. The container connects to the host via `host.docker.internal`. The native Python setup is the direct route if the host service is inaccessible from Docker.
 
@@ -52,7 +52,7 @@ See [measured benchmark results](RESULTS.md).
 
 ## Saved cases
 
-Create a case with **Index and save case**. Use **Saved cases** and **Open case** after restarting. Question history includes abstentions, exact evidence excerpts, and access to the original cited pages. The first new question after reopening a case rebuilds the search index from saved passages.
+Select **Add a new case**, choose your PDFs, then select **Save documents**. Use **Choose a case** to reopen a saved case. **Previous answers** includes abstentions and answers with citations. Select a source beneath a claim to read the exact quote and see the original PDF page.
 
 PDFs and answers are stored in `.lexisync/cases.sqlite3` in the project folder. Back up this file while the app is closed. Keep the app on localhost and use public documents. For a custom database location, set `LEXISYNC_CASE_DB`. For Docker, mount a persistent volume at `/app/.lexisync`.
 
@@ -62,6 +62,7 @@ See [assignment coverage](RUBRIC.md) for the rubric, verified features, and open
 
 ## Import official PDF links
 
-In **New case**, enter one direct HTTPS PDF URL per line in **Official PDF links**. You can mix links and uploads, up to five files total. The app supports EUR-Lex, EDPB, GovInfo, UK legislation and the listed German federal publishers. Linked PDFs are limited to 25 MB each. If a publisher serves a web page or blocks downloads, save the PDF and upload it. The source link is retained with the case and included in answer exports.
+On the **Add legal documents** screen, open **Use official PDF links instead** and paste one direct HTTPS PDF URL per line. You can mix links and uploads, up to five files total. The app supports EUR-Lex, EDPB, GovInfo, UK legislation and the listed German federal publishers. Linked PDFs are limited to 25 MB each. If a publisher serves a web page or blocks downloads, save the PDF and upload it. The source link is retained with the case and included in answer exports.
 
 The app keeps up to four prepared search indexes in memory until restart and asks Ollama to keep the local model loaded for 30 minutes. Under **Analysis details**, retrieval time includes index preparation on a cold case. Model time includes generation, verification and any repair.
+
