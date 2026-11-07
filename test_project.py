@@ -5,6 +5,7 @@ import unittest
 
 import pypdfium2 as pdfium
 from lexic import Passage, answer, ingest
+from preview import render_citation
 
 ROOT = Path(__file__).resolve().parent
 
@@ -43,6 +44,35 @@ class ProjectTests(unittest.TestCase):
             self.assertEqual(answer("What is the cap?", [passage], lambda *_: next(responses))["claims"], [])
 
 
+    def test_verifier_repairs_once(self):
+        passage = Passage("sample.pdf", 1, "Section 7", "The cap is EUR 2 million.")
+        claim = {"text": "The cap is EUR 2 million.",
+                 "evidence": [{"id": 1, "quote": "EUR 2 million"}]}
+        calls = []
+        responses = iter([{"claims": [claim]}, {"verdict": "reject", "reason": "Check the cap."},
+                          {"claims": [claim]}, {"verdict": "high"}])
+
+        def generate(prompt, payload):
+            calls.append(payload)
+            return next(responses)
+
+        result = answer("What is the cap?", [passage], generate)
+        self.assertEqual(len(calls), 4)
+        self.assertEqual(calls[2]["retry_feedback"], "Check the cap.")
+        self.assertEqual(result["claims"], [claim])
+        self.assertIn("Accepted the revised draft.", result["trace"])
+
+    def test_citation_highlight_and_missing_quote(self):
+        pdf = (ROOT / "data" / "17-USC-106.pdf").read_bytes()
+        marked, found = render_citation(pdf, 1, "Exclusive rights in copyrighted works")
+        original, missing = render_citation(pdf, 1, "This quote is absent")
+        self.assertTrue(found)
+        self.assertFalse(missing)
+        self.assertEqual(marked.size, original.size)
+        self.assertNotEqual(marked.tobytes(), original.tobytes())
+
+
 if __name__ == "__main__":
     unittest.main()
+
 
