@@ -1,0 +1,56 @@
+<style>
+:root {
+  --paper: #faf9f5;
+  --sheet: #fffefa;
+  --rail: #eef0e9;
+  --ink: #22302a;
+  --quiet: #53635a;
+  --line: #d9ded3;
+  --forest: #2c5649;
+  --wash: #e6eee7;
+}
+[data-testid="stMainBlockContainer"] { max-width: 91rem; padding: 3rem 3.25rem 4rem; }
+[data-testid="stSidebar"] { background: var(--rail); border-right: 1px solid var(--line); }
+[data-testid="stSidebarContent"] [data-testid="stVerticalBlock"] { gap: .8rem; }
+[data-testid="stCaptionContainer"] { opacity: 1; }
+[data-testid="stCaptionContainer"] p { color: var(--quiet); }
+[data-testid="stMarkdownContainer"] table { font-variant-numeric: tabular-nums; }
+[data-testid="stMarkdownContainer"] { overflow-wrap: anywhere; }
+.st-key-lexi_composer [data-testid="stForm"] { background: var(--sheet); border: 1px solid var(--line); border-radius: .85rem; padding: 1rem 1.15rem; }
+[data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea { caret-color: var(--forest); }
+[data-testid="stTextInput"] input::placeholder { color: var(--quiet); opacity: 1; }
+[data-testid="stAppViewContainer"] :focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
+[data-testid="stAppViewContainer"] ::selection { background: #cfe0d5; color: var(--ink); }
+.lexi-brand { display: flex; align-items: center; gap: .72rem; padding: .15rem 0 1rem; border-bottom: 1px solid var(--line); }
+.lexi-mark { flex: 0 0 1.38rem; height: 1.65rem; border: 1.5px solid var(--forest); border-radius: .18rem; position: relative; }
+.lexi-mark::before { content: ""; position: absolute; inset: .46rem .26rem auto; height: .34rem; border-block: 1px solid var(--forest); }
+.lexi-mark::after { content: ""; position: absolute; inset: .95rem .5rem auto .26rem; border-top: 1px solid var(--forest); }
+.lexi-brand-name { display: block; font: 700 1.35rem/1.15 Georgia, serif; letter-spacing: -.025em; color: var(--ink); }
+.lexi-brand-note { display: block; margin-top: .24rem; color: var(--quiet); font-size: .76rem; }
+.lexi-case { padding: .3rem 0 1.1rem; border-bottom: 1px solid var(--line); }
+.lexi-case h1, .lexi-empty h1 { font: 600 2.55rem/1.1 Georgia, serif; letter-spacing: -.035em; color: var(--ink); padding: 0; margin: 0; overflow-wrap: anywhere; }
+.lexi-case p { margin: .65rem 0 0; color: var(--quiet); font-size: .9rem; }
+.lexi-empty { max-width: 45rem; padding: 1.65rem 0 1rem; }
+.lexi-empty p { max-width: 46ch; color: var(--quiet); margin: .9rem 0 1.3rem; line-height: 1.6; }
+.lexi-empty ol { padding-left: 1.35rem; margin: 0; line-height: 1.8; color: var(--ink); }
+.lexi-review-title { scroll-margin-top: 3.5rem; padding-top: .8rem; border-top: 1px solid var(--line); }
+.lexi-review-title h2 { font: 600 1.65rem/1.2 Georgia, serif; margin: 0; padding: 0; color: var(--ink); }
+.lexi-question { color: var(--ink); font-size: 1.08rem; line-height: 1.45; margin: .35rem 0 0; max-width: 72ch; overflow-wrap: anywhere; }
+.st-key-lexi_evidence [data-testid="stButton"] button { width: 100%; justify-content: flex-start; text-align: left; background: var(--wash); border-color: #d4dfd6; color: var(--forest); }
+.st-key-lexi_evidence [data-testid="stButton"] button:hover { border-color: var(--forest); color: var(--ink); }
+.st-key-lexi_evidence [data-testid="stButton"] button p { text-align: left; overflow-wrap: anywhere; }
+.lexi-excerpt { margin: -.35rem 0 .55rem; padding: .68rem .8rem; border-left: 1px solid #8ca697; color: var(--quiet); font-size: .88rem; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+.st-key-lexi_pdf { padding: 1rem; background: var(--rail); border: 1px solid var(--line); border-radius: .85rem; min-width: 0; }
+.st-key-lexi_pdf [data-testid="stImage"] img { background: white; border: 1px solid var(--line); }
+@media (max-width: 900px) {
+  [data-testid="stMainBlockContainer"] { padding-inline: 1.6rem; }
+}
+@media (max-width: 700px) {
+  [data-testid="stMainBlockContainer"] { padding: 3.4rem 1rem 2rem; }
+  .lexi-case h1, .lexi-empty h1 { font-size: 2rem; }
+  .st-key-lexi_review [data-testid="stHorizontalBlock"] { flex-wrap: wrap; gap: 1.1rem; }
+  .st-key-lexi_review [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] { flex: 1 1 100%; min-width: 0; }
+}
+</style>
+
+

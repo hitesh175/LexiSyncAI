@@ -1,4 +1,5 @@
 from functools import partial
+from html import escape
 from pathlib import Path
 import os
 from time import perf_counter
@@ -11,16 +12,7 @@ from preview import render_citation
 from pdf_import import fetch_pdf
 
 st.set_page_config(page_title="LexiSyncAI", layout="wide")
-st.html("""
-<style>
-[data-testid="stMainBlockContainer"] { padding-top: 3.5rem; }
-[data-testid="stSidebarContent"] [data-testid="stCaptionContainer"],
-[data-testid="stMain"] [data-testid="stCaptionContainer"] { color: #496171; }
-[data-testid="stCaptionContainer"] p { color: inherit; }
-</style>
-""")
-st.title("LexiSyncAI")
-st.caption("Legal document research with page-level evidence")
+st.html((Path(__file__).with_name("workspace.css")).read_text(encoding="utf-8-sig"))
 default_db = Path(__file__).resolve().parent / ".lexisync" / "cases.sqlite3"
 store = CaseStore(os.getenv("LEXISYNC_CASE_DB") or default_db)
 
@@ -30,12 +22,18 @@ def case_index(passages):
 
 
 with st.sidebar:
-    st.header("Case library")
+    st.html("""
+    <div class="lexi-brand">
+      <span class="lexi-mark" aria-hidden="true"></span>
+      <div><span class="lexi-brand-name">LexiSyncAI</span><span class="lexi-brand-note">Legal research workspace</span></div>
+    </div>
+    """)
+    st.subheader("Case library")
     st.caption("PDFs and question history are saved on this device.")
     saved = dict(store.list_cases())
     if saved:
         selected_case = st.selectbox("Saved cases", saved, format_func=lambda i: f"{saved[i]} · #{i}")
-        if st.button("Open case"):
+        if st.button("Open case", use_container_width=True):
             st.session_state.case_id = selected_case
             st.session_state.pop("case_data", None)
 
@@ -45,7 +43,7 @@ with st.sidebar:
         uploads = st.file_uploader("Upload public PDFs", type="pdf", accept_multiple_files=True)
         links = st.text_area("Official PDF links (optional)", max_chars=5000,
                              help="One direct HTTPS PDF link per line. Supported publishers include EUR-Lex, EDPB, GovInfo, UK legislation and German federal legislation.")
-        if st.button("Index and save case"):
+        if st.button("Index and save case", type="primary", use_container_width=True):
             urls = [line.strip() for line in links.splitlines() if line.strip()]
             if not 1 <= len(uploads) + len(urls) <= 5:
                 st.error("Add 1–5 PDFs in total, using uploads, links, or both.")
@@ -78,9 +76,17 @@ with st.sidebar:
                     st.error(f"Indexing failed: {exc}")
 
 if "case_id" not in st.session_state:
-    st.subheader("Start with a document")
-    st.write("Open a saved case or add up to five public PDFs using files or official links.")
-    st.write("Ask a question, then check the quoted evidence against the original page.")
+    st.html("""
+    <section class="lexi-empty">
+      <h1>Research a case</h1>
+      <p>Open a saved case or start with public legal documents. Review each answer alongside the passage it cites.</p>
+      <ol>
+        <li>Add up to five PDFs using uploads or official links.</li>
+        <li>Ask a question about the documents.</li>
+        <li>Open a numbered citation to inspect the original page.</li>
+      </ol>
+    </section>
+    """)
     st.stop()
 
 case_id = st.session_state.case_id
@@ -88,8 +94,12 @@ if "case_data" not in st.session_state:
     st.session_state.case_data = store.open_case(case_id)
 case, docs, passages, structure = st.session_state.case_data
 sources = store.document_sources(case_id)
-st.header(case)
-st.caption(f"Case #{case_id} · {len(docs)} document(s) · {len(structure)} PDF pages")
+document_label = "document" if len(docs) == 1 else "documents"
+page_label = "page" if len(structure) == 1 else "pages"
+st.html(f"""<header class="lexi-case">
+    <h1>{escape(case)}</h1>
+    <p>Case {case_id} / {len(docs)} {document_label} / {len(structure)} PDF {page_label}</p>
+</header>""")
 with st.expander("Detected document structure"):
     columns = ("document", "page", "sections", "tables", "image_only", "empty", "columns")
     headers = ("Document", "PDF page", "Sections", "Tables", "Image only", "No text", "Columns")
@@ -103,9 +113,11 @@ with st.expander("Detected document structure"):
     if any(row["image_only"] for row in structure):
         st.warning("Image-only pages are shown above. Their text is excluded from retrieval.")
 
-with st.form(f"question-{case_id}", clear_on_submit=True):
-    question = st.text_input("Ask about the indexed documents", max_chars=1500)
-    submitted = st.form_submit_button("Find evidence and answer", type="primary")
+with st.container(key="lexi_composer"):
+    with st.form(f"question-{case_id}", clear_on_submit=True):
+        question = st.text_input("Ask about the indexed documents", max_chars=1500,
+                                 placeholder="Ask about a clause, obligation, deadline, or comparison")
+        submitted = st.form_submit_button("Find evidence and answer", type="primary")
 
 history_key = f"history-{case_id}"
 if submitted and question.strip():
@@ -129,13 +141,17 @@ if history:
     selected_answer = st.selectbox("Question history", history, key=history_key,
                                    format_func=lambda i: f"#{i} · {history[i]}")
     question, hits, result = store.open_answer(case_id, selected_answer)
-    st.subheader("Answer review")
-    st.text(question)
-    st.badge(result["confidence"])
-    st.download_button("Download answer and citations",
-                       data=export_answer(case, docs, question, hits, result, sources),
-                       file_name=f"lexisync-case-{case_id}-answer-{selected_answer}.txt",
-                       mime="text/plain; charset=utf-8")
+    st.html(f"""<header class="lexi-review-title">
+        <h2>Answer review</h2><p class="lexi-question">{escape(question)}</p>
+    </header>""")
+    status_col, export_col = st.columns([2, 1], vertical_alignment="center")
+    with status_col:
+        st.badge(result["confidence"], color="green" if result["claims"] else "orange")
+    with export_col:
+        st.download_button("Download answer and citations",
+                           data=export_answer(case, docs, question, hits, result, sources),
+                           file_name=f"lexisync-case-{case_id}-answer-{selected_answer}.txt",
+                           mime="text/plain; charset=utf-8", use_container_width=True)
     if result.get("trace") or result.get("timing"):
         with st.expander("Analysis details"):
             if timing := result.get("timing"):
@@ -148,10 +164,11 @@ if history:
         st.write(ABSTAIN)
         st.caption("Searched " + ", ".join(docs))
     else:
-        left, right = st.columns(2)
+        with st.container(key="lexi_review"):
+            left, right = st.columns([1.15, 1], gap="large")
         citations = []
         citation_key = f"citation-{selected_answer}"
-        with left:
+        with left, st.container(key="lexi_evidence"):
             st.markdown("#### Claims and evidence")
             for claim in result["claims"]:
                 st.write(claim["text"])
@@ -162,15 +179,19 @@ if history:
                     citations.append((label, p, cite["quote"]))
                     st.button(label, key=f"source-{selected_answer}-{source_index}",
                               on_click=st.session_state.__setitem__, args=(citation_key, source_index))
-                    st.text(cite["quote"])
-        with right:
+                    st.html(f'<blockquote class="lexi-excerpt">{escape(cite["quote"])}</blockquote>')
+        with right, st.container(key="lexi_pdf"):
             st.markdown("#### Original PDF")
             selected = st.selectbox("Open cited PDF page", range(len(citations)),
-                                    format_func=lambda i: citations[i][0], key=citation_key)
+                                    format_func=lambda i: f"Reference {i + 1} / PDF page {citations[i][1].page}",
+                                    key=citation_key)
             _, passage, quote = citations[selected]
+            st.caption(f"{passage.document} / {passage.section}")
             preview, marked = render_citation(docs[passage.document], passage.page, quote)
             st.caption("Quoted text highlighted" if marked else "Full page shown · quote region unavailable")
             st.image(preview, use_container_width=True)
+
+
 
 
 
