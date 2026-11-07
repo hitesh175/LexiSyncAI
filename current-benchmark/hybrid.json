@@ -1,0 +1,1132 @@
+[
+  {
+    "id": "1",
+    "kind": "factual",
+    "question": "What is the exclusive reproduction right under 17 USC 106(1)?",
+    "gold": "106:1:§106 (1)",
+    "reference": "Reproduce the copyrighted work in copies or phonorecords.",
+    "retrieval_seconds": 0.5325971999991452,
+    "hits": [
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "§106"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "5",
+        "§108 (c)"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "§108"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 7.943093800000497
+  },
+  {
+    "id": "2",
+    "kind": "factual",
+    "question": "Which numbered provision gives the copyright owner the right to prepare derivative works?",
+    "gold": "106:1:§106 (2)",
+    "reference": "Section 106(2).",
+    "retrieval_seconds": 0.4862264999974286,
+    "hits": [
+      [
+        "106",
+        "1",
+        "§106 (2)"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "§106"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (2)"
+      ],
+      [
+        "106",
+        "1",
+        "§106 (3)"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "Provision (2) of §106 grants the copyright owner the right to prepare derivative works.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "(2) to prepare derivative works based upon the copyrighted work;"
+          }
+        ]
+      },
+      {
+        "text": "This right is explicitly stated in the text of §106(2) and confirmed in the historical notes that describe it as a separate exclusive right.",
+        "evidence": [
+          {
+            "id": 4,
+            "quote": "The exclusive right to prepare derivative works, specified separately in clause (2) of section 106,"
+          }
+        ]
+      },
+      {
+        "text": "The definition of derivative works in the context of §106(2) includes forms such as translations, musical arrangements, dramatizations, and adaptations.",
+        "evidence": [
+          {
+            "id": 6,
+            "quote": "the definition in section 101 refers to ‘‘a translation, musical arrangement, dramatization, fictionalization, motion picture version, sound recording, art reproduction, abridgment, condensation, or any other form in which a work may be recast, transformed, or adapted.’’"
+          }
+        ]
+      },
+      {
+        "text": "The right to prepare derivative works is distinct from reproduction and may exist even without fixation in tangible form.",
+        "evidence": [
+          {
+            "id": 6,
+            "quote": "To be an infringement the ‘‘derivative work’’ must be ‘‘based upon the copyrighted work,’’ and the definition in section 101 refers to ‘‘a translation, musical arrangement, dramatization, fictionalization, motion picture version, sound recording, art reproduction, abridgment, condensation, or any other form in which a work may be recast, transformed, or adapted.’’"
+          }
+        ]
+      }
+    ],
+    "seconds": 6.371932399997604
+  },
+  {
+    "id": "3",
+    "kind": "factual",
+    "question": "Which methods of transferring copies to the public does section 106(3) list?",
+    "gold": "106:1:§106 (3)",
+    "reference": "Sale or other transfer of ownership, rental, lease, or lending.",
+    "retrieval_seconds": 0.4811163000013039,
+    "hits": [
+      [
+        "106",
+        "1",
+        "§106 (3)"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "§106 (1)"
+      ],
+      [
+        "106",
+        "3",
+        "section 117"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107 (A)"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 5.371878800000559
+  },
+  {
+    "id": "4",
+    "kind": "factual",
+    "question": "How is the public performance right for sound recordings framed in section 106(6)?",
+    "gold": "106:1:§106 (6)",
+    "reference": "Public performance by digital audio transmission.",
+    "retrieval_seconds": 0.5032112000008055,
+    "hits": [
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "§106 (6)"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "4",
+        "Section 107"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "3",
+        "section 117"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "The public performance right for sound recordings in section 106(6) is specifically framed as the right to perform a copyrighted work publicly by means of a digital audio transmission.",
+        "evidence": [
+          {
+            "id": 3,
+            "quote": "(6) in the case of sound recordings, to perform the copyrighted work publicly by means of a digital audio transmission."
+          }
+        ]
+      }
+    ],
+    "seconds": 3.002353799998673
+  },
+  {
+    "id": "5",
+    "kind": "factual",
+    "question": "What does the second fair use factor consider?",
+    "gold": "107:1:§107 (2)",
+    "reference": "Nature of the copyrighted work.",
+    "retrieval_seconds": 0.4753917999987607,
+    "hits": [
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "1",
+        "§107 (4)"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "Editorial Notes"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 1.8182850000011967
+  },
+  {
+    "id": "6",
+    "kind": "factual",
+    "question": "What does the third fair use factor require the decision-maker to consider?",
+    "gold": "107:1:§107 (3)",
+    "reference": "Amount and substantiality of the portion used in relation to the whole.",
+    "retrieval_seconds": 0.4559222999996564,
+    "hits": [
+      [
+        "107",
+        "1",
+        "§107 (4)"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "Section 107"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "trace": [
+      "The cited factor number did not match the draft.",
+      "Ran one evidence-based repair.",
+      "Abstained after repair."
+    ],
+    "seconds": 7.19059610000113
+  },
+  {
+    "id": "7",
+    "kind": "factual",
+    "question": "What market considerations does the fourth fair use factor name?",
+    "gold": "107:1:§107 (4)",
+    "reference": "Effect upon the potential market for or value of the work.",
+    "retrieval_seconds": 0.4459735999989789,
+    "hits": [
+      [
+        "107",
+        "1",
+        "§107 (4)"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "Editorial Notes"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "The fourth fair use factor considers the effect of the use upon the potential market for or value of the copyrighted work.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "(4) the effect of the use upon the potential market for or value of the copyrighted work."
+          }
+        ]
+      },
+      {
+        "text": "This factor evaluates whether the use might interfere with the market for the original work or diminish its value.",
+        "evidence": [
+          {
+            "id": 4,
+            "quote": "These criteria have been stated in various ways, but essentially they can all be reduced to the four standards which have been adopted in section 107: ‘‘(1) the purpose and character of the use, including whether such use is of a commercial nature or is for nonprofit educational purposes; (2) the nature of the copyrighted work; (3) the amount and substantiality of the portion used in relation to the copyrighted work as a whole; and (4) the effect of the use upon the potential market for or value of the copyrighted work.’’"
+          }
+        ]
+      }
+    ],
+    "seconds": 4.72295369999847
+  },
+  {
+    "id": "8",
+    "kind": "factual",
+    "question": "Does the unpublished status of a work by itself foreclose fair use?",
+    "gold": "107:1:§107 (4)",
+    "reference": "No, if fair use is found after considering all the factors.",
+    "retrieval_seconds": 0.4928848999988986,
+    "hits": [
+      [
+        "107",
+        "1",
+        "§107 (4)"
+      ],
+      [
+        "107",
+        "5",
+        "Editorial Notes"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "5",
+        "§108 (b)"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "The unpublished status of a work does not itself foreclose a finding of fair use.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "The fact that a work is unpublished shall not itself bar a finding of fair use if such finding is made upon consideration of all the above factors."
+          },
+          {
+            "id": 2,
+            "quote": "The fact that a work is unpublished shall not itself bar a finding of fair use if such finding is made upon consideration of all the above factors."
+          }
+        ]
+      }
+    ],
+    "seconds": 3.0083623999998963
+  },
+  {
+    "id": "9",
+    "kind": "factual",
+    "question": "What distinction between commercial and educational use appears in the first fair use factor?",
+    "gold": "107:1:§107 (1)",
+    "reference": "Whether the use is commercial or for nonprofit educational purposes.",
+    "retrieval_seconds": 0.4518424000016239,
+    "hits": [
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "1",
+        "§107 (1)"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "§107 (4)"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "The first fair use factor distinguishes between commercial and educational use by explicitly considering whether the use is of a commercial nature or for nonprofit educational purposes.",
+        "evidence": [
+          {
+            "id": 8,
+            "quote": "(1) the purpose and character of the use, including whether such use is of a commercial nature or is for nonprofit educational purposes;"
+          }
+        ]
+      },
+      {
+        "text": "This distinction is part of the statutory formulation of the first fair use factor and is explicitly stated in the text of section 107(1).",
+        "evidence": [
+          {
+            "id": 3,
+            "quote": "(1) the purpose and character of the use, including whether such use is of a commercial nature or is for nonprofit educational purposes;"
+          }
+        ]
+      },
+      {
+        "text": "The inclusion of this distinction reflects a recognition that educational uses, particularly in classroom settings, are to be evaluated differently from commercial uses.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "The Committee has amended the first of the criteria to be considered—‘‘the purpose and character of the use’’—to state explicitly that this factor includes a consideration of ‘‘whether such use is of a commercial nature or is for non-profit educational purposes.’’"
+          }
+        ]
+      },
+      {
+        "text": "The factor does not establish a limitation on educational use but rather acknowledges that commercial nature is a relevant consideration in fair use analysis.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "This amendment is not intended to be interpreted as any sort of not-for-profit limitation on educational uses of copyrighted works. It is an express recognition that, as"
+          }
+        ]
+      }
+    ],
+    "seconds": 6.019406600000366
+  },
+  {
+    "id": "10",
+    "kind": "multi",
+    "question": "Which right ordinarily covers reproducing a work in copies, and what is the legal effect if a teaching use of such copies qualifies as fair use?",
+    "gold": "106:1:§106 (1);107:1:§107",
+    "reference": "Reproduction in copies is an exclusive right. If the teaching use qualifies as fair use, it is not infringement.",
+    "retrieval_seconds": 0.5124337000015657,
+    "hits": [
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "§108 (c)"
+      ],
+      [
+        "107",
+        "5",
+        "§108 (b)"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "106",
+        "1",
+        "§106 (1)"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "§108 (d)"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 10.978674100002536
+  },
+  {
+    "id": "11",
+    "kind": "multi",
+    "question": "Which provision covers the owner's right to create derivative works, and can fair use apply notwithstanding that exclusive right?",
+    "gold": "106:1:§106 (2);107:1:§107",
+    "reference": "Section 106(2) covers preparation of derivative works. Section 107 expressly limits the rights in section 106 when the use qualifies as fair use.",
+    "retrieval_seconds": 0.5386652000015602,
+    "hits": [
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "106",
+        "1",
+        "§106"
+      ],
+      [
+        "106",
+        "1",
+        "§106 (2)"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 13.819576800000505
+  },
+  {
+    "id": "12",
+    "kind": "multi",
+    "question": "What right covers distributing copies by sale and what question about market harm is expressly relevant to a fair use analysis?",
+    "gold": "106:1:§106 (3);107:1:§107 (4)",
+    "reference": "Distribution by sale is an exclusive right. Consider the use's effect on the potential market for or value of the work.",
+    "retrieval_seconds": 0.5070381000005,
+    "hits": [
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "§106 (3)"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "§108 (d)"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "The right that covers distributing copies by sale is the exclusive right of distribution under section 106(3), which grants the copyright owner the right to distribute copies or phonorecords to the public by sale or other transfer of ownership.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "Clause (3) of section 106 establishes the exclusive right of publication: The right ‘‘to distribute copies or phonorecords of the copyrighted work to the public by sale or other transfer of ownership, or by rental, lease, or lending.’’"
+          },
+          {
+            "id": 6,
+            "quote": "(3) to distribute copies or phonorecords of the copyrighted work to the public by sale or other transfer of ownership, or by rental, lease, or lending;"
+          }
+        ]
+      },
+      {
+        "text": "The question about market harm that is expressly relevant to a fair use analysis is whether the copying of a work has a significant impact on the commercial market for the work, particularly when the user is profit-making.",
+        "evidence": [
+          {
+            "id": 3,
+            "quote": "The commercial nature of the user is a significant factor in such cases: Copying by a profit-making user of even a small portion of a newsletter may have a significant impact on the commercial market for the work."
+          },
+          {
+            "id": 8,
+            "quote": "the size and nature of the audience, the size and number of excerpts taken and, in the case of recordings made for broadcast, the number of copies reproduced and the extent of their reuse or exchange. The availability of the fair use doctrine to educational broadcasters would be narrowly circumscribed in the case of motion pictures and other audiovisual works, but under appropriate circumstances it could apply to the nonsequential showing of an individual still or slide, or to the performance of a short excerpt from a motion picture for criticism or comment."
+          }
+        ]
+      },
+      {
+        "text": "The fair use doctrine is a limitation on the exclusive rights under section 106, and its application requires consideration of factors including market harm.",
+        "evidence": [
+          {
+            "id": 2,
+            "quote": "§107. Limitations on exclusive rights: Fair use Notwithstanding the provisions of sections 106 and 106A, the fair use of a copyrighted work, including such use by reproduction in copies or phonorecords or by any other means specified by that section, for purposes such as criticism, comment, news reporting, teaching (including multiple copies for classroom use), scholarship, or research, is not an infringement of copyright. In determining whether the use made of a work in any particular case is a fair use the factors to be considered shall include—"
+          }
+        ]
+      },
+      {
+        "text": "The commercial nature of the user is a key factor in assessing whether copying constitutes market harm in a fair use analysis.",
+        "evidence": [
+          {
+            "id": 3,
+            "quote": "The commercial nature of the user is a significant factor in such cases: Copying by a profit-making user of even a small portion of a newsletter may have a significant impact on the commercial market for the work."
+          }
+        ]
+      },
+      {
+        "text": "The fair use analysis includes consideration of the effect of the use on the potential market for or value of the copyrighted work.",
+        "evidence": [
+          {
+            "id": 8,
+            "quote": "the size and nature of the audience, the size and number of excerpts taken and, in the case of recordings made for broadcast, the number of copies reproduced and the extent of their reuse or exchange."
+          }
+        ]
+      },
+      {
+        "text": "The fair use doctrine applies in specific cases involving blind persons, where a single copy is made for individual use, and such use is considered fair use due to lack of market harm.",
+        "evidence": [
+          {
+            "id": 7,
+            "quote": "While the making of multiple copies or phonorecords of a work for general circulation requires the permission of the copyright owner, a problem addressed in section 710 of the bill, the making of a single copy or phonorecord by an individual as a free service for blind persons would properly be considered a fair use under section 107."
+          }
+        ]
+      }
+    ],
+    "seconds": 15.717689599998266
+  },
+  {
+    "id": "13",
+    "kind": "unanswerable",
+    "question": "What royalty rate did the parties agree to in the Acme–Northwind licensing contract?",
+    "gold": "",
+    "reference": "The contract is absent.",
+    "retrieval_seconds": 0.6894527999975253,
+    "hits": [
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107 (D)"
+      ],
+      [
+        "106",
+        "1",
+        "Editorial Notes"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 1.658159099999466
+  },
+  {
+    "id": "14",
+    "kind": "unanswerable",
+    "question": "What law governs the subcontract signed by Contoso on 14 May 2025?",
+    "gold": "",
+    "reference": "The subcontract is absent.",
+    "retrieval_seconds": 0.7093542999973579,
+    "hits": [
+      [
+        "106",
+        "1",
+        "Editorial Notes"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (e)"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (1)"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107 (b)"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (3)"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (4)"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (3)"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (2)"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107 (D)"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 1.4603895999971428
+  },
+  {
+    "id": "15",
+    "kind": "unanswerable",
+    "question": "How many fair use claims were filed in federal court during calendar year 2025?",
+    "gold": "",
+    "reference": "No filing count is provided.",
+    "retrieval_seconds": 0.5478741000006266,
+    "hits": [
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "1",
+        "§107 (4)"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (4)"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 1.3827674000021943
+  }
+]

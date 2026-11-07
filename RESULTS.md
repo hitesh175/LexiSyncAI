@@ -65,3 +65,18 @@ A follow-up run on questions 5 and 6 showed why the guard needs to recognize two
 ## URL import release latency check
 
 In a warm local comparison on one question with the same supplied passages, the draft and verification steps took 1.33 s before the change and 1.16 s after it. Input tokens decreased from 1,202 to 1,025, with two model calls, 69 output tokens and a HIGH result in each run. This measures only one answer with a warm model and excludes retrieval, index construction and downloads.
+
+## Current build benchmark
+
+The same 15-question fixture was rerun after the numbered-factor check and the smaller verifier request. Raw runs and manually scored review sheets are in `current-benchmark/`.
+
+| Metric | Dense | Reranked hybrid |
+|---|---:|---:|
+| Clause recall at 10 | 62.5% | 70.8% |
+| Correct answers, including correct abstentions | 10/15 (66.7%) | 8/15 (53.3%) |
+| Citation precision | 26/28 (92.9%) | 15/21 (71.4%) |
+| Correct abstentions on unanswerable questions | 3/3 | 3/3 |
+| False abstentions on answerable questions | 5/12 | 6/12 |
+| Mean question latency after the index was ready | 5.51 s | 6.03 s |
+
+Index and model preparation took 6.89 s in this run, separately from per-question latency. The runs used the same questions, but first-use loading and machine conditions were not controlled across dates. Do not attribute the timing difference entirely to the code changes. The small fixture does not establish performance on the GDPR pack. Hybrid rejected the numbered mismatch on question 6 and abstained after the repair. It still missed answerable questions, and dense produced more correct answers in this run.

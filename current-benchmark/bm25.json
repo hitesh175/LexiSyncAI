@@ -1,0 +1,902 @@
+[
+  {
+    "id": "1",
+    "kind": "factual",
+    "question": "What is the exclusive reproduction right under 17 USC 106(1)?",
+    "gold": "106:1:§106 (1)",
+    "reference": "Reproduce the copyrighted work in copies or phonorecords.",
+    "retrieval_seconds": 0.006577199997991556,
+    "hits": [
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "§106"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (2)"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "§108 (c)"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ]
+    ]
+  },
+  {
+    "id": "2",
+    "kind": "factual",
+    "question": "Which numbered provision gives the copyright owner the right to prepare derivative works?",
+    "gold": "106:1:§106 (2)",
+    "reference": "Section 106(2).",
+    "retrieval_seconds": 0.006925800000317395,
+    "hits": [
+      [
+        "106",
+        "1",
+        "§106 (2)"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "§106"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "Unnumbered text"
+      ]
+    ]
+  },
+  {
+    "id": "3",
+    "kind": "factual",
+    "question": "Which methods of transferring copies to the public does section 106(3) list?",
+    "gold": "106:1:§106 (3)",
+    "reference": "Sale or other transfer of ownership, rental, lease, or lending.",
+    "retrieval_seconds": 0.006176000002596993,
+    "hits": [
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "§106 (3)"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "3",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ],
+      [
+        "106",
+        "1",
+        "Unnumbered text"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ]
+    ]
+  },
+  {
+    "id": "4",
+    "kind": "factual",
+    "question": "How is the public performance right for sound recordings framed in section 106(6)?",
+    "gold": "106:1:§106 (6)",
+    "reference": "Public performance by digital audio transmission.",
+    "retrieval_seconds": 0.006493299999419833,
+    "hits": [
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "§106 (6)"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "3",
+        "section 117"
+      ],
+      [
+        "106",
+        "3",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "4",
+        "Section 107"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ]
+    ]
+  },
+  {
+    "id": "5",
+    "kind": "factual",
+    "question": "What does the second fair use factor consider?",
+    "gold": "107:1:§107 (2)",
+    "reference": "Nature of the copyrighted work.",
+    "retrieval_seconds": 0.0063289999998232815,
+    "hits": [
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ]
+    ]
+  },
+  {
+    "id": "6",
+    "kind": "factual",
+    "question": "What does the third fair use factor require the decision-maker to consider?",
+    "gold": "107:1:§107 (3)",
+    "reference": "Amount and substantiality of the portion used in relation to the whole.",
+    "retrieval_seconds": 0.006393800002115313,
+    "hits": [
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107 (ii)"
+      ],
+      [
+        "107",
+        "4",
+        "Section 107"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ]
+    ]
+  },
+  {
+    "id": "7",
+    "kind": "factual",
+    "question": "What market considerations does the fourth fair use factor name?",
+    "gold": "107:1:§107 (4)",
+    "reference": "Effect upon the potential market for or value of the work.",
+    "retrieval_seconds": 0.007077199999912409,
+    "hits": [
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (B)"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "1",
+        "§107 (4)"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (2)"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ]
+    ]
+  },
+  {
+    "id": "8",
+    "kind": "factual",
+    "question": "Does the unpublished status of a work by itself foreclose fair use?",
+    "gold": "107:1:§107 (4)",
+    "reference": "No, if fair use is found after considering all the factors.",
+    "retrieval_seconds": 0.007833399999071844,
+    "hits": [
+      [
+        "107",
+        "5",
+        "Editorial Notes"
+      ],
+      [
+        "107",
+        "1",
+        "§107 (4)"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ],
+      [
+        "107",
+        "5",
+        "§108 (b)"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ]
+    ]
+  },
+  {
+    "id": "9",
+    "kind": "factual",
+    "question": "What distinction between commercial and educational use appears in the first fair use factor?",
+    "gold": "107:1:§107 (1)",
+    "reference": "Whether the use is commercial or for nonprofit educational purposes.",
+    "retrieval_seconds": 0.007414600000629434,
+    "hits": [
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "Section 107"
+      ],
+      [
+        "107",
+        "1",
+        "§107 (1)"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ]
+    ]
+  },
+  {
+    "id": "10",
+    "kind": "multi",
+    "question": "Which right ordinarily covers reproducing a work in copies, and what is the legal effect if a teaching use of such copies qualifies as fair use?",
+    "gold": "106:1:§106 (1);107:1:§107",
+    "reference": "Reproduction in copies is an exclusive right. If the teaching use qualifies as fair use, it is not infringement.",
+    "retrieval_seconds": 0.008155499999702442,
+    "hits": [
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107 (ii)"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "4",
+        "Section 107"
+      ]
+    ]
+  },
+  {
+    "id": "11",
+    "kind": "multi",
+    "question": "Which provision covers the owner's right to create derivative works, and can fair use apply notwithstanding that exclusive right?",
+    "gold": "106:1:§106 (2);107:1:§107",
+    "reference": "Section 106(2) covers preparation of derivative works. Section 107 expressly limits the rights in section 106 when the use qualifies as fair use.",
+    "retrieval_seconds": 0.006816699999035336,
+    "hits": [
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "106",
+        "1",
+        "§106"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ]
+    ]
+  },
+  {
+    "id": "12",
+    "kind": "multi",
+    "question": "What right covers distributing copies by sale and what question about market harm is expressly relevant to a fair use analysis?",
+    "gold": "106:1:§106 (3);107:1:§107 (4)",
+    "reference": "Distribution by sale is an exclusive right. Consider the use's effect on the potential market for or value of the work.",
+    "retrieval_seconds": 0.008977299999969546,
+    "hits": [
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "1",
+        "HISTORICAL AND REVISION NOTES"
+      ]
+    ]
+  },
+  {
+    "id": "13",
+    "kind": "unanswerable",
+    "question": "What royalty rate did the parties agree to in the Acme–Northwind licensing contract?",
+    "gold": "",
+    "reference": "The contract is absent.",
+    "retrieval_seconds": 0.007882800000516,
+    "hits": [
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (B)"
+      ],
+      [
+        "106",
+        "4",
+        "Statutory Notes and Related Subsidiaries"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ]
+    ]
+  },
+  {
+    "id": "14",
+    "kind": "unanswerable",
+    "question": "What law governs the subcontract signed by Contoso on 14 May 2025?",
+    "gold": "",
+    "reference": "The subcontract is absent.",
+    "retrieval_seconds": 0.0067995999997947365,
+    "hits": [
+      [
+        "106",
+        "4",
+        "§106A (e)"
+      ],
+      [
+        "106",
+        "4",
+        "§106A (2)"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107 (D)"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "5",
+        "§108 (3)"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ],
+      [
+        "107",
+        "4",
+        "Section 107"
+      ],
+      [
+        "107",
+        "3",
+        "Section 107"
+      ],
+      [
+        "107",
+        "2",
+        "Section 107"
+      ]
+    ]
+  },
+  {
+    "id": "15",
+    "kind": "unanswerable",
+    "question": "How many fair use claims were filed in federal court during calendar year 2025?",
+    "gold": "",
+    "reference": "No filing count is provided.",
+    "retrieval_seconds": 0.00667040000189445,
+    "hits": [
+      [
+        "106",
+        "4",
+        "§106A (4)"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "2",
+        "HISTORICAL AND REVISION NOTES"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "107",
+        "5",
+        "section 107"
+      ],
+      [
+        "106",
+        "4",
+        "Statutory Notes and Related Subsidiaries"
+      ],
+      [
+        "106",
+        "2",
+        "section 117"
+      ],
+      [
+        "107",
+        "1",
+        "§107"
+      ],
+      [
+        "107",
+        "4",
+        "section 107"
+      ],
+      [
+        "106",
+        "3",
+        "Statutory Notes and Related Subsidiaries"
+      ]
+    ]
+  }
+]
