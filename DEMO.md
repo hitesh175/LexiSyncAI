@@ -18,3 +18,13 @@ For the unseen exam PDF, substitute its actual headings and questions. Warm the 
 - **Why can an exact quote still be misleading?** A quote proves the text exists. It might omit a qualifying clause, fail to imply the claim, or support only one part of a multi-hop answer.
 - **What does recall@10 measure?** The fraction of annotated evidence units recovered within ten results, averaged over answerable questions. Complete coverage measures whether every required unit appears.
 - **How does abstention fail?** Missing retrieval, ambiguous document structure, overly strict quote matching, or incorrect verifier judgments can all produce false abstentions.
+
+## Verified GDPR rehearsal
+
+Create a case with the four PDFs in the EU GDPR Source Pack. For the cross-document step, use this tested question:
+
+> What are the maximum fines under Article 83(4) and Article 83(5), and which three inputs does step 2 of EDPB Guidelines 04/2022 section 2.2 use for the starting amount?
+
+Open the two statutory citations on PDF pages 82 and 83 of the regulation, then open PDF page 9, section 2.2 of the EDPB fines guidance. This shows the distinction between the legal maximum and the guidance on the starting amount. Use the speeding question for the out-of-scope example.
+
+The tested answer included some repeated citations. The benchmark in RESULTS.md predates the switch to numbered source excerpts and explicit Article paragraph prioritization. The GDPR rehearsal is a separate targeted check.

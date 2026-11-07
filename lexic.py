@@ -138,7 +138,18 @@ class Index:
         if mode == "hybrid":
             scores = models()[1].predict([(search, self.texts[i]) for i in candidates])
             candidates = [candidates[i] for i in np.argsort(-scores, kind="stable")]
-        return [self.passages[i] for i in candidates[:k]]
+        ranked = [self.passages[i] for i in candidates]
+        if mode == "hybrid":
+            anchors = []
+            for article, paragraph in re.findall(r"\bArticle\s+(\d+[a-z]?)\s*\((\d+)\)", question, re.I):
+                label = f"article {article.lower()} ({paragraph})"
+                marker = re.compile(rf"^\s*(?:{paragraph}\.\s|\({paragraph}\)\s)")
+                match = next((p for p in self.passages
+                              if p.section.lower() == label and marker.match(p.text)), None)
+                if match is not None and match not in anchors:
+                    anchors.append(match)
+            ranked = anchors + [p for p in ranked if p not in anchors]
+        return ranked[:k]
 
 
 def ask_model(prompt, payload, usage=None):
@@ -164,11 +175,15 @@ premises, exceptions, and requested calculations. Separate statutory text and co
 If any essential fact is missing, return {"claims":[]}. If sources conflict, cite both
 and explain a resolution only if supported, otherwise report the conflict.
 Return JSON {"claims":[{"text":"one plain-language claim or inference",
-"evidence":[{"id":1,"quote":"exact continuous substring from that passage"}]}]}.
-Cite all premises for each inference. Use separate claims for distinct facts.
-Include the evidence-based reasoning for comparisons. Answer directly and omit details
-that the question does not need. Use at most six claims. If retry_feedback is present,
-use it to reassess the evidence and repair the draft or return empty claims."""
+"evidence":[{"id":1,"excerpt":1}]}]}.
+Each evidence entry selects a numbered excerpt within the given source ID.
+Cite all premises for each inference. Give one concise claim per requested point.
+Use one short exact excerpt per claim when sufficient. Skip background and examples
+unless requested. Add another excerpt only for a distinct
+premise or a separate source requested in the question. Prefer the regulation for what
+the law says and the guidance for how it is applied. Select the shortest excerpt that
+supports the whole claim, or cite separate excerpts for separate premises. Use at most six claims.
+If retry_feedback is present, repair the draft or return empty claims."""
 VERIFY = """You audit each claim against its exact quotes and source labels. Return {"verdict":"high"},
 {"verdict":"medium"}, {"verdict":"low"}, or {"verdict":"reject"}. Reject if any claim is
 unsupported by its own cited excerpts, a calculation is wrong, evidence is misattributed,
@@ -201,12 +216,19 @@ def answer(question, passages, generate=ask_model):
     return result
 
 
+def source_excerpts(text):
+    return {i: part.strip() for i, part in enumerate(
+        re.split(r"\s+(?=Step\s+\d+\b)|(?<=[.!?])(?<!\d\.)\s+(?=[A-Z])", text), 1
+    ) if len(part.strip()) >= 8}
+
+
 def _answer_attempt(question, passages, generate, feedback=None):
     refused = {"confidence": "INSUFFICIENT EVIDENCE", "claims": []}
     if not passages:
         return refused
     sources = {i: p for i, p in enumerate(passages, 1)}
-    excerpts = {i: {"document": p.document, "page": p.page, "section": p.section, "text": p.text}
+    excerpts = {i: {"document": p.document, "page": p.page, "section": p.section,
+                    "excerpts": source_excerpts(p.text)}
                 for i, p in sources.items()}
     payload = {"question": question, "passages": excerpts}
     if feedback:
@@ -220,9 +242,22 @@ def _answer_attempt(question, passages, generate, feedback=None):
                 return refused
             numbered_quotes = set()
             for citation in claim["evidence"]:
-                quote = citation["quote"].strip()
-                if type(citation["id"]) is not int or len(quote) < 8 or quote not in sources[citation["id"]].text:
+                citation_id = citation["id"]
+                if type(citation_id) is not int or citation_id not in sources:
                     return refused
+                if "excerpt" in citation:
+                    excerpt_id = citation.pop("excerpt")
+                    if type(excerpt_id) is not int or excerpt_id not in excerpts[citation_id]["excerpts"]:
+                        return {**refused, "rejection": "A proposed excerpt number was invalid.",
+                                "retry_feedback": f"Select an existing excerpt number for source {citation_id}."}
+                    citation["quote"] = excerpts[citation_id]["excerpts"][excerpt_id]
+                quote = citation["quote"].strip()
+                if len(quote) < 8:
+                    return refused
+                if quote not in sources[citation_id].text:
+                    return {**refused, "rejection": "A proposed quote did not match its source text.",
+                            "retry_feedback": f"A quote for source {citation_id} was not an exact excerpt. "
+                                              "Select a numbered excerpt from the cited source."}
                 if match := LEADING_ITEM.match(quote):
                     numbered_quotes.add(int(match[1]))
                 if "fair use factor" in claim["text"].lower():
@@ -245,6 +280,10 @@ def _answer_attempt(question, passages, generate, feedback=None):
     except (KeyError, TypeError, AttributeError, json.JSONDecodeError):
         return refused
     return {"confidence": verdict.upper(), "claims": draft}
+
+
+
+
 
 
 

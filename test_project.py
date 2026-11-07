@@ -70,6 +70,35 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(refused["claims"], [])
         self.assertIn("Abstained after repair.", refused["trace"])
 
+    def test_selected_excerpt_is_copied_from_source(self):
+        passage = Passage("sample.pdf", 1, "Section 7",
+                          "This is an example. The cap is EUR 2 million.")
+        claim = {"text": "The cap is EUR 2 million.",
+                 "evidence": [{"id": 1, "excerpt": 2}]}
+
+        def generate(prompt, payload):
+            if "passages" in payload:
+                self.assertEqual(payload["passages"][1]["excerpts"][2], "The cap is EUR 2 million.")
+                return {"claims": [claim]}
+            self.assertEqual(payload["draft"][0]["evidence"], [{"id": 1, "quote": "The cap is EUR 2 million."}])
+            return {"verdict": "high"}
+
+        result = answer("What is the cap?", [passage], generate)
+        self.assertEqual(result["claims"][0]["evidence"][0]["quote"], "The cap is EUR 2 million.")
+
+    def test_quote_mismatch_repairs_without_accepting_a_paraphrase(self):
+        passage = Passage("sample.pdf", 1, "Section 7", "The cap is EUR 2 million.")
+        bad = {"text": "The cap is EUR 2 million.",
+               "evidence": [{"id": 1, "quote": "The cap is two million euros."}]}
+        good = {**bad, "evidence": [{"id": 1, "quote": "EUR 2 million"}]}
+        responses = iter([{"claims": [bad]}, {"claims": [good]}, {"verdict": "high"}])
+        result = answer("What is the cap?", [passage], lambda *_: next(responses))
+        self.assertEqual(result["claims"], [good])
+        self.assertIn("A proposed quote did not match its source text.", result["trace"])
+        refused = answer("What is the cap?", [passage], lambda *_: {"claims": [bad]})
+        self.assertEqual(refused["claims"], [])
+        self.assertIn("Abstained after repair.", refused["trace"])
+
     def test_numbered_factor_cannot_use_another_factors_quote(self):
         wrong = Passage("sample.pdf", 1, "Factors", "(4) The potential market effect.")
         correct = Passage("sample.pdf", 1, "Factors", "(3) The amount used.")
@@ -109,6 +138,8 @@ class ProjectTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
 
 
 
