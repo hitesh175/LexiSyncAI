@@ -98,11 +98,10 @@ def export_answer(case, documents, question, hits, result, sources=None):
         for citation in claim["evidence"]:
             reference += 1
             passage = hits[citation["id"] - 1]
-            lines.extend([f"[{reference}] {passage.document} | PDF page {passage.page} | {passage.section}",
+            label = f"[{reference}] {passage.document} | PDF page {passage.page} | {passage.section}"
+            if passage.ocr:
+                label += " | OCR transcription"
+            lines.extend([label,
                           f"  {citation['quote']}"])
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
-
-
-
-

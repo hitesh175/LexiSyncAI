@@ -1,0 +1,4 @@
+﻿source_pdf,source_page,reference_words,ocr_words,word_edits,word_error_rate,recognition_and_ingestion_seconds,without_ocr,with_ocr
+01-EU-GDPR-Regulation-2016-679.pdf,37,555,551,9,0.0162,0.71,disabled,recognized
+01-EU-GDPR-Regulation-2016-679.pdf,52,561,560,2,0.0036,0.65,disabled,recognized
+03-EDPB-Breach-Notification.pdf,11,592,592,6,0.0101,0.67,disabled,recognized

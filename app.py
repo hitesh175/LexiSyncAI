@@ -11,6 +11,7 @@ from cases import CaseStore, export_answer
 from lexic import ABSTAIN, Index, answer, ask_model, ingest
 from preview import render_citation
 from pdf_import import fetch_pdf
+from scan_ocr import read_scan
 
 st.set_page_config(page_title="LexiSyncAI", layout="wide")
 st.html((Path(__file__).with_name("workspace.css")).read_text(encoding="utf-8-sig"))
@@ -67,6 +68,7 @@ if "case_id" not in st.session_state or st.session_state.get("creating_case"):
         case = st.text_input("Name this group of documents (optional)", max_chars=120,
                              placeholder="For example, EU data protection",
                              help="If left blank, we use the first PDF filename.")
+        use_ocr = st.checkbox("Read scanned pages (OCR)", help="Optional. Uses Windows OCR and the installed Windows language resources.")
         if st.button("Save documents", type="primary", use_container_width=True):
             urls = [line.strip() for line in links.splitlines() if line.strip()]
             if not 1 <= len(uploads) + len(urls) <= 5:
@@ -88,9 +90,9 @@ if "case_id" not in st.session_state or st.session_state.get("creating_case"):
                             docs[filename] = content
                             sources[filename] = url
                         case_name = case.strip() or Path(next(iter(docs))).stem[:120] or "Untitled case"
-                        passages, structure = ingest(docs)
+                        passages, structure = ingest(docs, ocr_reader=read_scan if use_ocr else None)
                         if not passages:
-                            raise ValueError("No searchable text was found in these PDFs.")
+                            raise ValueError("No searchable text was found. For scans, enable OCR and check that Windows has OCR support for the document language.")
                         case_index(tuple(passages))
                         case_id = store.save_case(case_name, docs, passages, structure, sources)
                         st.session_state.case_id = case_id
@@ -123,15 +125,15 @@ with documents_tab:
         if filename in sources:
             st.link_button("Open official source", sources[filename])
     with st.expander("Page and clause details"):
-        columns = ("document", "page", "sections", "tables", "image_only", "empty", "columns")
-        headers = ("Document", "PDF page", "Sections", "Tables", "Image only", "No text", "Columns")
+        columns = ("document", "page", "sections", "tables", "image_only", "ocr_status", "empty", "columns")
+        headers = ("Document", "PDF page", "Sections", "Tables", "Image only", "OCR", "No text", "Columns")
         rows = ["| " + " | ".join(headers) + " |", "| " + " | ".join("---" for _ in headers) + " |"]
         for row in structure:
-            cells = [str(row[column]).replace("|", "&#124;").replace("\n", " ") for column in columns]
+            cells = [str(row.get(column, "")).replace("|", "&#124;").replace("\n", " ") for column in columns]
             rows.append("| " + " | ".join(cells) + " |")
         st.markdown("\n".join(rows))
         if any(row["image_only"] for row in structure):
-            st.warning("Image-only pages are shown above. Their text is excluded from retrieval.")
+            st.warning("Image-only pages without recognized text are excluded from search. Check the OCR column for each page.")
 
 with research_tab:
     with st.container(key="lexi_composer"):
@@ -198,6 +200,8 @@ with research_tab:
                                         key=citation_key)
                 _, passage, quote = citations[selected]
                 st.caption(f"{passage.document} / {passage.section}")
+                if passage.ocr:
+                    st.caption("This quote was read by OCR. Check it against the original page.")
                 st.html(f'<blockquote class="lexi-excerpt">{escape(quote)}</blockquote>')
                 preview, marked = render_citation(docs[passage.document], passage.page, quote)
                 st.caption("Quoted text highlighted" if marked else "Full page shown. Use the quoted text above to locate the passage.")
@@ -216,6 +220,3 @@ with research_tab:
                     st.text(step)
     else:
         st.caption("Your answer and its sources will appear below the question box.")
-
-
-

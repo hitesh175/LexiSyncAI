@@ -1,9 +1,11 @@
 from contextlib import closing
 import csv
+from io import BytesIO
 from pathlib import Path
 import unittest
 
 import pypdfium2 as pdfium
+from PIL import Image
 from lexic import Index, Passage, answer, ingest, question_parts
 from preview import render_citation
 
@@ -150,6 +152,23 @@ class ProjectTests(unittest.TestCase):
         index._rank = lambda part, k, mode: ranks[part]
         self.assertEqual(index.retrieve(question, k=3), [a, b, c])
         self.assertEqual(len(question_parts("Compare Articles 5, 6, and 7.")), 1)
+
+    def test_image_only_ocr_and_engine_unavailable_fallback(self):
+        output = BytesIO()
+        Image.new("RGB", (120, 120), "white").save(output, format="PDF")
+        docs = {"scan.pdf": output.getvalue()}
+
+        def unavailable(*args):
+            raise ImportError("Optional OCR engine is unavailable")
+
+        passages, structure = ingest(docs, ocr_reader=unavailable)
+        self.assertEqual(passages, [])
+        self.assertTrue(structure[0]["image_only"])
+        self.assertEqual(structure[0]["ocr_status"], "engine unavailable")
+        passages, structure = ingest(docs, ocr_reader=lambda *_: "Section 7\nThe deadline is thirty days.")
+        self.assertTrue(all(p.ocr for p in passages))
+        self.assertIn("The deadline is thirty days.", passages[0].text)
+        self.assertEqual(structure[0]["ocr_status"], "recognized")
 
     def test_citation_highlight_and_missing_quote(self):
         pdf = (ROOT / "data" / "17-USC-106.pdf").read_bytes()

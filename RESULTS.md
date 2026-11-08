@@ -153,3 +153,22 @@ Three interleaved warm runs per condition used the same question, retrieved pass
 - **Version conflict.** The 65-page case combined the original 1976 Act and the 2023 Code. I added recognition of the historical statute's margin label and preserved one exact section match per source document. The full-pipeline retest still abstained. In an isolated run with the relevant excerpts supplied, the verifier confused the rule's applicability date with the document's date and also abstained. This is a measured failure, so conflict reconciliation remains open. [Full pipeline result](multipart-evaluation/conflict-final.json) · [Supplied-evidence result](multipart-evaluation/conflict-supplied-evidence.json) · [1976 Act](https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg2541.pdf) · [2023 Code](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap3-sec302.pdf)
 
 The regression table above predates the historical margin-label and multiple-edition exact-match refinements. The conflict checks document the version they exercised.
+
+## Scanned-page OCR evaluation
+
+With **Read scanned pages (OCR)** enabled, Windows OCR processes image-only pages. Recognized text becomes searchable and remains linked to the original PDF page. A citation derived from OCR is labeled as a transcription in the source pane and exported answer.
+
+| Public source sample | Original PDF page | Word edits / reference words | Word error rate | OCR plus ingestion |
+|---|---:|---:|---:|---:|
+| EU GDPR regulation | 37 | 9 / 555 | 1.62% | 0.71 s |
+| EU GDPR regulation | 52 | 2 / 561 | 0.36% | 0.65 s |
+| EDPB breach notification guidance | 11 | 6 / 592 | 1.01% | 0.67 s |
+| **Aggregate** | **3 pages** | **17 / 1,708** | **1.00%** | — |
+
+Each page was rasterized from a public PDF to remove its text layer. The original text layer provided the reference. Word error rate is the number of insertions, deletions and substitutions divided by reference words after Unicode normalization, case folding and punctuation removal. These clean generated scans do not measure performance on handwriting, skew, damaged documents, or other languages.
+
+With OCR disabled, all three pages were flagged as image-only and produced no searchable passages. With OCR enabled, all three became searchable. An automated test also checks the unavailable-engine fallback. Failed pages stay flagged, and a case with no searchable text shows a setup message.
+
+Reproduce on Windows with installed OCR language resources using `python evaluate_ocr.py`. See [page-level results](ocr-evaluation/ocr-sample.csv) and [Windows OCR documentation](https://learn.microsoft.com/en-us/uwp/api/windows.media.ocr.ocrengine).
+
+In a separate end-to-end check, the app indexed only the rasterized GDPR page 37. For a question about withdrawal of consent, it returned a cited answer using the OCR-derived text on the only PDF page. The displayed confidence was HIGH. This is a single functional check, not a separate answer-accuracy benchmark.

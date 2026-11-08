@@ -19,6 +19,7 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 | Feature | What it does |
 |---|---|
 | PDF uploads and official links | Mix local files and supported direct HTTPS PDF links, up to five documents per case. |
+| Scanned-page OCR | On Windows, optionally recognize image-only pages. OCR citations are labeled so readers can compare the transcription with the original image. |
 | Document structure | Extracts text and basic ruled tables, identifies numbered headings and clauses, and flags image-only pages. |
 | Hybrid evidence search | Combines BM25 and dense embeddings, reranks candidates, and prioritizes explicit article or section references when matched. |
 | Cited answers | Generates plain-language claims from retrieved passages and attaches exact source excerpts. Click a citation to open its PDF page and highlight the quote when uniquely located. |
@@ -44,6 +45,7 @@ See the [scalable diagram](architecture.svg) and [architecture notes](ARCHITECTU
 | Interface | Streamlit, CSS | Case management, question entry, and side-by-side evidence review |
 | Application | Python 3.11 or 3.12 | PDF intake, evidence search, verification, and evaluation |
 | PDF handling | pdfplumber, PDFium via pypdfium2, Pillow | Text and table extraction, PDF rendering, and quote highlighting |
+| Optional OCR | Windows.Media.Ocr | Recognizes image-only pages using installed Windows language resources |
 | Keyword retrieval | BM25 via rank-bm25 | Finds literal terms and identifiers such as clause numbers |
 | Dense retrieval | Sentence Transformers, all-MiniLM-L6-v2, NumPy | Finds passages with related meaning |
 | Reranking | Reciprocal rank fusion, MS MARCO MiniLM cross-encoder | Combines rankings and scores question–passage pairs |
@@ -78,6 +80,8 @@ With Docker Desktop and Ollama running on the host, run `docker compose up --bui
 3. Enter a question and select **Get answer**. Select a numbered source to see the exact quote and original PDF page.
 4. Use **Documents** to inspect the files and detected page structure. Use **Previous answers** to reopen an answer and **Download answer and citations** to export it.
 
+For image-only PDFs, turn on **Read scanned pages (OCR)** before saving. It uses Windows OCR with the language resources installed on the device. Pages with unavailable or failed OCR remain flagged and are excluded from text search. A case with no searchable pages displays a setup message. OCR-derived quotes are marked in the preview and export.
+
 Cases are stored in `.lexisync/cases.sqlite3`. Back up this file while the app is closed. Set `LEXISYNC_CASE_DB` to change the location. The app keeps up to four prepared indexes in memory until restart and asks Ollama to keep its model loaded for 30 minutes.
 
 ## Evaluation
@@ -106,12 +110,14 @@ The table summarizes the multipart retrieval rerun on the 15-question GDPR fixtu
 
 Hybrid citation precision rose from 86.7% to 88.0% compared with the earlier run on the same fixture, while answer correctness fell from 13/15 to 12/15. The separate quote-highlight sample produced **9 correct highlights, 0 wrong highlights, and 1 full-page fallback** for a repeated quote. See the [benchmark report](RESULTS.md#multipart-evidence-and-citation-region-evaluation) for methodology, build details, and failure cases.
 
+The Windows OCR sample produced **1.00% aggregate word error** on three clean rasterized legal pages. See the [OCR evaluation](RESULTS.md#scanned-page-ocr-evaluation) for the sample, fallback, and limitations.
+
 ## Assignment materials
 
 The four numbered EU GDPR PDFs in the repository root form the GDPR source pack. The copyright sample PDFs come from the 2023 U.S. Code. [Section 106](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec106.pdf) · [Section 107](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec107.pdf)
 
 ## Known limitations
 
-- Extraction uses layout heuristics. Complex columns, footnotes, and spanning tables may need manual review. Image-only pages are flagged and excluded from text search.
+- Extraction uses layout heuristics. Complex columns, footnotes, and spanning tables may need manual review. Image-only pages remain flagged and are searchable only when OCR succeeds.
 - Exact quotes can still be misinterpreted. Confidence labels describe the verifier’s judgment and are uncalibrated.
 - The benchmark results describe the recorded fixtures. See [Results](RESULTS.md) for the build and conditions of each run.

@@ -24,9 +24,10 @@ class Passage:
     page: int
     section: str
     text: str
+    ocr: bool = False
 
 
-def ingest(documents):
+def ingest(documents, ocr_reader=None):
     passages, structure = [], []
     for name, content in documents.items():
         section = "Unnumbered text"
@@ -43,6 +44,16 @@ def ingest(documents):
                 regions = [body.crop((0, body.bbox[1], middle, body.bbox[3])),
                            body.crop((middle, body.bbox[1], page.width, body.bbox[3]))] if two_columns else [body]
                 raw = "\n".join(region.extract_text() or "" for region in regions)
+                image_only = not words and bool(page.images)
+                ocr_status = "disabled" if image_only else ""
+                if image_only and ocr_reader is not None:
+                    try:
+                        raw = ocr_reader(content, page.page_number)
+                        ocr_status = "recognized" if raw.strip() else "no text recognized"
+                    except ImportError:
+                        ocr_status = "engine unavailable"
+                    except Exception:
+                        ocr_status = "recognition failed"
                 journal_page = any(JOURNAL_HEADER.search(line) for line in raw.splitlines())
                 labels = []
                 lines = []
@@ -51,7 +62,7 @@ def ingest(documents):
                 def flush():
                     if lines:
                         excerpt = re.sub(r"(\w)-\s+(?=[a-z])", r"\1", " ".join(lines))
-                        passages.append(Passage(name, page.page_number, clause, excerpt))
+                        passages.append(Passage(name, page.page_number, clause, excerpt, ocr_status == "recognized"))
                         lines.clear()
 
                 for line in raw.splitlines():
@@ -90,8 +101,8 @@ def ingest(documents):
                             passages.append(Passage(name, page.page_number, label, excerpt))
                 structure.append(dict(document=name, page=page.page_number,
                                       sections=", ".join(dict.fromkeys(labels)) or section,
-                                      tables=len(tables), image_only=not words and bool(page.images),
-                                      empty=not words, columns=2 if two_columns else 1))
+                                      tables=len(tables), image_only=image_only, ocr_status=ocr_status,
+                                      empty=not raw.strip(), columns=2 if two_columns else 1))
     return passages, structure
 
 
@@ -263,7 +274,7 @@ def _answer_attempt(question, passages, generate, feedback=None):
         return refused
     sources = {i: p for i, p in enumerate(passages, 1)}
     excerpts = {i: {"document": p.document, "page": p.page, "section": p.section,
-                    "excerpts": source_excerpts(p.text)}
+                    "excerpts": source_excerpts(p.text), "ocr": p.ocr}
                 for i, p in sources.items()}
     payload = {"question": question, "passages": excerpts}
     parts = question_parts(question)
@@ -314,7 +325,7 @@ def _answer_attempt(question, passages, generate, feedback=None):
                                           f"{sorted(numbered_quotes)}. Cite the correct factor or abstain."}
         cited = {item["id"] for claim in draft for item in claim["evidence"]}
         source_labels = {i: {"page": sources[i].page, "section": sources[i].section,
-                             "document": sources[i].document} for i in sorted(cited)}
+                             "document": sources[i].document, "ocr": sources[i].ocr} for i in sorted(cited)}
         review_payload = {"question": question, "draft": draft, "sources": source_labels}
         if len(parts) > 1:
             review_payload["required_parts"] = parts

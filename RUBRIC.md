@@ -16,7 +16,7 @@ This checklist distinguishes application functionality from the evidence require
 
 | Feature | Status |
 |---|---|
-| OCR | Image-only detection is available. OCR and measured accuracy are open. |
+| OCR | Optional Windows OCR is implemented. Three rasterized public legal pages yielded 1.00% aggregate word error, and unavailable-engine fallback is tested. Degraded and handwritten pages have not been evaluated. |
 | Table extraction | Basic ruled-table extraction. Merged-cell validation and table accuracy are open. |
 | Chart or figure reading | Open. |
 | Bounding-box citations | A uniquely located quote is marked on the rendered page. Rotated pages, absent matches and repeated matches show the full page. The regression test checks one successful and one missing region. A 10-quote sample found 9 correct highlights, 0 incorrect regions and 1 ambiguous full-page fallback. See RESULTS.md for the reference method and sample limitations. |
@@ -29,4 +29,4 @@ This checklist distinguishes application functionality from the evidence require
 
 ## Known limitations
 
-Column and heading detection are heuristic. Scanned text is excluded. A genuine quote can still be interpreted incorrectly, and a refusal can reflect missed evidence. The confidence label describes the verifier's judgment rather than a calibrated probability.
+Column and heading detection are heuristic. Scanned pages with OCR disabled or unsuccessful are excluded from text retrieval. A genuine quote can still be interpreted incorrectly, and a refusal can reflect missed evidence. The confidence label describes the verifier's judgment rather than a calibrated probability.
