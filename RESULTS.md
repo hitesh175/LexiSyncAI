@@ -172,3 +172,20 @@ With OCR disabled, all three pages were flagged as image-only and produced no se
 Reproduce on Windows with installed OCR language resources using `python evaluate_ocr.py`. See [page-level results](ocr-evaluation/ocr-sample.csv) and [Windows OCR documentation](https://learn.microsoft.com/en-us/uwp/api/windows.media.ocr.ocrengine).
 
 In a separate end-to-end check, the app indexed only the rasterized GDPR page 37. For a question about withdrawal of consent, it returned a cited answer using the OCR-derived text on the only PDF page. The displayed confidence was HIGH. This is a single functional check, not a separate answer-accuracy benchmark.
+
+## Merged table evaluation
+
+The table extractor maps each cell's physical rectangle to its row and leaf columns. It carries a vertically merged row label into the detail rows it spans and joins grouped headers with their subheaders. A horizontally merged data cell records the columns it covers. The cited excerpt is a structured transcription of a cell, with its table, row, column, and value. The source viewer opens the original PDF page for inspection.
+
+| Manually annotated source table | Cells | Values correct | Row labels correct | Column labels correct |
+|---|---:|---:|---:|---:|
+| EDPB fines guidance, PDF page 44, first table | 6 | 6 | 6 | 6 |
+| EDPB fines guidance, PDF page 45 | 6 | 6 | 6 | 6 |
+| EDPB fines guidance, PDF page 46 | 6 | 6 | 6 | 6 |
+| **Total** | **18** | **18** | **18** | **18** |
+
+Expected values and labels were transcribed from the rendered PDF pages. The comparison normalizes whitespace and dash variants while keeping amounts, units and labels intact. The sample includes two-level column headers, horizontally merged values and vertically merged row labels. All three tables are from the same ruled annex, so these results do not establish accuracy on unrelated layouts, borderless tables, or scanned tables. The extractor does not join table continuations across pages.
+
+Run `python evaluate_tables.py` to regenerate [the cell-by-cell results](table-evaluation/results.csv) from the [manual annotations](table-evaluation/gold.psv). The source is the [official EDPB fines guidance](https://www.edpb.europa.eu/system/files/2023-06/edpb_guidelines_042022_calculationofadministrativefines_en.pdf).
+
+In a separate end-to-end check, the model answered a comparison of the static and dynamic starting ranges for the same high-seriousness row. It cited two different columns of row 3 in the first table on PDF page 44. These are illustrative ranges in the guidance, and the test scored cell selection rather than regulatory interpretation. [Recorded answer and source locations](table-evaluation/answer.json)

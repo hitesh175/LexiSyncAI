@@ -17,7 +17,7 @@ This checklist distinguishes application functionality from the evidence require
 | Feature | Status |
 |---|---|
 | OCR | Optional Windows OCR is implemented. Three rasterized public legal pages yielded 1.00% aggregate word error, and unavailable-engine fallback is tested. Degraded and handwritten pages have not been evaluated. |
-| Table extraction | Basic ruled-table extraction. Merged-cell validation and table accuracy are open. |
+| Table extraction | Ruled tables preserve spanning column headers and merged row labels. All 18 manually labeled cells across three tables in the EDPB annex matched their values and row and column labels. Borderless, scanned, and cross-page tables remain open. |
 | Chart or figure reading | Open. |
 | Bounding-box citations | A uniquely located quote is marked on the rendered page. Rotated pages, absent matches and repeated matches show the full page. The regression test checks one successful and one missing region. A 10-quote sample found 9 correct highlights, 0 incorrect regions and 1 ambiguous full-page fallback. See RESULTS.md for the reference method and sample limitations. |
 | Planner and verifier | A verifier rejection with a reason triggers one repair and a second check. Saved analysis details display the outcome. The repair and step cap are tested. The trace also records the rejection reason. |

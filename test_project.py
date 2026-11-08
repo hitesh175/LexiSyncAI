@@ -4,10 +4,12 @@ from io import BytesIO
 from pathlib import Path
 import unittest
 
+import pdfplumber
 import pypdfium2 as pdfium
 from PIL import Image
 from lexic import Index, Passage, answer, ingest, question_parts
 from preview import render_citation
+from tables import table_cells
 
 ROOT = Path(__file__).resolve().parent
 
@@ -169,6 +171,21 @@ class ProjectTests(unittest.TestCase):
         self.assertTrue(all(p.ocr for p in passages))
         self.assertIn("The deadline is thirty days.", passages[0].text)
         self.assertEqual(structure[0]["ocr_status"], "recognized")
+
+    def test_merged_table_headers_and_row_labels(self):
+        with pdfplumber.open(ROOT / "02-EDPB-Administrative-Fines.pdf") as pdf:
+            top = table_cells(pdf.pages[43].find_tables()[0])
+            continuation = table_cells(pdf.pages[44].find_tables()[0])
+        cell = next(c for c in top if c.row == 3 and c.columns == (5,))
+        self.assertEqual(cell.row_label, "83(4) GDPR")
+        self.assertEqual(cell.column_label,
+                         "Medium level of seriousness / Dynamic range in the case of a turnover > 500 m")
+        self.assertEqual(cell.value, "0.2% - 0.4% of the annual turnover")
+        merged = next(c for c in continuation if c.row == 2)
+        detail = next(c for c in continuation if c.row == 3 and c.columns == (4,))
+        self.assertEqual(merged.columns, (2, 3, 4))
+        self.assertEqual(detail.row_label, merged.row_label)
+        self.assertEqual(detail.value, "300,000 – 5m")
 
     def test_citation_highlight_and_missing_quote(self):
         pdf = (ROOT / "data" / "17-USC-106.pdf").read_bytes()

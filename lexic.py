@@ -9,6 +9,8 @@ from urllib.request import Request, urlopen
 import numpy as np
 import pdfplumber
 
+from tables import table_caption, table_passages
+
 HEADING = re.compile(r"^(?:§\s*\d+[\w.]*|(?:article|section|clause|table)\s+\d+[\w.]*|\d+(?:\.\d+)+\.?)(?=\s|$)", re.I)
 US_CODE_MARGIN = re.compile(r"^\d+\s+US[CE]\s+\d+\.\s+(?=§)", re.I)
 ITEM = re.compile(r"^\([0-9a-z]+\)\s", re.I)
@@ -92,13 +94,13 @@ def ingest(documents, ocr_reader=None):
                 flush()
                 tables = body.find_tables() if words else []
                 for number, table in enumerate(tables, 1):
-                    rows = [" | ".join(cell or "" for cell in row) for row in table.extract()]
-                    if rows:
-                        label = f"Detected table {number}"
-                        labels.append(label)
-                        for start in range(0, len(rows), 8):
-                            excerpt = "\n".join(rows[:1] + rows[max(1, start):start + 8])
-                            passages.append(Passage(name, page.page_number, label, excerpt))
+                    label = f"Detected table {number}"
+                    caption = table_caption(body, table)
+                    if caption:
+                        label += f" ({caption})"
+                    labels.append(label)
+                    for lines in table_passages(table, label):
+                        passages.append(Passage(name, page.page_number, label, "\n".join(lines)))
                 structure.append(dict(document=name, page=page.page_number,
                                       sections=", ".join(dict.fromkeys(labels)) or section,
                                       tables=len(tables), image_only=image_only, ocr_status=ocr_status,
@@ -215,7 +217,8 @@ Return JSON {"claims":[{"text":"one plain-language claim or inference",
 Each evidence entry selects a numbered excerpt within the given source ID.
 Cite all premises for each inference. Give one concise claim per requested point.
 Use one short exact excerpt per claim when sufficient. Skip background and examples
-unless requested. Add another excerpt only for a distinct
+unless requested. For tables, use the cited row, column, and value together. Do not
+treat illustrative amounts as statutory limits. Add another excerpt only for a distinct
 premise or a separate source requested in the question. Prefer the regulation for what
 the law says and the guidance for how it is applied. Select the shortest excerpt that
 supports the whole claim, or cite separate excerpts for separate premises. Use at most six claims.
@@ -264,7 +267,7 @@ def answer(question, passages, generate=ask_model):
 
 def source_excerpts(text):
     return {i: part.strip() for i, part in enumerate(
-        re.split(r"\s+(?=Step\s+\d+\b)|(?<=[.!?])(?<!\d\.)\s+(?=[A-Z])", text), 1
+        re.split(r"\n+|\s+(?=Step\s+\d+\b)|(?<=[.!?])(?<!\d\.)\s+(?=[A-Z])", text), 1
     ) if len(part.strip()) >= 8}
 
 

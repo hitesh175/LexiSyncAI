@@ -202,6 +202,8 @@ with research_tab:
                 st.caption(f"{passage.document} / {passage.section}")
                 if passage.ocr:
                     st.caption("This quote was read by OCR. Check it against the original page.")
+                if passage.section.startswith("Detected table"):
+                    st.caption("Table citation shows the extracted row, column, and cell value.")
                 st.html(f'<blockquote class="lexi-excerpt">{escape(quote)}</blockquote>')
                 preview, marked = render_citation(docs[passage.document], passage.page, quote)
                 st.caption("Quoted text highlighted" if marked else "Full page shown. Use the quoted text above to locate the passage.")

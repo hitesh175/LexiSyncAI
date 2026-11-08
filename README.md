@@ -20,7 +20,7 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 |---|---|
 | PDF uploads and official links | Mix local files and supported direct HTTPS PDF links, up to five documents per case. |
 | Scanned-page OCR | On Windows, optionally recognize image-only pages. OCR citations are labeled so readers can compare the transcription with the original image. |
-| Document structure | Extracts text and basic ruled tables, identifies numbered headings and clauses, and flags image-only pages. |
+| Document structure | Extracts text and ruled tables with merged cell context, identifies numbered headings and clauses, and flags image-only pages. |
 | Hybrid evidence search | Combines BM25 and dense embeddings, reranks candidates, and prioritizes explicit article or section references when matched. |
 | Cited answers | Generates plain-language claims from retrieved passages and attaches exact source excerpts. Click a citation to open its PDF page and highlight the quote when uniquely located. |
 | Verification and abstention | Checks citation integrity and evidence support, allows at most one repair attempt, and abstains when support is insufficient. |
@@ -109,6 +109,8 @@ The table summarizes the multipart retrieval rerun on the 15-question GDPR fixtu
 | Mean response time | **5.27 s** | 5.46 s |
 
 Hybrid citation precision rose from 86.7% to 88.0% compared with the earlier run on the same fixture, while answer correctness fell from 13/15 to 12/15. The separate quote-highlight sample produced **9 correct highlights, 0 wrong highlights, and 1 full-page fallback** for a repeated quote. See the [benchmark report](RESULTS.md#multipart-evidence-and-citation-region-evaluation) for methodology, build details, and failure cases.
+
+The [merged table evaluation](RESULTS.md#merged-table-evaluation) matched values, row labels, and column labels for all 18 manually checked cells across three EDPB tables.
 
 The Windows OCR sample produced **1.00% aggregate word error** on three clean rasterized legal pages. See the [OCR evaluation](RESULTS.md#scanned-page-ocr-evaluation) for the sample, fallback, and limitations.
 
