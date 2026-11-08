@@ -1,30 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="700" viewBox="0 0 1100 700" role="img" aria-labelledby="title">
-<title id="title">LexiSyncAI architecture</title>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526981"/></marker></defs>
-<rect width="1100" height="700" fill="#f3f6fa"/>
-<g font-family="Segoe UI, Arial" fill="#152c45">
-<text x="65" y="83" font-size="48" font-weight="700">LexiSyncAI</text>
-<text x="67" y="118" font-size="22" fill="#526981">Architecture for evidence-grounded document analysis</text>
-<g fill="#fff" stroke="#a9bed0" stroke-width="2">
-<rect x="65" y="170" width="293" height="135" rx="12"/><rect x="404" y="170" width="293" height="135" rx="12"/><rect x="743" y="170" width="292" height="135" rx="12"/>
-<rect x="65" y="382" width="293" height="135" rx="12"/><rect x="404" y="382" width="293" height="135" rx="12"/><rect x="743" y="382" width="292" height="135" rx="12"/>
-</g>
-<g font-size="22" font-weight="700">
-<text x="88" y="211">1  Index public PDFs</text><text x="427" y="211">2  Retrieve passages</text><text x="766" y="211">3  Rerank evidence</text>
-<text x="88" y="423">6  Show answer or abstain</text><text x="427" y="423">5  Verify support</text><text x="766" y="423">4  Draft cited claims</text>
-</g>
-<g font-size="17" fill="#425d78">
-<text x="88" y="247">Page layout, clauses, tables</text><text x="88" y="274">Page and section metadata</text>
-<text x="427" y="247">Question → BM25 + MiniLM</text><text x="427" y="274">Reciprocal rank fusion</text>
-<text x="766" y="247">Cross-encoder scores pairs</text><text x="766" y="274">Keep ten passages</text>
-<text x="88" y="459">Confidence and exact excerpts</text><text x="88" y="486">Original PDF pages beside claims</text>
-<text x="427" y="459">Validate IDs and exact quotes</text><text x="427" y="486">Check entailment and coverage</text>
-<text x="766" y="459">Local Ollama model</text><text x="766" y="486">Each claim carries evidence IDs</text>
-</g>
-<g stroke="#526981" stroke-width="2" marker-end="url(#arrow)">
-<path d="M362 238H398"/><path d="M701 238H737"/><path d="M889 310V376"/><path d="M738 450H703"/><path d="M399 450H364"/>
-</g>
-<rect x="65" y="562" width="970" height="78" rx="12" fill="#dcefe9"/>
-<text x="88" y="594" font-size="20" font-weight="700">Evaluation on 15 labeled questions</text>
-<text x="88" y="619" font-size="17">Clause recall · Complete evidence coverage · Answer and citation review · Abstention · Latency</text>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" role="img" aria-labelledby="title description">
+  <title id="title">LexiSyncAI architecture</title>
+  <desc id="description">The implemented local app ingests public PDFs into a case, retrieves and reranks evidence, checks an Ollama draft against numbered excerpts, then shows cited answers or abstains.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#668174"/></marker>
+    <style>
+      text {font-family:"Segoe UI",Arial,sans-serif;fill:#20362e}
+      .title {font-family:Georgia,serif;font-size:56px;font-weight:bold}
+      .subtitle {font-size:21px;fill:#54675e}
+      .lane {font-size:22px;font-weight:700}
+      .head {font-size:20px;font-weight:700}
+      .body {font-size:17px;fill:#40564c}
+      .small {font-size:15px;fill:#496255}
+      .tech {font-size:14px;fill:#48695b;font-weight:600}
+      .box {fill:#fffefa;stroke:#cbd8ce;stroke-width:1.4}
+      .arrow {fill:none;stroke:#668174;stroke-width:1.8;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1440" height="900" fill="#f8f8f2"/>
+  <rect x="60" y="55" width="10" height="83" rx="5" fill="#2c5649"/>
+  <text x="91" y="100" class="title">LexiSyncAI architecture</text>
+  <text x="94" y="135" class="subtitle">Evidence-grounded legal research in the implemented local app</text>
+  <rect x="1157" y="66" width="223" height="42" rx="21" fill="#e5ede3"/>
+  <text x="1268" y="93" text-anchor="middle" class="small">Streamlit · Python · Ollama</text>
+  <path d="M60 165H1380" stroke="#cbd8ce"/>
+
+  <text x="60" y="203" class="lane">1  Prepare a case</text>
+  <g>
+    <rect class="box" x="60" y="220" width="300" height="147" rx="12"/>
+    <rect class="box" x="400" y="220" width="300" height="147" rx="12"/>
+    <rect class="box" x="740" y="220" width="300" height="147" rx="12"/>
+    <rect class="box" x="1080" y="220" width="300" height="147" rx="12"/>
+    <path class="arrow" d="M366 293h26"/><path class="arrow" d="M706 293h26"/><path class="arrow" d="M1046 293h26"/>
+    <text x="79" y="252" class="head">Add legal PDFs</text>
+    <text x="79" y="281" class="body"><tspan x="79">Upload public files or import</tspan><tspan x="79" dy="24">direct links from official sources.</tspan></text>
+    <text x="79" y="346" class="tech">Streamlit · PDF import</text>
+    <text x="419" y="252" class="head">Extract page structure</text>
+    <text x="419" y="281" class="body"><tspan x="419">Read text and basic tables.</tspan><tspan x="419" dy="24">Flag image-only pages.</tspan></text>
+    <text x="419" y="346" class="tech">pdfplumber</text>
+    <text x="759" y="252" class="head">Build evidence passages</text>
+    <text x="759" y="281" class="body"><tspan x="759">Split by headings and clauses.</tspan><tspan x="759" dy="24">Keep file, page and section.</tspan></text>
+    <text x="759" y="346" class="tech">Clause-aware chunking</text>
+    <text x="1099" y="252" class="head">Save case and index</text>
+    <text x="1099" y="281" class="body"><tspan x="1099">Save PDFs and passages locally.</tspan><tspan x="1099" dy="24">Prepare the search index.</tspan></text>
+    <text x="1099" y="346" class="tech">SQLite · in-memory search cache</text>
+  </g>
+
+  <text x="60" y="421" class="lane">2  Answer a question</text>
+  <path class="arrow" d="M1228 373v65H452v27"/>
+  <text x="862" y="428" class="small">Search the active case</text>
+  <g>
+    <rect class="box" x="60" y="472" width="244" height="187" rx="12"/>
+    <rect class="box" x="329" y="472" width="244" height="187" rx="12"/>
+    <rect class="box" x="598" y="472" width="244" height="187" rx="12"/>
+    <rect class="box" x="867" y="472" width="244" height="187" rx="12"/>
+    <rect x="1136" y="472" width="244" height="187" rx="12" fill="#e5ede3" stroke="#b5c8b8" stroke-width="1.4"/>
+    <path class="arrow" d="M309 562h13"/><path class="arrow" d="M578 562h13"/><path class="arrow" d="M847 562h13"/><path class="arrow" d="M1116 562h13"/>
+    <text x="78" y="505" class="head">Ask a question</text>
+    <text x="78" y="536" class="body"><tspan x="78">Use a direct question</tspan><tspan x="78" dy="24">or compare evidence</tspan><tspan x="78" dy="24">across pages.</tspan></text>
+    <text x="78" y="637" class="tech">Streamlit</text>
+    <text x="347" y="505" class="head">Retrieve and rerank</text>
+    <text x="347" y="536" class="body"><tspan x="347">Combine BM25 and dense</tspan><tspan x="347" dy="24">rankings. A cross-encoder</tspan><tspan x="347" dy="24">reranks the evidence.</tspan></text>
+    <text x="347" y="637" class="tech">MiniLM · rank fusion</text>
+    <text x="616" y="505" class="head">Draft from evidence</text>
+    <text x="616" y="536" class="body"><tspan x="616">Write plain-language</tspan><tspan x="616" dy="24">claims and select numbered</tspan><tspan x="616" dy="24">source excerpts.</tspan></text>
+    <text x="616" y="637" class="tech">Local Ollama model</text>
+    <text x="885" y="505" class="head">Check and repair</text>
+    <text x="885" y="536" class="body"><tspan x="885">Copy exact excerpts.</tspan><tspan x="885" dy="24">Check support and coverage.</tspan><tspan x="885" dy="24">Repair at most once.</tspan></text>
+    <text x="885" y="637" class="tech">Validation · model verifier</text>
+    <text x="1154" y="505" class="head">Show the result</text>
+    <text x="1154" y="536" class="body"><tspan x="1154">Supported: cite the page</tspan><tspan x="1154" dy="24">and clause beside the PDF.</tspan><tspan x="1154" dy="24">Insufficient: abstain.</tspan></text>
+    <text x="1154" y="637" class="tech">PDF preview · confidence</text>
+  </g>
+
+  <path class="arrow" d="M1258 665v48"/>
+  <rect x="60" y="720" width="1320" height="112" rx="12" fill="#edf1e9" stroke="#cbd8ce"/>
+  <path d="M491 740v72M944 740v72" stroke="#cbd8ce"/>
+  <text x="81" y="754" class="head">Evidence trail</text>
+  <text x="81" y="784" class="body"><tspan x="81">File → PDF page → clause → exact quote</tspan><tspan x="81" dy="23">Highlight the quote when uniquely located.</tspan></text>
+  <text x="513" y="754" class="head">Evaluation</text>
+  <text x="513" y="784" class="body"><tspan x="513">Recall, answer correctness, citation precision,</tspan><tspan x="513" dy="23">abstention and latency across retrieval modes.</tspan></text>
+  <text x="966" y="754" class="head">Case history</text>
+  <text x="966" y="784" class="body"><tspan x="966">Save answers and abstentions in SQLite.</tspan><tspan x="966" dy="23">Reopen citations or download the answer.</tspan></text>
+</svg>
