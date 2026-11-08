@@ -10,6 +10,7 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 - [Run on Windows](#run-on-windows)
 - [Use the app](#use-the-app)
 - [Evaluation](#evaluation)
+  - [Results at a glance](#results-at-a-glance)
 - [Demo and assignment materials](#demo-and-assignment-materials)
 - [Known limitations](#known-limitations)
 
@@ -89,6 +90,21 @@ Cases are stored in `.lexisync/cases.sqlite3`. Back up this file while the app i
 The default evaluation runs the 15-question copyright fixture against the two GovInfo PDFs in `data/`. The separate 15-question GDPR fixture uses the regulation and EDPB breach guidance included in this repository. Each fixture contains factual, multi-page, and unanswerable questions.
 
 Use `--retrieval-only` to skip generation. The evaluator reports recall at 1, 5, and 10 for the four retrieval configurations and measures answer time and abstention for dense and hybrid. The review sheets separate factual answer correctness from whether each citation supports its claim. The [benchmark report](RESULTS.md) includes the GDPR reproduction command, measured results, and known failure examples.
+
+### Results at a glance
+
+The table summarizes the multipart retrieval rerun on the 15-question GDPR fixture. Correct answers include correct abstentions. Response time is measured after index preparation.
+
+| Metric | Dense | Reranked hybrid |
+|---|---:|---:|
+| Annotated evidence recall at 10 | 62.5% | **100.0%** |
+| Correct answers | 9/15 | **12/15** |
+| Citation precision | 61.5% (16/26) | **88.0% (22/25)** |
+| Correct abstentions on unanswerable questions | 3/3 | 3/3 |
+| False abstentions on answerable questions | 2/12 | 2/12 |
+| Mean response time | **5.27 s** | 5.46 s |
+
+Hybrid citation precision rose from 86.7% to 88.0% compared with the earlier run on the same fixture, while answer correctness fell from 13/15 to 12/15. The separate quote-highlight sample produced **9 correct highlights, 0 wrong highlights, and 1 full-page fallback** for a repeated quote. See the [benchmark report](RESULTS.md#multipart-evidence-and-citation-region-evaluation) for methodology, build details, and failure cases.
 
 ## Demo and assignment materials
 
