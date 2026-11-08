@@ -19,16 +19,14 @@ This checklist distinguishes application functionality from the evidence require
 | OCR | Image-only detection is available. OCR and measured accuracy are open. |
 | Table extraction | Basic ruled-table extraction. Merged-cell validation and table accuracy are open. |
 | Chart or figure reading | Open. |
-| Bounding-box citations | A uniquely located quote is marked on the rendered page. Rotated pages, absent matches and repeated matches show the full page. The regression test checks one successful and one missing region. Region precision across a corpus is open. |
-| Planner and verifier | A verifier rejection with a reason triggers one repair and a second check. Saved analysis details display the outcome. The repair and step cap are tested. |
+| Bounding-box citations | A uniquely located quote is marked on the rendered page. Rotated pages, absent matches and repeated matches show the full page. The regression test checks one successful and one missing region. A 10-quote sample found 9 correct highlights, 0 incorrect regions and 1 ambiguous full-page fallback. See RESULTS.md for the reference method and sample limitations. |
+| Planner and verifier | A verifier rejection with a reason triggers one repair and a second check. Saved analysis details display the outcome. The repair and step cap are tested. The trace also records the rejection reason. |
 | Fine-tuned retrieval | Open. The retrieval models use pretrained weights. |
 | Extended ablation | Dense versus hybrid and retrieval configuration comparisons are measured. Text versus table versus figure ablation is open. |
-| Cross-document evidence | The fixture tests two-document synthesis. Prompts ask for conflicting evidence to be cited on both sides. A dedicated conflict benchmark is open. |
+| Cross-document evidence | The fixture tests two-document synthesis. Prompts ask for conflicting evidence to be cited on both sides. The two-document historical conflict test abstained after repair. Reliable conflict reconciliation is open. |
 | Public deployment | Open. The tested app is local. |
-| Latency and cost | Benchmark latency, per-answer timings and Ollama token counts are available. The single-PDF rehearsal reports first and repeat question timing, and the URL import latency check compares one verifier optimization. A broader controlled timing and cost study is open. |
+| Latency and cost | Benchmark latency, per-answer timings and Ollama token counts are available. The single-PDF rehearsal reports first and repeat question timing, and the URL import latency check compares one verifier optimization. A six-run warm comparison measured a small token reduction with no latency improvement. A broader study is open. |
 
 ## Known limitations
 
 Column and heading detection are heuristic. Scanned text is excluded. A genuine quote can still be interpreted incorrectly, and a refusal can reflect missed evidence. The confidence label describes the verifier's judgment rather than a calibrated probability.
-
-

@@ -111,3 +111,45 @@ python evaluate.py --questions gdpr-holdout.psv --docs 01-EU-GDPR-Regulation-201
 
 The source PDFs are [the regulation on EUR-Lex](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng/pdf) and [the EDPB breach guidelines](https://www.edpb.europa.eu/system/files/documents/2023-04/edpb_guidelines_202209_personal_data_breach_notification_v2.0_en.pdf).
 
+
+## Multipart evidence and citation region evaluation
+
+The GDPR fixture was rerun after explicit two-part questions began retrieving evidence separately for each part. These are regression results on the previously graded fixture.
+
+| Metric | Dense rerun | Hybrid rerun |
+|---|---:|---:|
+| Recall at 1 / 5 / 10 | 25.0% / 58.3% / 62.5% | 87.5% / 100% / 100% |
+| Correct answers, including correct abstentions | 9/15 | 12/15 |
+| Citation precision | 16/26 (61.5%) | 22/25 (88.0%) |
+| Correct abstentions | 3/3 | 3/3 |
+| False abstentions on answerable questions | 2/12 | 2/12 |
+| Mean question time after preparation | 5.27 s | 5.46 s |
+
+Hybrid citation precision changed from 26/30 (86.7%) to 22/25 (88.0%). Overall correctness declined from 13/15 to 12/15. The breach-awareness answer now cites the statutory deadline on PDF page 52 and the EDPB definition on PDF page 11. The answer also contains a weaker extra claim. The verifier refused two answerable questions after repair. One draft selected an invalid excerpt ID and another combined alternative legal conditions. This was a repeated fixture under uncontrolled machine conditions, so compare accuracy directly and treat the timings as descriptive.
+
+### Citation region sample
+
+Ten deliberately selected quotes span five PDFs, including two-column statutes, line wraps, and a phrase that appears twice. PDFplumber supplied independent text coordinates, and the rendered crops were visually checked. A highlight passed when there was one reference match and at least 50% overlap in both directions. The app produced **9 correct highlights, 0 incorrect highlights, and 1 full-page fallback**. Region precision among rendered highlights was **9/9** and highlight coverage was **9/10**. This sample is small and uses tool-generated reference regions checked by visual review. It is not a manually drawn or statistically representative test set.
+
+Run `python evaluate_regions.py --output region-results` to reproduce the CSV and review image. See [region scores](multipart-evaluation/regions.csv) and [rendered review](multipart-evaluation/region-review.png).
+
+### Layout spot check
+
+| Sample | Observed result |
+|---|---|
+| GovInfo §106, PDF page 1 | Two-column mode detected. Clauses (1), (2), and (3) remained in order and the running title was removed. |
+| EU GDPR, PDF pages 82–83 | Official Journal running headers were excluded from the extracted passages. |
+| EDPB breach guidance, PDF page 11 | The awareness passage was searchable. A footnote marker remained attached to a word, and footer material remained in a nearby passage. Clean footnote separation is still open. |
+| Image-only copy of the GovInfo page | Detected as image-only, with zero searchable passages. The test rasterized a real page and did not measure OCR. |
+
+### Controlled verifier timing
+
+Three interleaved warm runs per condition used the same question, retrieved passages, model, and verifier prompt. The only difference was whether the verifier also received the full cited passages. Median prompt tokens fell from **1,942 to 1,926**. Median answer-and-check time changed from **2.96 s to 3.17 s**. All six returned a cited answer. This small sample shows a token reduction with no demonstrated latency improvement. Indexing and retrieval were excluded. See [raw timings](multipart-evaluation/controlled-latency.json).
+
+### Repair traces and conflict handling
+
+- **Accepted repair.** A controlled fault injection supplied a nonexistent excerpt number for a synthetic deadline question. The real local model selected the existing excerpt on its one permitted repair, and the verifier accepted it. [Recorded trace](multipart-evaluation/fault-injected-repair.json)
+- **Rejected repair.** In the actual GDPR rerun, question 7 combined alternative conditions into a single requirement. The guard recorded the reason and the app abstained after one repair. [Hybrid run](multipart-evaluation/hybrid.json)
+- **Version conflict.** The 65-page case combined the original 1976 Act and the 2023 Code. I added recognition of the historical statute's margin label and preserved one exact section match per source document. The full-pipeline retest still abstained. In an isolated run with the relevant excerpts supplied, the verifier confused the rule's applicability date with the document's date and also abstained. This is a measured failure, so conflict reconciliation remains open. [Full pipeline result](multipart-evaluation/conflict-final.json) · [Supplied-evidence result](multipart-evaluation/conflict-supplied-evidence.json) · [1976 Act](https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg2541.pdf) · [2023 Code](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap3-sec302.pdf)
+
+The regression table above predates the historical margin-label and multiple-edition exact-match refinements. The conflict checks document the version they exercised.

@@ -1,0 +1,13 @@
+{
+  "question": "What term did the original 1976 Act state, and what term does the 2023 Code show after the amendment? Cite both documents.",
+  "result": {
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "trace": [
+      "Verifier rejected the first draft.",
+      "Reason: The draft incorrectly attributes the original 1976 Act's term to the 1976 Act itself, but the cited evidence (id: 1) only refers to works created on or after January 1, 1978, and does not state the original 1976 Act's copyright term. The 1976 Act actually established a term of life of the author plus 50 years, but the cited quote is from a later provision (post-1978) and does not reflect the original 1976 Act's language. Moreover, the draft claims that the 1998 amendment substituted '70' for 'fi",
+      "Ran one evidence-based repair.",
+      "Abstained after repair."
+    ]
+  }
+}

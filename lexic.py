@@ -10,6 +10,7 @@ import numpy as np
 import pdfplumber
 
 HEADING = re.compile(r"^(?:§\s*\d+[\w.]*|(?:article|section|clause|table)\s+\d+[\w.]*|\d+(?:\.\d+)+\.?)(?=\s|$)", re.I)
+US_CODE_MARGIN = re.compile(r"^\d+\s+US[CE]\s+\d+\.\s+(?=§)", re.I)
 ITEM = re.compile(r"^\([0-9a-z]+\)\s", re.I)
 PARAGRAPH = re.compile(r"^(\d+)\.\s+")
 JOURNAL_HEADER = re.compile(r"Official Journal of the European Union.*L\s+\d+/\d+|L\s+\d+/\d+.*Official Journal of the European Union", re.I)
@@ -57,7 +58,7 @@ def ingest(documents):
                     line = line.strip().replace("\x02", "")
                     if JOURNAL_HEADER.search(line):
                         continue
-                    heading = HEADING.match(line)
+                    heading = HEADING.match(US_CODE_MARGIN.sub("", line))
                     if journal_page and heading and heading.group().lower().startswith("article ") and line != heading.group():
                         heading = None
                     numbered = PARAGRAPH.match(line) if section.lower().startswith("article ") else None
@@ -66,7 +67,7 @@ def ingest(documents):
                     if heading or notes or item or numbered or sum(map(len, lines)) + len(line) > 950:
                         flush()
                     if heading or notes:
-                        section = line if notes else heading.group().rstrip(".")
+                        section = line if notes else re.sub(r"^§\s+", "§", heading.group().rstrip("."))
                         paragraph = ""
                         clause = section
                         labels.append(section)
@@ -109,6 +110,12 @@ def models():
                          revision="233902d25c440f23af6f7d6e94d2946bac0bee0a", device="cpu"))
 
 
+def question_parts(question):
+    """Split two explicit question clauses while leaving ordinary lists intact."""
+    parts = re.split(r",\s+and\s+(?=(?:what|which|when|how|where|who|why|under)\b)",
+                     question.strip(), maxsplit=1, flags=re.I)
+    return [part.rstrip("?").strip() + "?" for part in parts]
+
 class Index:
     def __init__(self, passages):
         from rank_bm25 import BM25Okapi
@@ -120,6 +127,16 @@ class Index:
         self.dense = models()[0].encode(self.texts, normalize_embeddings=True)
 
     def retrieve(self, question, k=10, mode="hybrid"):
+        parts = question_parts(question) if mode == "hybrid" else [question]
+        if len(parts) == 1 or k < 2:
+            return self._rank(question, k, mode)
+        ranked = [self._rank(part, k, mode) for part in parts]
+        combined = dict.fromkeys(p for pair in zip(*ranked) for p in pair)
+        for ranking in ranked:
+            combined.update(dict.fromkeys(ranking))
+        return list(combined)[:k]
+
+    def _rank(self, question, k, mode):
         search = question
         if mode in ("fusion", "hybrid") and MONETARY_QUESTION.search(question) and PENALTY_QUESTION.search(question):
             search += " What are the maximum administrative fines for infringements, including any percentage of annual turnover?"
@@ -148,10 +165,14 @@ class Index:
                 labels = ({f"article {number} ({paragraph})"} if prefix.strip().lower() == "article"
                           else {f"§{number} ({paragraph})", f"section {number} ({paragraph})"})
                 marker = re.compile(rf"^\s*(?:{paragraph}\.\s|\({paragraph}\)\s)", re.I)
-                match = next((p for p in self.passages
-                              if p.section.lower() in labels and marker.match(p.text)), None)
-                if match is not None and match not in anchors:
-                    anchors.append(match)
+                matched_documents = set()
+                for passage in self.passages:
+                    if (passage.document in matched_documents or passage.section.lower() not in labels
+                            or not marker.match(passage.text)):
+                        continue
+                    matched_documents.add(passage.document)
+                    if passage not in anchors:
+                        anchors.append(passage)
             ranked = anchors + [p for p in ranked if p not in anchors]
         return ranked[:k]
 
@@ -194,7 +215,12 @@ redundant quotes that support a different rule, and reject an answer when any re
 comparison, condition, or second part lacks cited evidence. Return {"verdict":"high"},
 {"verdict":"medium"}, {"verdict":"low"}, or {"verdict":"reject"}. Reject if any claim is
 unsupported by its own cited excerpts, a calculation is wrong, evidence is misattributed,
-or the draft fails to answer a required part of the question. Check that numbered factors
+or the draft fails to answer a required part of the question. For a definition, require
+a quote that actually states the definition, not one that only mentions the term.
+If required_parts is supplied, check that each part has direct cited evidence.
+If the sources disagree, require citations for both sides and a supported basis for
+any resolution. Use the source label to distinguish versions. A date inside a rule may
+describe when it applies rather than when the source was published. Check that numbered factors
 and paragraphs match their citations. When rejecting, return a short reason in the
 "reason" field naming the unsupported claim or missing part so one repair can address it. High means direct and clear
 support, medium means supported synthesis, low means supported with explicitly stated
@@ -218,7 +244,8 @@ def answer(question, passages, generate=ask_model):
         retried = _answer_attempt(question, passages, generate, reason)
         retried.pop("retry_feedback", None)
         retried.pop("rejection", None)
-        retried["trace"] = [result.get("rejection", "Verifier rejected the first draft."), "Ran one evidence-based repair.",
+        retried["trace"] = [result.get("rejection", "Verifier rejected the first draft."),
+                            f"Reason: {reason}", "Ran one evidence-based repair.",
                             "Accepted the revised draft." if retried["claims"] else "Abstained after repair."]
         return retried
     return result
@@ -239,6 +266,9 @@ def _answer_attempt(question, passages, generate, feedback=None):
                     "excerpts": source_excerpts(p.text)}
                 for i, p in sources.items()}
     payload = {"question": question, "passages": excerpts}
+    parts = question_parts(question)
+    if len(parts) > 1:
+        payload["required_parts"] = parts
     if feedback:
         payload["retry_feedback"] = feedback
     try:
@@ -285,7 +315,10 @@ def _answer_attempt(question, passages, generate, feedback=None):
         cited = {item["id"] for claim in draft for item in claim["evidence"]}
         source_labels = {i: {"page": sources[i].page, "section": sources[i].section,
                              "document": sources[i].document} for i in sorted(cited)}
-        review = generate(VERIFY, {"question": question, "draft": draft, "sources": source_labels})
+        review_payload = {"question": question, "draft": draft, "sources": source_labels}
+        if len(parts) > 1:
+            review_payload["required_parts"] = parts
+        review = generate(VERIFY, review_payload)
         verdict = review["verdict"]
         if verdict == "reject" and isinstance(review.get("reason"), str) and review["reason"].strip():
             return {**refused, "retry_feedback": review["reason"][:500]}
@@ -294,22 +327,3 @@ def _answer_attempt(question, passages, generate, feedback=None):
     except (KeyError, TypeError, AttributeError, json.JSONDecodeError):
         return refused
     return {"confidence": verdict.upper(), "claims": draft}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

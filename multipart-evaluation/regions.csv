@@ -1,0 +1,11 @@
+﻿file,pdf_page,quote,reference_matches,outcome,pixel_precision,reference_pixel_coverage
+data/17-USC-106.pdf,1,to prepare derivative works based upon the copyrighted work,1,correct region,1.0,0.869
+data/17-USC-106.pdf,1,the public by sale or other transfer of ownership,1,correct region,1.0,0.914
+data/17-USC-107.pdf,1,the nature of the copyrighted work,2,full-page fallback,,
+data/17-USC-107.pdf,1,the effect of the use upon the potential market,1,correct region,1.0,0.877
+rehearsal/17-USC-Chapter-2.pdf,1,The authors of a joint work are coowners of copyright in the work.,1,correct region,1.0,0.842
+rehearsal/17-USC-Chapter-2.pdf,6,signed by the owner of the rights conveyed,1,correct region,1.0,0.785
+01-EU-GDPR-Regulation-2016-679.pdf,37,It shall be as easy to withdraw as to give consent.,1,correct region,1.0,0.607
+01-EU-GDPR-Regulation-2016-679.pdf,52,The processor shall notify the controller without undue delay after becoming aware of a personal data breach.,1,correct region,1.0,0.71
+01-EU-GDPR-Regulation-2016-679.pdf,82,2 % of the total worldwide annual turnover,1,correct region,1.0,0.601
+03-EDPB-Breach-Notification.pdf,11,a reasonable degree of certainty that a security incident has occurred,1,correct region,1.0,0.869

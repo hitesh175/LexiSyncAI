@@ -1,0 +1,14 @@
+{
+  "question": "How do the original 1976 Copyright Act and the 2023 U.S. Code differ on the general term in section 302(a), and what amendment explains the difference?",
+  "result": {
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "trace": [
+      "Verifier rejected the first draft.",
+      "Reason: The draft claims that the 'general term' in section 302(a) differs between the 1976 Copyright Act and the 2023 U.S. Code, but the cited evidence shows that the general term — life of the author plus 70 years — is identical in both. The draft incorrectly states that the 1976 Act 'did not establish a uniform term' and that the 2023 Code 'retains' the same term, yet it fails to acknowledge that the general term is unchanged. Moreover, the required part 'what amendment explains the difference?' is n",
+      "Ran one evidence-based repair.",
+      "Abstained after repair."
+    ]
+  },
+  "pages": 65
+}

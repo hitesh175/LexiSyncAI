@@ -4,7 +4,7 @@ from pathlib import Path
 import unittest
 
 import pypdfium2 as pdfium
-from lexic import Passage, answer, ingest
+from lexic import Index, Passage, answer, ingest, question_parts
 from preview import render_citation
 
 ROOT = Path(__file__).resolve().parent
@@ -139,6 +139,18 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(result["claims"], [correct])
         self.assertIn("The draft combined alternatives into one requirement.", result["trace"])
 
+    def test_hybrid_preserves_evidence_for_both_explicit_question_parts(self):
+        question = "When is notice due, and what counts as awareness?"
+        due, aware = question_parts(question)
+        a = Passage("law.pdf", 1, "Notice", "Notify promptly.")
+        b = Passage("guidance.pdf", 2, "Awareness", "Awareness requires reasonable certainty.")
+        c = Passage("law.pdf", 2, "Procedure", "Keep a record of notices.")
+        index = Index.__new__(Index)
+        ranks = {due: [a, c], aware: [b, a]}
+        index._rank = lambda part, k, mode: ranks[part]
+        self.assertEqual(index.retrieve(question, k=3), [a, b, c])
+        self.assertEqual(len(question_parts("Compare Articles 5, 6, and 7.")), 1)
+
     def test_citation_highlight_and_missing_quote(self):
         pdf = (ROOT / "data" / "17-USC-106.pdf").read_bytes()
         marked, found = render_citation(pdf, 1, "Exclusive rights in copyrighted works")
@@ -151,11 +163,3 @@ class ProjectTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-
-
-
-
-
-
-

@@ -1,0 +1,14 @@
+{
+  "question": "How do the original 1976 Copyright Act and the 2023 U.S. Code differ on the general term in section 302(a), and what amendment explains the difference?",
+  "result": {
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "trace": [
+      "Verifier rejected the first draft.",
+      "Reason: The draft incorrectly attributes the 2023 U.S. Code's copyright term to section 302(a) without proper citation or evidence. The cited quote (id: 3) states that the 2023 U.S. Code specifies a term of 'life plus 70 years,' but this quote is not from section 302(a) of the 2023 U.S. Code; it is from a general description of the section and lacks direct textual support for the specific amendment or change. Moreover, the quote (id: 5) is not a direct citation of the Copyright Term Extension Act of 199",
+      "Ran one evidence-based repair.",
+      "Abstained after repair."
+    ]
+  },
+  "pages": 65
+}

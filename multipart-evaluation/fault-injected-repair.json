@@ -1,0 +1,20 @@
+{
+  "confidence": "HIGH",
+  "claims": [
+    {
+      "text": "The deadline is 30 days.",
+      "evidence": [
+        {
+          "id": 1,
+          "quote": "The deadline is 30 days."
+        }
+      ]
+    }
+  ],
+  "trace": [
+    "A proposed excerpt number was invalid.",
+    "Reason: Select an existing excerpt number for source 1.",
+    "Ran one evidence-based repair.",
+    "Accepted the revised draft."
+  ]
+}

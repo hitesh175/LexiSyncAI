@@ -1,0 +1,1200 @@
+[
+  {
+    "id": "1",
+    "kind": "factual",
+    "question": "Under Article 5(2), who must be able to show compliance with the data processing principles?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:36:Article 5 (2)",
+    "reference": "The controller is responsible for compliance with Article 5(1) and must be able to demonstrate it.",
+    "retrieval_seconds": 0.007693199993809685,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "63",
+        "Article 47 (1)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "51",
+        "Article 30 (5)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "36",
+        "Article 6 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "10",
+        "Unnumbered text (51)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "84",
+        "Article 88 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "38",
+        "Article 9 (2)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "54",
+        "Article 35 (8)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "59",
+        "Article 42 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (5)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "56",
+        "Article 39 (1)(b)"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "trace": [
+      "Verifier rejected the first draft.",
+      "Reason: The claim that 'data subjects must be able to show compliance' with the data processing principles is not supported by the cited evidence. The quote from Article 83(5)(b) refers to 'data subjects' rights pursuant to Articles 12 to 22', which relates to their rights, not their ability to demonstrate compliance. There is no mention in the cited text of data subjects being required to show compliance with data processing principles. The draft misattributes the responsibility for showing compliance,",
+      "Ran one evidence-based repair.",
+      "Abstained after repair."
+    ],
+    "seconds": 12.944265699989046
+  },
+  {
+    "id": "2",
+    "kind": "factual",
+    "question": "Under Article 7(3), does withdrawing consent invalidate processing already carried out on that consent?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:37:Article 7 (3)",
+    "reference": "No. Withdrawal does not affect the lawfulness of processing based on consent before withdrawal.",
+    "retrieval_seconds": 0.0074253000057069585,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "42",
+        "Article 14 (2)(d)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 13 (2)(c)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 17 (1)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (5)(a)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "36",
+        "Article 6 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "31",
+        "Unnumbered text (171)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "58",
+        "Article 41 (6)"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "Under Article 7(3), withdrawing consent does not invalidate processing already carried out on that consent.",
+        "evidence": [
+          {
+            "id": 3,
+            "quote": "The withdrawal of consent shall not affect the lawfulness of processing based on consent before its withdrawal."
+          }
+        ]
+      }
+    ],
+    "seconds": 2.4785830000037095
+  },
+  {
+    "id": "3",
+    "kind": "factual",
+    "question": "How long does Article 12(3) normally give a controller to inform a person about action on a rights request, and when must an extension be communicated?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:40:Article 12 (3)",
+    "reference": "Respond without undue delay and within one month of receipt. A necessary extension of up to two more months must be communicated within the initial month with reasons.",
+    "retrieval_seconds": 0.008896699990145862,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "54",
+        "Article 36 (2)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "22",
+        "Article 33 (96)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "70",
+        "Article 58 (3)(a)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (5)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (4)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (2)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "14",
+        "Article 33 (46)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "49",
+        "Article 28 (3)(e)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (5)(b)"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "Article 12(3) normally gives a controller one month to inform a person about action taken on a rights request.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "3. The controller shall provide information on action taken on a request under Articles 15 to 22 to the data subject without undue delay and in any event within one month of receipt of the request."
+          }
+        ]
+      },
+      {
+        "text": "If an extension is needed, the controller must inform the data subject of the extension within one month of receipt of the request, together with the reasons for the delay.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "The controller shall inform the data subject of any such extension within one month of receipt of the request, together with the reasons for the delay."
+          }
+        ]
+      }
+    ],
+    "trace": [
+      "Verifier rejected the first draft.",
+      "Reason: The draft fails to correctly address the second required part — 'when must an extension be communicated?' — because the cited evidence (id: 2) refers to the supervisory authority communicating the extension to the controller and processor, not the controller communicating it to the data subject. The claim that 'the controller must communicate any extension to the data subject' is not supported by any direct quote. The evidence (id: 3) is irrelevant and appears to refer to conditions where commun",
+      "Ran one evidence-based repair.",
+      "Accepted the revised draft."
+    ],
+    "seconds": 10.224649499999941
+  },
+  {
+    "id": "4",
+    "kind": "factual",
+    "question": "Under Article 15(3), what may the controller charge for further copies of a person's personal data?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:43:Article 15 (3)",
+    "reference": "A reasonable fee based on administrative costs.",
+    "retrieval_seconds": 0.024150199998985045,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 15 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 15 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 18 (1)(c)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 14 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "45",
+        "Article 20 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 17 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 13 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 13 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "42",
+        "Article 14 (4)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 13 (1)"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "Under Article 15(3), the controller may charge a reasonable fee based on administrative costs for further copies of a person's personal data.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "For any further copies requested by the data subject, the controller may charge a reasonable fee based on administrative costs."
+          }
+        ]
+      }
+    ],
+    "seconds": 2.705021799993119
+  },
+  {
+    "id": "5",
+    "kind": "factual",
+    "question": "Under Article 16, what can someone do about incomplete personal data?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:43:Article 16",
+    "reference": "Have it completed, taking the processing purposes into account, including by giving a supplementary statement.",
+    "retrieval_seconds": 0.009064700003364123,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 17 (1)(a)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 14"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 17 (1)(d)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 18 (1)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 16"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 15 (1)(g)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "70",
+        "Article 58 (2)(g)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "35",
+        "Article 5 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 17 (1)(e)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "12",
+        "Unnumbered text (65)"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "Under Article 16, a data subject can request that incomplete personal data be completed, including by providing a supplementary statement.",
+        "evidence": [
+          {
+            "id": 5,
+            "quote": "Taking into account the purposes of the processing, the data subject shall have the right to have incomplete personal data completed, including by means of providing a supplementary statement."
+          }
+        ]
+      }
+    ],
+    "seconds": 2.67710650000663
+  },
+  {
+    "id": "6",
+    "kind": "factual",
+    "question": "What risk threshold triggers direct communication to affected people under Article 34(1), and how soon must it happen?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:52:Article 34 (1)",
+    "reference": "A breach likely to result in a high risk to people's rights and freedoms. Communicate without undue delay.",
+    "retrieval_seconds": 0.008081099993432872,
+    "hits": [
+      [
+        "03-EDPB-Breach-Notification",
+        "23",
+        "Article 33 (99)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "53",
+        "Article 34 (2)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "23",
+        "Article 33 (102)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "54",
+        "Article 35 (7)(d)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "77",
+        "Article 70 (1)(h)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "52",
+        "Article 33 (3)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "32",
+        "Article 37 (138)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "14",
+        "Article 33 (1)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "24",
+        "Article 33 (106)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (119)"
+      ]
+    ],
+    "confidence": "MEDIUM",
+    "claims": [
+      {
+        "text": "Direct communication to affected individuals under Article 34(1) is triggered when the breach is likely to result in a high risk to their rights and freedoms.",
+        "evidence": [
+          {
+            "id": 3,
+            "quote": "102. As explained above, notification of a breach is required unless it is unlikely to result in a risk to the rights and freedoms of individuals, and the key trigger requiring communication of a breach to data subjects is where it is likely to result in a high risk to the rights and freedoms of individuals."
+          }
+        ]
+      },
+      {
+        "text": "The risk of high impact is assessed by considering both the severity of potential consequences and the likelihood of those consequences occurring.",
+        "evidence": [
+          {
+            "id": 10,
+            "quote": "Clearly, where the consequences of a breach are more severe, the risk is higher and similarly where the likelihood of these occurring is greater, the risk is also heightened."
+          }
+        ]
+      },
+      {
+        "text": "Examples of high-risk breaches include identity theft, fraud, financial loss, reputational damage, and breaches involving sensitive data such as health, genetic, or racial information.",
+        "evidence": [
+          {
+            "id": 3,
+            "quote": "This risk exists when the breach may lead to physical, material or non-material damage for the individuals whose data have been breached."
+          },
+          {
+            "id": 3,
+            "quote": "When the breach involves personal data that reveals racial or ethnic origin, political opinion, religion or philosophical beliefs, or trade union membership, or includes genetic data, data concerning health or data concerning sex life, or criminal convictions and offences or related security measures, such damage should be considered likely to occur43. B."
+          }
+        ]
+      },
+      {
+        "text": "The required notification must occur as soon as possible, with the controller required to notify in cases of high risk, and in doubt, to err on the side of caution.",
+        "evidence": [
+          {
+            "id": 10,
+            "quote": "If in doubt, the controller should err on the side of caution and notify."
+          }
+        ]
+      }
+    ],
+    "seconds": 8.638767900003586
+  },
+  {
+    "id": "7",
+    "kind": "factual",
+    "question": "When is an organisation with fewer than 250 employees still subject to the record-keeping obligations under Article 30(5)?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:51:Article 30 (5)",
+    "reference": "When processing is likely to pose a risk to rights and freedoms, is not occasional, or includes special-category or criminal convictions and offences data.",
+    "retrieval_seconds": 0.00816810000105761,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "51",
+        "Article 30 (5)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "25",
+        "Article 33 (114)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "50",
+        "Article 30"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "51",
+        "Article 30 (3)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "27",
+        "Article 33 (124)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "50",
+        "Article 30 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "67",
+        "Article 54 (1)(f)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "82",
+        "Article 83 (4)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (6)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (124)"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "An organisation with fewer than 250 employees is still subject to the record-keeping obligations under Article 30(5) if the processing it carries out is likely to result in a risk to the rights and freedoms of data subjects, is not occasional, or involves special categories of data or personal data relating to criminal convictions and offences.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "5. The obligations referred to in paragraphs 1 and 2 shall not apply to an enterprise or an organisation employing fewer than 250 persons unless the processing it carries out is likely to result in a risk to the rights and freedoms of data subjects, the processing is not occasional, or the processing includes special categories of data as referred to in Article 9(1) or personal data relating to criminal convictions and offences referred to in Article 10."
+          }
+        ]
+      }
+    ],
+    "seconds": 3.8921755000046687
+  },
+  {
+    "id": "8",
+    "kind": "factual",
+    "question": "Where can a person lodge a GDPR complaint under Article 77(1)?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:80:Article 77 (1)",
+    "reference": "With a supervisory authority, in particular in the Member State of habitual residence, work, or the alleged infringement.",
+    "retrieval_seconds": 0.007855000003473833,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 79 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 77"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "13",
+        "Article 33"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 77 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 77 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "81",
+        "Article 80 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "68",
+        "Article 57 (1)(f)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "27",
+        "Article 33 (129)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "68",
+        "Article 57 (1)(e)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 78 (2)"
+      ]
+    ],
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "A person may lodge a GDPR complaint with a supervisory authority in the Member State of their habitual residence, place of work, or the place where the alleged infringement occurred.",
+        "evidence": [
+          {
+            "id": 4,
+            "quote": "1. Without prejudice to any other administrative or judicial remedy, every data subject shall have the right to lodge a complaint with a supervisory authority, in particular in the Member State of his or her habitual residence, place of work or place of the alleged infringement if the data subject considers that the processing of personal data relating to him or her infringes this Regulation."
+          }
+        ]
+      },
+      {
+        "text": "The right to lodge a complaint is explicitly stated in Article 77 of the GDPR.",
+        "evidence": [
+          {
+            "id": 2,
+            "quote": "Article 77 Right to lodge a complaint with a supervisory authority"
+          }
+        ]
+      },
+      {
+        "text": "The supervisory authority receiving the complaint must inform the complainant about the progress and outcome of the complaint.",
+        "evidence": [
+          {
+            "id": 5,
+            "quote": "2. The supervisory authority with which the complaint has been lodged shall inform the complainant on the progress and the outcome of the complaint including the possibility of a judicial remedy pursuant to Article 78."
+          }
+        ]
+      },
+      {
+        "text": "Member States may allow bodies, organisations, or associations to lodge complaints on behalf of data subjects under Article 80.",
+        "evidence": [
+          {
+            "id": 6,
+            "quote": "2. Member States may provide that any body, organisation or association referred to in paragraph 1 of this Article, in­ dependently of a data subject's mandate, has the right to lodge, in that Member State, a complaint with the supervisory authority which is competent pursuant to Article 77 and to exercise the rights referred to in Articles 78 and 79 if it considers that the rights of a data subject under this Regulation have been infringed as a result of the processing."
+          }
+        ]
+      }
+    ],
+    "seconds": 5.341168400002061
+  },
+  {
+    "id": "9",
+    "kind": "factual",
+    "question": "Under Article 79(2), when is the data subject's home Member State forum unavailable?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:80:Article 79 (2)",
+    "reference": "When the controller or processor is a Member State public authority acting in the exercise of its public powers.",
+    "retrieval_seconds": 0.009363400007714517,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "81",
+        "Article 80 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (5)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "81",
+        "Article 80 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "57",
+        "Article 40 (2)(e)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 15"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "81",
+        "Article 80"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "38",
+        "Article 9 (2)(a)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "68",
+        "Article 57 (1)(e)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 14 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "56",
+        "Article 39 (1)"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "trace": [
+      "Verifier rejected the first draft.",
+      "Reason: The claim that the data subject's home Member State forum is unavailable under Article 79(2) is misattributed to Article 79(2), but the cited evidence refers to Article 80(2), not Article 79(2). Additionally, the evidence discusses the right of bodies or associations to lodge complaints, not the unavailability of the data subject's home Member State forum. There is no direct quote or support in the provided evidence stating that the forum becomes unavailable under Article 79(2). The draft incorr",
+      "Ran one evidence-based repair.",
+      "Abstained after repair."
+    ],
+    "seconds": 3.7823974000057206
+  },
+  {
+    "id": "10",
+    "kind": "multi",
+    "question": "When must a controller notify the supervisory authority under Article 33(1), and what level of certainty counts as awareness according to the EDPB breach guidelines?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:52:Article 33 (1);03-EDPB-Breach-Notification:11:*",
+    "reference": "Without undue delay and where feasible within 72 hours of awareness, unless the breach is unlikely to pose a risk to rights and freedoms. Awareness requires reasonable certainty that a security incident compromised personal data.",
+    "retrieval_seconds": 0.007856000011088327,
+    "hits": [
+      [
+        "03-EDPB-Breach-Notification",
+        "20",
+        "Article 33 (82)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "15",
+        "Article 33 (57)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "28",
+        "Article 37 (133)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "11",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "14",
+        "Article 33 (44)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "17",
+        "Article 33 (69)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "23",
+        "Article 33 (101)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "16",
+        "Article 33 (60)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "21",
+        "Article 33 (94)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "54",
+        "Article 36 (3)"
+      ]
+    ],
+    "confidence": "MEDIUM",
+    "claims": [
+      {
+        "text": "A controller must notify the supervisory authority under Article 33(1) when it becomes aware of a breach that is likely to pose a high risk to the rights and freedoms of individuals.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "82. Controllers should recall that notification to the supervisory authority is mandatory unless there is unlikely to be a risk to the rights and freedoms of individuals as a result of a breach."
+          },
+          {
+            "id": 4,
+            "quote": "The EDPB considers that a controller should be regarded as having become “aware” when that controller has a reasonable degree of certainty that a security incident has occurred that has led to personal data being compromised. 32. However, as indicated earlier, the GDPR requires the controller to implement all appropriate technical protection and organisational measures to establish immediately whether a breach has taken place and to inform promptly the supervisory authority and the data subjects."
+          },
+          {
+            "id": 7,
+            "quote": "101. This means that immediately upon becoming aware of a breach, it is vitally important that the controller should not only seek to contain the incident but it should also assess the risk that could result from it."
+          }
+        ]
+      },
+      {
+        "text": "According to the EDPB guidelines, a controller is considered aware of a breach when it has a reasonable degree of certainty that a security incident has occurred resulting in personal data compromise.",
+        "evidence": [
+          {
+            "id": 4,
+            "quote": "It also states that the fact that the notification was made without undue delay should be established taking into account in particular the nature and gravity of the breach and its consequences and adverse effects for the data subject24. This puts an obligation on the controller to ensure that they will be “aware” of any breaches in a timely"
+          }
+        ]
+      },
+      {
+        "text": "The controller should be regarded as aware of a breach when a processor notifies it of a breach, as the controller is then responsible for assessing whether notification to the supervisory authority is required.",
+        "evidence": [
+          {
+            "id": 5,
+            "quote": "The controller uses the processor to achieve its purposes; therefore, in principle, the controller should be considered as “aware” once the processor has informed it of the breach."
+          }
+        ]
+      },
+      {
+        "text": "A controller must notify the supervisory authority immediately upon becoming aware of a breach and must assess the risk to individuals to determine whether notification is required under Article 33(1).",
+        "evidence": [
+          {
+            "id": 7,
+            "quote": "101. This means that immediately upon becoming aware of a breach, it is vitally important that the controller should not only seek to contain the incident but it should also assess the risk that could result from it."
+          }
+        ]
+      }
+    ],
+    "seconds": 9.894541300003766
+  },
+  {
+    "id": "11",
+    "kind": "multi",
+    "question": "What does Article 33(2) require a processor to do after discovering a breach, and what does the EDPB recommend if some details are still unavailable?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:52:Article 33 (2);03-EDPB-Breach-Notification:14:*",
+    "reference": "Notify the controller without undue delay. The EDPB recommends notifying promptly and sharing further information in phases as details become available.",
+    "retrieval_seconds": 0.009239799997885711,
+    "hits": [
+      [
+        "03-EDPB-Breach-Notification",
+        "13",
+        "Article 33 (4)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "49",
+        "Article 28"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "49",
+        "Article 28 (3)(d)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "27",
+        "Article 37 (132)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "51",
+        "Article 32"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "51",
+        "Article 30 (2)(a)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "27",
+        "Article 33 (130)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "50",
+        "Article 28 (4)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (120)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "14",
+        "Article 33 (44)"
+      ]
+    ],
+    "confidence": "MEDIUM",
+    "claims": [
+      {
+        "text": "Article 33(2) requires a processor to notify the controller immediately upon discovering a breach.",
+        "evidence": [
+          {
+            "id": 10,
+            "quote": "a breach has occurred and then notify the controller."
+          }
+        ]
+      },
+      {
+        "text": "The EDPB recommends that, if some details of the breach are still unavailable, the controller should investigate the breach to determine whether notification obligations apply.",
+        "evidence": [
+          {
+            "id": 10,
+            "quote": "The controller might also want to investigate the breach, as the processor might not be in a position to know all the relevant facts relating to the matter, for example, if a copy or backup of personal data destroyed or lost by the processor is still held by the controller."
+          }
+        ]
+      },
+      {
+        "text": "The processor's notification enables the controller to assess the situation and decide whether to notify the supervisory authority or affected individuals.",
+        "evidence": [
+          {
+            "id": 10,
+            "quote": "The obligation on the processor to notify its controller allows the controller to address the breach and to determine whether or not it is required to notify the supervisory authority in accordance with Article 33(1) and the affected individuals in accordance with Article 34(1)."
+          }
+        ]
+      }
+    ],
+    "trace": [
+      "Verifier rejected the first draft.",
+      "Reason: The draft fails to directly address the EDPB's recommendation regarding what to do when some details of the breach are still unavailable. The cited quote from the EDPB states that the controller might investigate the breach, but this is presented as the controller's action, not the EDPB's recommendation for the processor or a specific guidance on handling incomplete information. The question asks what the EDPB recommends *if some details are still unavailable*, and the draft misattributes the re",
+      "Ran one evidence-based repair.",
+      "Accepted the revised draft."
+    ],
+    "seconds": 10.58088310000312
+  },
+  {
+    "id": "12",
+    "kind": "multi",
+    "question": "Under Article 7(3), what happens to processing already performed on withdrawn consent, and under Article 15(3), what may be charged for further copies?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:37:Article 7 (3);01-EU-GDPR-Regulation-2016-679:43:Article 15 (3)",
+    "reference": "Withdrawal does not affect prior lawful consent-based processing. Further copies may carry a reasonable fee based on administrative costs.",
+    "retrieval_seconds": 0.008488599996780977,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "42",
+        "Article 14 (2)(d)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 13 (2)(c)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 17 (1)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "45",
+        "Article 20 (1)(a)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 17 (1)(d)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 18 (1)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 15 (4)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (5)(a)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7"
+      ]
+    ],
+    "confidence": "MEDIUM",
+    "claims": [
+      {
+        "text": "Under Article 7(3), the lawfulness of processing based on consent is not affected by the withdrawal of consent, meaning previously processed data remains lawful.",
+        "evidence": [
+          {
+            "id": 4,
+            "quote": "The withdrawal of consent shall not affect the lawfulness of processing based on consent before its withdrawal."
+          }
+        ]
+      },
+      {
+        "text": "Article 15(3) does not specify any charges for further copies; however, Article 15(4) states that the right to obtain a copy shall not adversely affect the rights and freedoms of others, implying no undue financial burden.",
+        "evidence": [
+          {
+            "id": 8,
+            "quote": "4. The right to obtain a copy referred to in paragraph 3 shall not adversely affect the rights and freedoms of others."
+          }
+        ]
+      }
+    ],
+    "seconds": 4.05133869999554
+  },
+  {
+    "id": "13",
+    "kind": "unanswerable",
+    "question": "On what date did Acme Clinic actually notify its supervisory authority about incident AC-119?",
+    "gold": "",
+    "reference": "The documents contain no record of that incident.",
+    "retrieval_seconds": 0.009159799999906681,
+    "hits": [
+      [
+        "03-EDPB-Breach-Notification",
+        "33",
+        "Article 37 (138)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "42",
+        "Article 14 (2)(e)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "33",
+        "Detected table 1"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 13 (2)(d)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "16",
+        "Article 33 (60)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 77"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "76",
+        "Article 70 (1)(a)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "16",
+        "Article 33 (61)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "68",
+        "Article 57 (1)(e)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "81",
+        "Article 80 (2)"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 0.673518099996727
+  },
+  {
+    "id": "14",
+    "kind": "unanswerable",
+    "question": "What hourly consulting rate did Northwind agree to pay its external privacy adviser?",
+    "gold": "",
+    "reference": "The documents contain no consultancy contract or agreed rate.",
+    "retrieval_seconds": 0.008512800006428733,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (5)(a)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "72",
+        "Article 61 (7)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "21",
+        "Unnumbered text (111)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "74",
+        "Article 64 (5)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "69",
+        "Article 57 (4)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 15 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (6)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "6",
+        "Unnumbered text"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "78",
+        "Article 70 (2)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "29",
+        "Article 37 (138)"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 0.5483743000077084
+  },
+  {
+    "id": "15",
+    "kind": "unanswerable",
+    "question": "What is the license plate of the vehicle that carried the missing USB drive in the breach example?",
+    "gold": "",
+    "reference": "The example does not provide a vehicle license plate.",
+    "retrieval_seconds": 0.007958900008816272,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "54",
+        "Article 36 (3)(d)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "11",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "7",
+        "Unnumbered text"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "34",
+        "Article 4 (12)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "14",
+        "Article 33 (49)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "16",
+        "Unnumbered text (85)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "20",
+        "Article 33 (86)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "52",
+        "Article 33 (3)(b)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (123)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "11",
+        "Unnumbered text (54)"
+      ]
+    ],
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "seconds": 0.5622562000062317
+  }
+]

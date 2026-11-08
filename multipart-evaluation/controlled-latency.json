@@ -1,0 +1,176 @@
+[
+  {
+    "mode": "full passages",
+    "seconds": 3.0691447999997763,
+    "usage": {
+      "calls": 3,
+      "input_tokens": 1942,
+      "output_tokens": 193
+    },
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Section 106(2) grants the owner of a copyrighted work the right to prepare derivative works based upon the copyrighted work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(2) to prepare derivative works based upon the copyrighted work;"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "A proposed excerpt number was invalid.",
+        "Reason: Select an existing excerpt number for source 1.",
+        "Ran one evidence-based repair.",
+        "Accepted the revised draft."
+      ]
+    }
+  },
+  {
+    "mode": "exact quotes",
+    "seconds": 8.647939199989196,
+    "usage": {
+      "calls": 3,
+      "input_tokens": 1926,
+      "output_tokens": 208
+    },
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Section 106(2) grants the owner of a copyrighted work the right to prepare derivative works based upon the copyrighted work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(2) to prepare derivative works based upon the copyrighted work;"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "A proposed excerpt number was invalid.",
+        "Reason: Select an existing excerpt number for source 1.",
+        "Ran one evidence-based repair.",
+        "Accepted the revised draft."
+      ]
+    }
+  },
+  {
+    "mode": "exact quotes",
+    "seconds": 3.081919599993853,
+    "usage": {
+      "calls": 3,
+      "input_tokens": 1926,
+      "output_tokens": 208
+    },
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Section 106(2) grants the owner of a copyrighted work the right to prepare derivative works based upon the copyrighted work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(2) to prepare derivative works based upon the copyrighted work;"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "A proposed excerpt number was invalid.",
+        "Reason: Select an existing excerpt number for source 1.",
+        "Ran one evidence-based repair.",
+        "Accepted the revised draft."
+      ]
+    }
+  },
+  {
+    "mode": "full passages",
+    "seconds": 2.959230699998443,
+    "usage": {
+      "calls": 3,
+      "input_tokens": 1942,
+      "output_tokens": 193
+    },
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Section 106(2) grants the owner of a copyrighted work the right to prepare derivative works based upon the copyrighted work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(2) to prepare derivative works based upon the copyrighted work;"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "A proposed excerpt number was invalid.",
+        "Reason: Select an existing excerpt number for source 1.",
+        "Ran one evidence-based repair.",
+        "Accepted the revised draft."
+      ]
+    }
+  },
+  {
+    "mode": "full passages",
+    "seconds": 2.869674200002919,
+    "usage": {
+      "calls": 3,
+      "input_tokens": 1942,
+      "output_tokens": 192
+    },
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Section 106(2) grants the owner of a copyrighted work the right to prepare derivative works based upon the copyrighted work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(2) to prepare derivative works based upon the copyrighted work;"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "A proposed excerpt number was invalid.",
+        "Reason: Select an existing excerpt number for source 1.",
+        "Ran one evidence-based repair.",
+        "Accepted the revised draft."
+      ]
+    }
+  },
+  {
+    "mode": "exact quotes",
+    "seconds": 3.174291599993012,
+    "usage": {
+      "calls": 3,
+      "input_tokens": 1926,
+      "output_tokens": 208
+    },
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Section 106(2) grants the owner of a copyrighted work the right to prepare derivative works based upon the copyrighted work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(2) to prepare derivative works based upon the copyrighted work;"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "A proposed excerpt number was invalid.",
+        "Reason: Select an existing excerpt number for source 1.",
+        "Ran one evidence-based repair.",
+        "Accepted the revised draft."
+      ]
+    }
+  }
+]
