@@ -69,3 +69,5 @@ On the **Add legal documents** screen, open **Use official PDF links instead** a
 The app keeps up to four prepared search indexes in memory until restart and asks Ollama to keep the local model loaded for 30 minutes. Under **Analysis details**, retrieval time includes index preparation on a cold case. Model time includes generation, verification and any repair.
 
 
+
+The four numbered EU GDPR PDFs in this repository form the GDPR source pack. The [demo presentation](LexiSyncAI-Demo.pptx) accompanies the rehearsal guide.

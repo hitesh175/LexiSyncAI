@@ -103,10 +103,11 @@ Hybrid correctly answered the three multi-page questions in substance. In questi
 
 ### Reproduce
 
-Extract the EU GDPR Source Pack next to the LexiSyncAI directory. Run from the LexiSyncAI directory using your Python environment and a running Ollama service:
+The two PDFs are included in the repository root. Run from the LexiSyncAI directory using your Python environment and a running Ollama service:
 
 ```powershell
-python evaluate.py --questions gdpr-holdout.psv --docs ../EU-GDPR-Source-Pack/01-EU-GDPR-Regulation-2016-679.pdf ../EU-GDPR-Source-Pack/03-EDPB-Breach-Notification.pdf --output evaluation-results/gdpr-holdout
+python evaluate.py --questions gdpr-holdout.psv --docs 01-EU-GDPR-Regulation-2016-679.pdf 03-EDPB-Breach-Notification.pdf --output evaluation-results/gdpr-holdout
 ```
 
 The source PDFs are [the regulation on EUR-Lex](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng/pdf) and [the EDPB breach guidelines](https://www.edpb.europa.eu/system/files/documents/2023-04/edpb_guidelines_202209_personal_data_breach_notification_v2.0_en.pdf).
+
