@@ -15,16 +15,28 @@ def key(p):
     return (p.document.removeprefix("17-USC-").removesuffix(".pdf"), str(p.page), p.section)
 
 
+def covered(gold, hits):
+    locations = {key(p) for p in hits}
+    pages = {(document, page, "*") for document, page, _ in locations}
+    return gold & (locations | pages)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--retrieval-only", action="store_true")
+    parser.add_argument("--questions", type=Path, default=ROOT / "questions.psv")
+    parser.add_argument("--docs", type=Path, nargs="+", default=sorted((ROOT / "data").glob("*.pdf")))
     parser.add_argument("--output", type=Path, default=Path("evaluation-results"))
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
-    with (ROOT / "questions.psv").open(encoding="utf-8-sig") as file:
+    with args.questions.open(encoding="utf-8-sig") as file:
         questions = list(csv.DictReader(file, delimiter="|"))
-    docs = {f.name: f.read_bytes() for f in sorted((ROOT / "data").glob("*.pdf"))}
+    docs = {f.name: f.read_bytes() for f in args.docs}
     passages, _ = ingest(docs)
+    for row in questions:
+        gold = {tuple(item.split(":", 2)) for item in row["gold"].split(";") if item}
+        if gold != covered(gold, passages):
+            raise ValueError(f"Question {row['id']} has an evidence label missing from the corpus.")
     started = perf_counter()
     index = Index(passages)
     summary = {"index_seconds": perf_counter() - started}
@@ -35,10 +47,10 @@ def main():
             started = perf_counter()
             hits = index.retrieve(row["question"], mode=mode)
             retrieval_seconds = perf_counter() - started
-            recalls.append({f"recall@{k}": len(gold & {key(p) for p in hits[:k]}) / len(gold)
+            recalls.append({f"recall@{k}": len(covered(gold, hits[:k])) / len(gold)
                             for k in (1, 5, 10)} if gold else {})
             if gold:
-                complete.append(gold <= {key(p) for p in hits})
+                complete.append(gold == covered(gold, hits))
             run = dict(row, retrieval_seconds=retrieval_seconds, hits=[key(p) for p in hits])
             if not args.retrieval_only and mode in ("dense", "hybrid"):
                 result = answer(row["question"], hits)
@@ -73,3 +85,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

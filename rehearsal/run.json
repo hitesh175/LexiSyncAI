@@ -1,0 +1,148 @@
+{
+  "pdf": "17-USC-Chapter-2.pdf",
+  "pages": 8,
+  "preparation_seconds": 23.693035899996175,
+  "runs": [
+    {
+      "question": "Under section 201(a), who initially owns copyright in a joint work?",
+      "seconds": 6.918503799999598,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 2721,
+        "output_tokens": 196
+      },
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Under section 201(a), the initial owners of copyright in a joint work are the coauthors of the work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(a) INITIAL OWNERSHIP.—Copyright in a work protected under this title vests initially in the author or authors of the work.",
+              "page": 1,
+              "section": "§201 (a)"
+            }
+          ]
+        },
+        {
+          "text": "The authors of a joint work are coowners of copyright in the work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "The authors of a joint work are coowners of copyright in the work.",
+              "page": 1,
+              "section": "§201 (a)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "question": "Under section 201(a), who initially owns copyright in a joint work, and under section 204(a), what does a voluntary transfer of copyright ownership require?",
+      "seconds": 9.10969369999657,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 3223,
+        "output_tokens": 207
+      },
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Under section 201(a), the initial owners of copyright in a work are the authors of the work, and in the case of a joint work, the coauthors are coowners of the copyright.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(a) INITIAL OWNERSHIP.—Copyright in a work protected under this title vests initially in the author or authors of the work.",
+              "page": 1,
+              "section": "§201 (a)"
+            },
+            {
+              "id": 1,
+              "quote": "The authors of a joint work are coowners of copyright in the work.",
+              "page": 1,
+              "section": "§201 (a)"
+            }
+          ]
+        },
+        {
+          "text": "Under section 204(a), a voluntary transfer of copyright ownership requires that the transfer be in writing and signed by the owner of the rights conveyed or by such owner’s duly authorized agent.",
+          "evidence": [
+            {
+              "id": 2,
+              "quote": "(a) A transfer of copyright ownership, other than by operation of law, is not valid unless an instrument of conveyance, or a note or memorandum of the transfer, is in writing and signed by the owner of the rights conveyed or such owner’s duly authorized agent.",
+              "page": 6,
+              "section": "§204 (a)"
+            }
+          ]
+        },
+        {
+          "text": "The requirement under section 204(a) applies to transfers other than those by operation of law.",
+          "evidence": [
+            {
+              "id": 2,
+              "quote": "(a) A transfer of copyright ownership, other than by operation of law, is not valid unless an instrument of conveyance, or a note or memorandum of the transfer, is in writing and signed by the owner of the rights conveyed or such owner’s duly authorized agent.",
+              "page": 6,
+              "section": "§204 (a)"
+            }
+          ]
+        },
+        {
+          "text": "A note or memorandum of the transfer may serve as valid evidence if it is in writing and signed by the owner or their duly authorized agent.",
+          "evidence": [
+            {
+              "id": 4,
+              "quote": "Under subsection (a), a transfer of copyright ownership (other than one brought about by operation of law) is valid only if there exists an instrument of conveyance, or alternatively a ‘‘note or memorandum of the transfer,’’ which is in writing and signed by the copyright owner ‘‘or such owner’s duly authorized agent.’’ Subsection (b) makes clear that a notarial or consular acknowledgment is not essential to the validity of any transfer, whether executed in the United States or abroad.",
+              "page": 6,
+              "section": "Section 204"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "question": "What royalty rate did Acme Clinic agree to pay for its 2025 photograph licence?",
+      "seconds": 2.6151606000057654,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 1945,
+        "output_tokens": 5
+      },
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": []
+    },
+    {
+      "question": "Under section 201(a), who initially owns copyright in a joint work?",
+      "seconds": 6.316408700004104,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 2721,
+        "output_tokens": 196
+      },
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Under section 201(a), the initial owners of copyright in a joint work are the coauthors of the work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(a) INITIAL OWNERSHIP.—Copyright in a work protected under this title vests initially in the author or authors of the work.",
+              "page": 1,
+              "section": "§201 (a)"
+            }
+          ]
+        },
+        {
+          "text": "The authors of a joint work are coowners of copyright in the work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "The authors of a joint work are coowners of copyright in the work.",
+              "page": 1,
+              "section": "§201 (a)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

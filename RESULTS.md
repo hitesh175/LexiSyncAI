@@ -80,3 +80,33 @@ The same 15-question fixture was rerun after the numbered-factor check and the s
 | Mean question latency after the index was ready | 5.51 s | 6.03 s |
 
 Index and model preparation took 6.89 s in this run, separately from per-question latency. The runs used the same questions, but first-use loading and machine conditions were not controlled across dates. Do not attribute the timing difference entirely to the code changes. The small fixture does not establish performance on the GDPR pack. Hybrid rejected the numbered mismatch on question 6 and abstained after the repair. It still missed answerable questions, and dense produced more correct answers in this run.
+
+## Held-out GDPR evaluation
+
+The 15-question fixture in `gdpr-holdout.psv` was written and labeled before running the model. It uses the regulation and EDPB breach guidance from the EU GDPR Source Pack, with nine factual questions, three multi-page questions, and three unanswerable questions. The documents were already available during earlier app work. The questions and gold evidence were held out from the previous copyright benchmark and the earlier GDPR fines rehearsal.
+
+| Metric | BM25 | Dense | Fusion | Reranked hybrid |
+|---|---:|---:|---:|---:|
+| Recall at 1 | 41.7% | 25.0% | 45.8% | 87.5% |
+| Recall at 5 | 70.8% | 58.3% | 75.0% | 95.8% |
+| Recall at 10 | 79.2% | 62.5% | 95.8% | 100.0% |
+| All annotated evidence in top 10 | 9/12 | 6/12 | 11/12 | 12/12 |
+| Correct answers, including abstentions | — | 9/15 | — | 13/15 |
+| Citation precision | — | 16/25 (64.0%) | — | 26/30 (86.7%) |
+| Correct abstentions | — | 3/3 | — | 3/3 |
+| False abstentions on answerable questions | — | 3/12 | — | 0/12 |
+| Mean question time after index preparation | — | 6.97 s | — | 8.23 s |
+
+Gold locations use exact article paragraphs for the regulation and PDF pages for the two EDPB evidence targets. The page-level targets can match a nearby passage on that page. An answer earns correctness credit for factually resolving the question, and a citation earns separate credit for supporting the attached claim or a necessary premise. Redundant or weak evidence can lower citation precision even if the answer text is right. The manual scoring reflects one reviewer.
+
+Hybrid correctly answered the three multi-page questions in substance. In question 10 it cited a timing discussion instead of the passage that establishes the awareness threshold. In question 7 it converted alternatives into a joint requirement. After scoring, a narrow conjunction check was added for the latter pattern, and exact-clause retrieval was extended to named Section references. The table is the frozen run before these two follow-up fixes. It is not a performance estimate for other legal domains. Raw output and scored sheets are in `heldout-evaluation/`.
+
+### Reproduce
+
+Extract the EU GDPR Source Pack next to the LexiSyncAI directory. Run from the LexiSyncAI directory using your Python environment and a running Ollama service:
+
+```powershell
+python evaluate.py --questions gdpr-holdout.psv --docs ../EU-GDPR-Source-Pack/01-EU-GDPR-Regulation-2016-679.pdf ../EU-GDPR-Source-Pack/03-EDPB-Breach-Notification.pdf --output evaluation-results/gdpr-holdout
+```
+
+The source PDFs are [the regulation on EUR-Lex](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng/pdf) and [the EDPB breach guidelines](https://www.edpb.europa.eu/system/files/documents/2023-04/edpb_guidelines_202209_personal_data_breach_notification_v2.0_en.pdf).

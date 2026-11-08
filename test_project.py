@@ -126,6 +126,19 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(result["claims"], [])
         self.assertIn("Abstained after repair.", result["trace"])
 
+    def test_repair_does_not_turn_alternative_triggers_into_requirements(self):
+        quote = ("The rule does not apply unless the processing is likely to result in a risk, "
+                 "the processing is not occasional, or it includes sensitive data.")
+        passage = Passage("sample.pdf", 2, "Section 5", quote)
+        wrong = {"text": "The rule applies only if processing is not occasional and is likely to result in a risk.",
+                 "evidence": [{"id": 1, "quote": quote}]}
+        correct = {"text": "The rule applies if processing is likely to result in a risk, is not occasional, or includes sensitive data.",
+                   "evidence": [{"id": 1, "quote": quote}]}
+        responses = iter([{"claims": [wrong]}, {"claims": [correct]}, {"verdict": "high"}])
+        result = answer("When does the rule apply?", [passage], lambda *_: next(responses))
+        self.assertEqual(result["claims"], [correct])
+        self.assertIn("The draft combined alternatives into one requirement.", result["trace"])
+
     def test_citation_highlight_and_missing_quote(self):
         pdf = (ROOT / "data" / "17-USC-106.pdf").read_bytes()
         marked, found = render_citation(pdf, 1, "Exclusive rights in copyrighted works")
@@ -138,6 +151,7 @@ class ProjectTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
 
 
 

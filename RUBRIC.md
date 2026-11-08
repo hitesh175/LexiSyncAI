@@ -4,9 +4,9 @@ This checklist distinguishes application functionality from the evidence require
 
 | Rubric component | Coverage and verification |
 |---|---|
-| Live demo, 15 marks | A timed script and slides cover upload, factual evidence, multi-page evidence and abstention. The unseen exam document and live delivery still need to be demonstrated. |
+| Live demo, 15 marks | A timed script and slides cover upload, factual evidence, multi-page evidence and abstention. A separate single-PDF pipeline rehearsal passed with a two-page citation and an abstention. The actual exam document and timed live delivery still need to be demonstrated. |
 | Functional UI, 10 marks | Upload 1–5 public PDFs, save cases, inspect detected structure, ask questions, browse saved answers, view confidence and exact citations, inspect original pages, and export text. The one-PDF option supports the unseen-document exam. |
-| Technical depth, 30 marks | Clause-aware ingestion, two-column heuristic, scan flags, BM25, dense retrieval, rank fusion, cross-encoder reranking, local Ollama generation, evidence verification and abstention. The 15-question fixture includes three multi-hop and three unanswerable questions. Read RESULTS.md for measured quality and failure cases. |
+| Technical depth, 30 marks | Clause-aware ingestion, two-column heuristic, scan flags, BM25, dense retrieval, rank fusion, cross-encoder reranking, local Ollama generation, evidence verification and abstention. The copyright regression set and fresh 15-question GDPR evaluation each include three multi-page and three unanswerable questions. Read RESULTS.md for measured quality and failure cases. |
 | Extended features, 15 marks | See the feature-by-feature inventory below. Partial features still need their rubric-specific measurements. |
 | Code and documentation, 10 marks | Pinned direct dependencies and model revisions, local Git history, tests, Windows launcher, Docker configuration, setup guide and one-page architecture diagram. Docker is provided as a configuration and has not been exercised here. |
 | Attendance and assignments, 20 marks | Assessed separately by the professor. |
@@ -25,9 +25,10 @@ This checklist distinguishes application functionality from the evidence require
 | Extended ablation | Dense versus hybrid and retrieval configuration comparisons are measured. Text versus table versus figure ablation is open. |
 | Cross-document evidence | The fixture tests two-document synthesis. Prompts ask for conflicting evidence to be cited on both sides. A dedicated conflict benchmark is open. |
 | Public deployment | Open. The tested app is local. |
-| Latency and cost | Benchmark latency, per-answer retrieval and generation time, and Ollama-reported input and output tokens are available. Cost and a measured optimization are open. |
+| Latency and cost | Benchmark latency, per-answer timings and Ollama token counts are available. The single-PDF rehearsal reports first and repeat question timing, and the URL import latency check compares one verifier optimization. A broader controlled timing and cost study is open. |
 
 ## Known limitations
 
 Column and heading detection are heuristic. Scanned text is excluded. A genuine quote can still be interpreted incorrectly, and a refusal can reflect missed evidence. The confidence label describes the verifier's judgment rather than a calibrated probability.
+
 

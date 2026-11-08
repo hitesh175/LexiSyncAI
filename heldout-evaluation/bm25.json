@@ -1,0 +1,902 @@
+[
+  {
+    "id": "1",
+    "kind": "factual",
+    "question": "Under Article 5(2), who must be able to show compliance with the data processing principles?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:36:Article 5 (2)",
+    "reference": "The controller is responsible for compliance with Article 5(1) and must be able to demonstrate it.",
+    "retrieval_seconds": 0.03435509999690112,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "36",
+        "Article 5 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "35",
+        "Article 5"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (121)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "52",
+        "Article 33 (5)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (5)(e)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "14",
+        "Unnumbered text (72)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "15",
+        "Unnumbered text (78)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "50",
+        "Article 29"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (5)(a)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "33",
+        "Article 3 (2)"
+      ]
+    ]
+  },
+  {
+    "id": "2",
+    "kind": "factual",
+    "question": "Under Article 7(3), does withdrawing consent invalidate processing already carried out on that consent?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:37:Article 7 (3)",
+    "reference": "No. Withdrawal does not affect the lawfulness of processing based on consent before withdrawal.",
+    "retrieval_seconds": 0.0290071000054013,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7 (4)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (5)(a)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "8",
+        "Unnumbered text (43)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "42",
+        "Article 14 (2)(d)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 13 (2)(c)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "31",
+        "Unnumbered text (171)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "6",
+        "Unnumbered text (32)"
+      ]
+    ]
+  },
+  {
+    "id": "3",
+    "kind": "factual",
+    "question": "How long does Article 12(3) normally give a controller to inform a person about action on a rights request, and when must an extension be communicated?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:40:Article 12 (3)",
+    "reference": "Respond without undue delay and within one month of receipt. A necessary extension of up to two more months must be communicated within the initial month with reasons.",
+    "retrieval_seconds": 0.04244160000234842,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (4)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "34",
+        "Article 4 (13)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "26",
+        "Unnumbered text (143)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "15",
+        "Article 33 (57)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "46",
+        "Article 23 (1)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "20",
+        "Article 33 (82)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "3",
+        "Unnumbered text"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "63",
+        "Article 47 (2)(j)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "26",
+        "Unnumbered text (143)"
+      ]
+    ]
+  },
+  {
+    "id": "4",
+    "kind": "factual",
+    "question": "Under Article 15(3), what may the controller charge for further copies of a person's personal data?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:43:Article 15 (3)",
+    "reference": "A reasonable fee based on administrative costs.",
+    "retrieval_seconds": 0.034881599989603274,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 15 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (5)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "34",
+        "Article 4 (15)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "69",
+        "Article 57 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "49",
+        "Article 28 (3)(g)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "39",
+        "Article 9 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 18 (2)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "7",
+        "Unnumbered text"
+      ]
+    ]
+  },
+  {
+    "id": "5",
+    "kind": "factual",
+    "question": "Under Article 16, what can someone do about incomplete personal data?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:43:Article 16",
+    "reference": "Have it completed, taking the processing purposes into account, including by giving a supplementary statement.",
+    "retrieval_seconds": 0.03195479999703821,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 16"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "24",
+        "Article 33 (110)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "24",
+        "Article 33 (109)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "45",
+        "Article 19"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "50",
+        "Article 29"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "3",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "28",
+        "Article 37 (136)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "34",
+        "Article 4 (16)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "25",
+        "Article 33 (113)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "17",
+        "Article 33 (70)"
+      ]
+    ]
+  },
+  {
+    "id": "6",
+    "kind": "factual",
+    "question": "What risk threshold triggers direct communication to affected people under Article 34(1), and how soon must it happen?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:52:Article 34 (1)",
+    "reference": "A breach likely to result in a high risk to people's rights and freedoms. Communicate without undue delay.",
+    "retrieval_seconds": 0.04283249999571126,
+    "hits": [
+      [
+        "03-EDPB-Breach-Notification",
+        "27",
+        "Article 33 (128)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "3",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "32",
+        "Article 37 (138)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "20",
+        "Article 33 (82)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "52",
+        "Article 34"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (5)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "20",
+        "Article 33 (80)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "24",
+        "Article 33 (104)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "32",
+        "Detected table 2"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "27",
+        "Article 33 (127)"
+      ]
+    ]
+  },
+  {
+    "id": "7",
+    "kind": "factual",
+    "question": "When is an organisation with fewer than 250 employees still subject to the record-keeping obligations under Article 30(5)?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:51:Article 30 (5)",
+    "reference": "When processing is likely to pose a risk to rights and freedoms, is not occasional, or includes special-category or criminal convictions and offences data.",
+    "retrieval_seconds": 0.04049709999526385,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "51",
+        "Article 30 (5)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "3",
+        "Unnumbered text (13)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "3",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "30",
+        "Article 37 (138)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "50",
+        "Article 30 (1)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "18",
+        "Article 33 (72)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "51",
+        "Article 30 (4)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "34",
+        "Article 4 (b)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (120)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "51",
+        "Article 30 (1)(e)"
+      ]
+    ]
+  },
+  {
+    "id": "8",
+    "kind": "factual",
+    "question": "Where can a person lodge a GDPR complaint under Article 77(1)?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:80:Article 77 (1)",
+    "reference": "With a supervisory authority, in particular in the Member State of habitual residence, work, or the alleged infringement.",
+    "retrieval_seconds": 0.03289240000594873,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 77"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 79 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 15 (1)(f)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "81",
+        "Article 80 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "41",
+        "Article 13 (2)(d)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "42",
+        "Article 14 (2)(e)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 77 (1)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 77 (2)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "18",
+        "Article 33 (72)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 78 (2)"
+      ]
+    ]
+  },
+  {
+    "id": "9",
+    "kind": "factual",
+    "question": "Under Article 79(2), when is the data subject's home Member State forum unavailable?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:80:Article 79 (2)",
+    "reference": "When the controller or processor is a Member State public authority acting in the exercise of its public powers.",
+    "retrieval_seconds": 0.035445900008198805,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "81",
+        "Article 80 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "82",
+        "Article 82 (6)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "80",
+        "Article 79 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "46",
+        "Article 22 (2)(b)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "39",
+        "Article 9 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "44",
+        "Article 18 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "42",
+        "Article 14 (5)(c)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "46",
+        "Article 22 (2)(c)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "39",
+        "Article 10"
+      ]
+    ]
+  },
+  {
+    "id": "10",
+    "kind": "multi",
+    "question": "When must a controller notify the supervisory authority under Article 33(1), and what level of certainty counts as awareness according to the EDPB breach guidelines?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:52:Article 33 (1);03-EDPB-Breach-Notification:11:*",
+    "reference": "Without undue delay and where feasible within 72 hours of awareness, unless the breach is unlikely to pose a risk to rights and freedoms. Awareness requires reasonable certainty that a security incident compromised personal data.",
+    "retrieval_seconds": 0.04512870000326075,
+    "hits": [
+      [
+        "03-EDPB-Breach-Notification",
+        "17",
+        "Article 33 (69)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "10",
+        "Unnumbered text (adequate)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "13",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "24",
+        "Article 33 (105)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (123)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "18",
+        "Article 33 (76)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "3",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (121)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "6",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "27",
+        "Article 37 (131)"
+      ]
+    ]
+  },
+  {
+    "id": "11",
+    "kind": "multi",
+    "question": "What does Article 33(2) require a processor to do after discovering a breach, and what does the EDPB recommend if some details are still unavailable?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:52:Article 33 (2);03-EDPB-Breach-Notification:14:*",
+    "reference": "Notify the controller without undue delay. The EDPB recommends notifying promptly and sharing further information in phases as details become available.",
+    "retrieval_seconds": 0.051099700009217486,
+    "hits": [
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (123)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "18",
+        "Article 33 (75)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "14",
+        "Article 33 (45)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "18",
+        "Article 33 (72)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "3",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "27",
+        "Article 33 (125)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "15",
+        "Article 33 (57)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "82",
+        "Article 83 (2)(h)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "19",
+        "Article 33 (79)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "15",
+        "Article 33 (54)"
+      ]
+    ]
+  },
+  {
+    "id": "12",
+    "kind": "multi",
+    "question": "Under Article 7(3), what happens to processing already performed on withdrawn consent, and under Article 15(3), what may be charged for further copies?",
+    "gold": "01-EU-GDPR-Regulation-2016-679:37:Article 7 (3);01-EU-GDPR-Regulation-2016-679:43:Article 15 (3)",
+    "reference": "Withdrawal does not affect prior lawful consent-based processing. Further copies may carry a reasonable fee based on administrative costs.",
+    "retrieval_seconds": 0.052089400007389486,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (7)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "43",
+        "Article 15 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "59",
+        "Article 42 (7)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "37",
+        "Article 7 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "50",
+        "Article 28 (7)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "3",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "18",
+        "Article 33 (72)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "35",
+        "Article 5 (1)(c)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "40",
+        "Article 12 (3)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "48",
+        "Article 26 (3)"
+      ]
+    ]
+  },
+  {
+    "id": "13",
+    "kind": "unanswerable",
+    "question": "On what date did Acme Clinic actually notify its supervisory authority about incident AC-119?",
+    "gold": "",
+    "reference": "The documents contain no record of that incident.",
+    "retrieval_seconds": 0.03692459999001585,
+    "hits": [
+      [
+        "03-EDPB-Breach-Notification",
+        "16",
+        "Article 33 (60)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "22",
+        "Unnumbered text (119)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "19",
+        "Article 33 (80)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "6",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (119)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "24",
+        "Article 33 (109)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "13",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "21",
+        "Article 33 (94)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "75",
+        "Article 65 (6)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "30",
+        "Article 37 (138)"
+      ]
+    ]
+  },
+  {
+    "id": "14",
+    "kind": "unanswerable",
+    "question": "What hourly consulting rate did Northwind agree to pay its external privacy adviser?",
+    "gold": "",
+    "reference": "The documents contain no consultancy contract or agreed rate.",
+    "retrieval_seconds": 0.03937650000443682,
+    "hits": [
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "54",
+        "Article 36 (3)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (123)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "72",
+        "Article 61 (7)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "79",
+        "Article 75 (6)(d)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "31",
+        "Unnumbered text (2)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "35",
+        "Article 5 (1)(c)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "82",
+        "Article 83 (2)(h)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "71",
+        "Article 63 (9)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "21",
+        "Article 33 (87)"
+      ],
+      [
+        "01-EU-GDPR-Regulation-2016-679",
+        "83",
+        "Article 83 (7)"
+      ]
+    ]
+  },
+  {
+    "id": "15",
+    "kind": "unanswerable",
+    "question": "What is the license plate of the vehicle that carried the missing USB drive in the breach example?",
+    "gold": "",
+    "reference": "The example does not provide a vehicle license plate.",
+    "retrieval_seconds": 0.042794799999683164,
+    "hits": [
+      [
+        "03-EDPB-Breach-Notification",
+        "16",
+        "Article 33 (60)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "26",
+        "Article 33 (123)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "23",
+        "Article 33 (104)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "8",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "16",
+        "Article 33 (59)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "7",
+        "Unnumbered text"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "22",
+        "Article 33 (97)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "25",
+        "Article 33 (113)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "19",
+        "Article 33 (79)"
+      ],
+      [
+        "03-EDPB-Breach-Notification",
+        "7",
+        "Unnumbered text"
+      ]
+    ]
+  }
+]
