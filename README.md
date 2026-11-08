@@ -10,7 +10,7 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 - [Run on Windows](#run-on-windows)
 - [Use the app](#use-the-app)
 - [Evaluation](#evaluation)
-- [Demo and assignment materials](#demo-and-assignment-materials)
+- [Assignment materials](#demo-and-assignment-materials)
 - [Known limitations](#known-limitations)
 
 ## Features
@@ -90,12 +90,7 @@ The default evaluation runs the 15-question copyright fixture against the two Go
 
 Use `--retrieval-only` to skip generation. The evaluator reports recall at 1, 5, and 10 for the four retrieval configurations and measures answer time and abstention for dense and hybrid. The review sheets separate factual answer correctness from whether each citation supports its claim. The [benchmark report](RESULTS.md) includes the GDPR reproduction command, measured results, and known failure examples.
 
-## Demo and assignment materials
-
-- [Five-minute demo outline](DEMO.md)
-- [Single-PDF rehearsal and timings](rehearsal/README.md)
-- [Demo presentation](LexiSyncAI-Demo.pptx)
-- [Assignment rubric coverage](RUBRIC.md)
+## Assignment materials
 
 The four numbered EU GDPR PDFs in the repository root form the GDPR source pack. The copyright sample PDFs come from the 2023 U.S. Code. [Section 106](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec106.pdf) · [Section 107](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec107.pdf)
 
