@@ -11,7 +11,7 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 - [Use the app](#use-the-app)
 - [Evaluation](#evaluation)
   - [Results at a glance](#results-at-a-glance)
-- [Demo and assignment materials](#demo-and-assignment-materials)
+- [Assignment materials](#assignment-materials)
 - [Known limitations](#known-limitations)
 
 ## Features
@@ -106,12 +106,7 @@ The table summarizes the multipart retrieval rerun on the 15-question GDPR fixtu
 
 Hybrid citation precision rose from 86.7% to 88.0% compared with the earlier run on the same fixture, while answer correctness fell from 13/15 to 12/15. The separate quote-highlight sample produced **9 correct highlights, 0 wrong highlights, and 1 full-page fallback** for a repeated quote. See the [benchmark report](RESULTS.md#multipart-evidence-and-citation-region-evaluation) for methodology, build details, and failure cases.
 
-## Demo and assignment materials
-
-- [Five-minute demo outline](DEMO.md)
-- [Single-PDF rehearsal and timings](rehearsal/README.md)
-- [Demo presentation](LexiSyncAI-Demo.pptx)
-- [Assignment rubric coverage](RUBRIC.md)
+## Assignment materials
 
 The four numbered EU GDPR PDFs in the repository root form the GDPR source pack. The copyright sample PDFs come from the 2023 U.S. Code. [Section 106](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec106.pdf) · [Section 107](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec107.pdf)
 
