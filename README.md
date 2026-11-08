@@ -1,5 +1,7 @@
 # LexiSyncAI
 
+[GitHub repository](https://github.com/hitesh175/LexiSyncAI)
+
 A local research prototype that answers questions about public legal PDFs and shows the passage and PDF page behind each claim.
 
 ## Run on Windows
@@ -65,4 +67,5 @@ See [assignment coverage](RUBRIC.md) for the rubric, verified features, and open
 On the **Add legal documents** screen, open **Use official PDF links instead** and paste one direct HTTPS PDF URL per line. You can mix links and uploads, up to five files total. The app supports EUR-Lex, EDPB, GovInfo, UK legislation and the listed German federal publishers. Linked PDFs are limited to 25 MB each. If a publisher serves a web page or blocks downloads, save the PDF and upload it. The source link is retained with the case and included in answer exports.
 
 The app keeps up to four prepared search indexes in memory until restart and asks Ollama to keep the local model loaded for 30 minutes. Under **Analysis details**, retrieval time includes index preparation on a cold case. Model time includes generation, verification and any repair.
+
 
