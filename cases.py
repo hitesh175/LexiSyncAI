@@ -1,6 +1,8 @@
 """Local storage for cases and their cited answers."""
 from contextlib import closing, contextmanager
+import csv
 from dataclasses import asdict
+from io import StringIO
 import json
 from pathlib import Path
 import sqlite3
@@ -82,6 +84,39 @@ class CaseStore:
                 "SELECT question, hits, result FROM answers WHERE case_id = ? AND id = ?",
                 (case_id, answer_id)).fetchone()
         return question, [Passage(**p) for p in json.loads(hits)], json.loads(result)
+
+    def export_citation_audit(self, case_id, sources):
+        """Return a spreadsheet-ready audit with a row per citation or abstention."""
+        with self.connection() as db:
+            answers = db.execute(
+                "SELECT id, question, hits, result FROM answers WHERE case_id = ? ORDER BY id",
+                (case_id,),
+            ).fetchall()
+        output = StringIO(newline="")
+        writer = csv.writer(output)
+        writer.writerow(["Answer ID", "Question", "Status", "Confidence", "Claim",
+                         "Document", "PDF page", "Section", "Exact excerpt", "Official source", "OCR"])
+
+        def write_row(values):
+            # Spreadsheet apps can treat a leading operator as a formula.
+            writer.writerow("'" + value if isinstance(value, str) and
+                            (value.startswith(("\t", "\r", "\n")) or
+                             value.lstrip().startswith(("=", "+", "-", "@"))) else value
+                            for value in values)
+
+        for answer_id, question, hits, result in answers:
+            hits = json.loads(hits)
+            result = json.loads(result)
+            if not result["claims"]:
+                write_row([answer_id, question, "Abstained", result["confidence"], ABSTAIN] + [""] * 6)
+            for claim in result["claims"]:
+                for cite in claim["evidence"]:
+                    passage = hits[cite["id"] - 1]
+                    document = passage["document"]
+                    write_row([answer_id, question, "Answered", result["confidence"], claim["text"],
+                               document, passage["page"], passage["section"], cite["quote"],
+                               sources.get(document, ""), "Yes" if passage.get("ocr") else "No"])
+        return output.getvalue().encode("utf-8-sig")
 
 
 def export_answer(case, documents, question, hits, result, sources=None):

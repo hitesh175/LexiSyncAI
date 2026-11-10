@@ -1,12 +1,14 @@
 from contextlib import closing
 import csv
-from io import BytesIO
+from io import BytesIO, StringIO
 from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
 
 import pdfplumber
 import pypdfium2 as pdfium
 from PIL import Image
+from cases import CaseStore
 from lexic import Index, Passage, answer, ingest, question_parts
 from preview import render_citation
 from tables import table_cells
@@ -16,6 +18,32 @@ ROOT = Path(__file__).resolve().parent
 
 
 class ProjectTests(unittest.TestCase):
+    def test_case_citation_audit_exports_only_selected_case(self):
+        with TemporaryDirectory() as folder:
+            store = CaseStore(Path(folder) / "cases.sqlite3")
+            source = "https://example.org/sample.pdf"
+            hit = Passage("sample.pdf", 2, "§7", "The deadline is 30 days.", ocr=True)
+            case = store.save_case("First", {hit.document: b"pdf"}, [hit], [], {hit.document: source})
+            other = store.save_case("Second", {}, [], [])
+            refusal = {"confidence": "INSUFFICIENT EVIDENCE", "claims": []}
+            store.save_answer(other, "Exclude this question", [], refusal)
+            store.save_answer(case, "What is the deadline?", [hit], {
+                "confidence": "HIGH", "claims": [
+                    {"text": hit.text, "evidence": [{"id": 1, "quote": hit.text}]}
+                ],
+            })
+            store.save_answer(case, "=1+1", [], refusal)
+            exported = store.export_citation_audit(case, store.document_sources(case))
+        answered, refused = list(csv.DictReader(StringIO(exported.decode("utf-8-sig"))))
+        self.assertEqual(answered["Exact excerpt"], hit.text)
+        self.assertEqual(answered["PDF page"], "2")
+        self.assertEqual(answered["Section"], "§7")
+        self.assertEqual(answered["Official source"], source)
+        self.assertEqual(answered["OCR"], "Yes")
+        self.assertEqual(refused["Question"], "'=1+1")
+        self.assertEqual(refused["Status"], "Abstained")
+        self.assertEqual(refused["Document"], "")
+
     def test_version_comparison_requires_matching_amendment_evidence(self):
         question = "How do the editions differ in section 42(a), and what amendment explains the difference?"
         old = Passage("old.pdf", 4, "§42 (a)", "(a) The deadline is thirty days.")

@@ -192,6 +192,10 @@ with research_tab:
             with st.expander("Previous answers"):
                 selected_answer = st.selectbox("Choose a past question", history, key=history_key,
                                                format_func=lambda i: f"#{i} · {history[i]}")
+                st.download_button("Download case citation audit (CSV)",
+                                   data=store.export_citation_audit(case_id, sources),
+                                   file_name=f"lexisync-case-{case_id}-citation-audit.csv",
+                                   mime="text/csv", on_click="ignore", use_container_width=True)
         question, hits, result = store.open_answer(case_id, selected_answer)
         st.html(f"""<header class="lexi-review-title">
             <h2>Answer</h2><p class="lexi-question">{escape(question)}</p>

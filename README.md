@@ -27,6 +27,7 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 | Verification and abstention | Checks citation integrity and evidence support, allows at most one repair attempt, and abstains when support is insufficient. |
 | Historical version comparison | For an explicit section and amendment question, checks whether a cited amendment note explains a wording change between two editions. |
 | Saved cases and exports | Reopen cases and earlier answers, including abstentions. Download a text record with citations and available official source links. |
+| Case citation audit | Download a CSV covering all saved answers in a case, with cited claims, exact excerpts, PDF locations, source links, and abstentions. |
 | Analysis details | Shows timing, Ollama token counts, and available repair traces. |
 | Reproducible evaluation | Compares BM25, dense retrieval, fusion, and reranked hybrid retrieval. Includes graded outputs for the copyright and held-out GDPR question sets. |
 
@@ -81,6 +82,7 @@ With Docker Desktop and Ollama running on the host, run `docker compose up --bui
 2. To import from a link, expand **Use official PDF links instead** and paste one direct HTTPS PDF link per line. Supported publishers include EUR-Lex, EDPB, GovInfo, UK legislation, and selected German federal publishers. Linked PDFs have a 25 MB limit. If a publisher blocks downloads, save its PDF and upload it.
 3. Enter a question and select **Get answer**. Select a numbered source to see the exact quote and original PDF page.
 4. Use **Documents** to inspect the files and detected page structure. Use **Previous answers** to reopen an answer and **Download answer and citations** to export it.
+5. Under **Previous answers**, choose **Download case citation audit (CSV)** to review the entire case in a spreadsheet.
 
 For image-only PDFs, turn on **Read scanned pages (OCR)** before saving. It uses Windows OCR with the language resources installed on the device. Pages with unavailable or failed OCR remain flagged and are excluded from text search. A case with no searchable pages displays a setup message. OCR-derived quotes are marked in the preview and export.
 
