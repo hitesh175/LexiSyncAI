@@ -1,0 +1,44 @@
+{
+  "question": "When deciding whether a vision impairment substantially limits a major life activity, should ordinary eyeglasses or contact lenses be considered? When may a covered employer use an employment test based on uncorrected vision?",
+  "result": {
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "Ordinary eyeglasses or contact lenses that fully correct visual acuity or eliminate refractive error should be considered when determining whether a vision impairment substantially limits a major life activity.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "‘‘(IV) learned behavioral or adaptive neurological modifications. ‘‘(ii) The ameliorative effects of the mitigating measures of ordinary eyeglasses or contact lenses shall be considered in determining whether an impairment substantially limits a major life activity. ‘‘(iii) As used in this subparagraph— ‘‘(I) the term ‘ordinary eyeglasses or contact lenses’ means lenses that are intended to fully correct visual acuity or eliminate refractive error; and ‘‘(II) the term ‘low-vision devices’ means devices that magnify, enhance, or otherwise augment a visual image.’’.",
+            "page": 4,
+            "section": "Section 4",
+            "document": "PLAW-110publ325.pdf"
+          }
+        ]
+      },
+      {
+        "text": "A covered employer may use an employment test based on uncorrected vision only if the test is shown to be job-related for the position and consistent with business necessity.",
+        "evidence": [
+          {
+            "id": 2,
+            "quote": "(b) QUALIFICATION STANDARDS AND TESTS RELATED TO UNCOR- RECTED VISION.—Section 103 of the Americans with Disabilities Act of 1990 (42 U.S.C. 12113) is amended by redesignating subsections (c) and (d) as subsections (d) and (e), respectively, and inserting after subsection (b) the following new subsection: ‘‘(c) QUALIFICATION STANDARDS AND TESTS RELATED TO UNCOR- RECTED VISION.—Notwithstanding section 3(4)(E)(ii), a covered entity shall not use qualification standards, employment tests, or other selection criteria based on an individual’s uncorrected vision unless the standard, test, or other selection criteria, as used by the covered entity, is shown to be job-related for the position in question and consistent with business necessity.’’.",
+            "page": 5,
+            "section": "Section 5 (b)",
+            "document": "PLAW-110publ325.pdf"
+          }
+        ]
+      }
+    ],
+    "trace": [
+      "Searched and verified each standalone question separately."
+    ],
+    "usage": {
+      "calls": 4,
+      "input_tokens": 2466,
+      "output_tokens": 353
+    },
+    "timing": {
+      "retrieval": 8.649673399995663,
+      "total": 14.545224699992104
+    }
+  }
+}

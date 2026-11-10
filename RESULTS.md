@@ -215,6 +215,8 @@ In the bundled copyright PDFs, all four direct lookups returned the matching sta
 
 **Unseen ADA PDF.** The initial rehearsal applied the eyeglasses definition to a separate employment-testing question. The app now searches two explicit questions separately, recognizes `SEC.` headings, and asks the verifier to check the cited condition for each action. In the rerun the verifier rejected a mismatched first draft. The repair cited PDF page 4 for ordinary glasses and page 5 for the job-relatedness and business-necessity conditions. The invented individual test score correctly triggered abstention. [Saved rerun](reliability-evaluation/ada-unseen.json) · [Official PDF](https://www.govinfo.gov/content/pkg/PLAW-110publ325/pdf/PLAW-110publ325.pdf)
 
+**Citation preview follow-up.** A later Desktop run reused page 4 for the second answer. For two standalone questions, the app now answers and verifies each one using its own top-ranked passage. It abstains if either check fails. The end-to-end rerun verified the answer text, exact excerpts, and that clicking point 2 opened Section 5(b) on PDF page 5. [App rerun](reliability-evaluation/ada-citation-preview.json)
+
 ## Scanned-page OCR evaluation
 
 With **Read scanned pages (OCR)** enabled, Windows OCR processes image-only pages. Recognized text becomes searchable and remains linked to the original PDF page. A citation derived from OCR is labeled as a transcription in the source pane and exported answer.

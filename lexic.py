@@ -124,11 +124,15 @@ def models():
                          revision="233902d25c440f23af6f7d6e94d2946bac0bee0a", device="cpu"))
 
 
+def standalone_questions(question):
+    separate = re.fullmatch(r"([^?]+\?)\s+([^?]+\?)", question.strip())
+    return [part.strip() for part in separate.groups()] if separate else []
+
+
 def question_parts(question):
     """Split two explicit question clauses while leaving ordinary lists intact."""
-    separate = re.fullmatch(r"([^?]+\?)\s+([^?]+\?)", question.strip())
-    if separate:
-        return [part.strip() for part in separate.groups()]
+    if separate := standalone_questions(question):
+        return separate
     parts = re.split(r",?\s+and\s+(?=(?:what|which|when|how|where|who|why|under)\b)",
                      question.strip(), maxsplit=1, flags=re.I)
     return [part.rstrip("?").strip() + "?" for part in parts]
@@ -353,6 +357,23 @@ def answer_independent_articles(question, passages, generate):
         claims.extend(checked["claims"])
     return {"confidence": "LOW", "claims": claims,
             "trace": ["The combined draft was withheld. Verified both questions separately against their named articles."]}
+
+
+def answer_standalone_questions(parts, hits, generate):
+    """Keep each standalone question tied to its own highest-ranked passage."""
+    claims, confidence = [], []
+    for source_id, (part, passage) in enumerate(zip(parts, hits, strict=True), 1):
+        checked = answer(part, [passage], generate)
+        if not checked["claims"]:
+            return {"confidence": "INSUFFICIENT EVIDENCE", "claims": [],
+                    "trace": ["At least one question could not be verified against its retrieved passage."]}
+        for claim in checked["claims"]:
+            for citation in claim["evidence"]:
+                citation["id"] = source_id
+        claims.extend(checked["claims"])
+        confidence.append(checked["confidence"])
+    return {"confidence": min(confidence, key=("LOW", "MEDIUM", "HIGH").index), "claims": claims,
+            "trace": ["Searched and verified each standalone question separately."]}
 
 
 def source_excerpts(text):

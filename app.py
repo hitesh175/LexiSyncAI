@@ -9,7 +9,8 @@ import streamlit as st
 
 from cases import CaseStore, export_answer
 from figures import read_figure
-from lexic import ABSTAIN, Index, answer, ask_model, ingest, lookup_numbered_factor
+from lexic import (ABSTAIN, Index, answer, answer_standalone_questions, ask_model, ingest,
+                   lookup_numbered_factor, standalone_questions)
 from preview import render_citation
 from pdf_import import fetch_pdf
 from scan_ocr import read_scan
@@ -195,12 +196,15 @@ with research_tab:
                 hits, result = comparison
                 retrieved = perf_counter()
             else:
+                parts = standalone_questions(question)
                 with st.spinner("Searching your documents. The first search can take longer…"):
                     index = case_index(tuple(passages))
-                    hits = index.retrieve(question)
+                    hits = [index.retrieve(part, k=1)[0] for part in parts] if parts else index.retrieve(question)
                 retrieved = perf_counter()
                 with st.spinner("Writing and checking the cited answer…"):
-                    result = answer(question, hits, generate=partial(ask_model, usage=usage))
+                    generate = partial(ask_model, usage=usage)
+                    result = (answer_standalone_questions(parts, hits, generate) if parts
+                              else answer(question, hits, generate))
             result["usage"] = usage
             result["timing"] = {"retrieval": retrieved - started, "total": perf_counter() - started}
             answer_id = store.save_answer(case_id, question, hits, result)

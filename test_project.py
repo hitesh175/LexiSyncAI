@@ -9,7 +9,7 @@ import pdfplumber
 import pypdfium2 as pdfium
 from PIL import Image
 from cases import CaseStore
-from lexic import Index, Passage, answer, ingest, question_parts
+from lexic import Index, Passage, answer, answer_standalone_questions, ingest, question_parts
 from preview import render_citation
 from tables import table_cells
 from version_comparison import compare_versions
@@ -18,6 +18,26 @@ ROOT = Path(__file__).resolve().parent
 
 
 class ProjectTests(unittest.TestCase):
+    def test_standalone_questions_only_see_their_own_passage(self):
+        parts = ["Do glasses count?", "When is a test allowed?"]
+        hits = [Passage("law.pdf", 4, "Section 4", "Ordinary glasses are considered."),
+                Passage("law.pdf", 5, "Section 5", "The test must be job-related.")]
+        drafts = []
+
+        def generate(prompt, payload):
+            if "draft" in payload:
+                return {"verdict": "high"}
+            source = hits[len(drafts)]
+            drafts.append(payload)
+            return {"claims": [{"text": source.text, "evidence": [{"id": 1, "excerpt": 1}]}]}
+
+        result = answer_standalone_questions(parts, hits, generate)
+        self.assertEqual([p["question"] for p in drafts], parts)
+        for payload, hit in zip(drafts, hits):
+            self.assertEqual(list(payload["passages"]), [1])
+            self.assertEqual(payload["passages"][1]["page"], hit.page)
+        self.assertEqual([c["evidence"][0]["id"] for c in result["claims"]], [1, 2])
+
     def test_two_named_articles_can_be_verified_separately(self):
         question = "Under Article 7(3), what happens to consent, and under Article 15(3), what is the fee?"
         consent = Passage("law.pdf", 2, "Article 7 (3)", "3. Consent may be withdrawn.")
