@@ -8,7 +8,7 @@ This checklist distinguishes application functionality from the evidence require
 | Functional UI, 10 marks | Upload 1–5 public PDFs, save cases, inspect detected structure, ask questions, browse saved answers, view confidence and exact citations, inspect original pages, and export text. The one-PDF option supports the unseen-document exam. |
 | Technical depth, 30 marks | Clause-aware ingestion, two-column heuristic, scan flags, BM25, dense retrieval, rank fusion, cross-encoder reranking, local Ollama generation, evidence verification and abstention. The copyright regression set and fresh 15-question GDPR evaluation each include three multi-page and three unanswerable questions. Read RESULTS.md for measured quality and failure cases. |
 | Extended features, 15 marks | See the feature-by-feature inventory below. Partial features still need their rubric-specific measurements. |
-| Code and documentation, 10 marks | Pinned direct dependencies and model revisions, local Git history, tests, Windows launcher, Docker configuration, setup guide and one-page architecture diagram. Docker is provided as a configuration and has not been exercised here. |
+| Code and documentation, 10 marks | Pinned direct dependencies and model revisions, Git history, tests, Windows launcher, Docker Compose setup, setup guide and one-page architecture diagram. The README links to the GitHub Actions run history for container verification. |
 | Attendance and assignments, 20 marks | Assessed separately by the professor. |
 | Submission | Documentation, slides and local source history are ready to review. The GitHub URL and eCampus submission are pending. |
 

@@ -74,7 +74,9 @@ Open the local address printed in the terminal.
 
 ### Docker
 
-With Docker Desktop and Ollama running on the host, run `docker compose up --build`. The container reaches Ollama at `host.docker.internal` and mounts a persistent case-data volume. The native Windows setup has been tested. The Docker configuration has yet to be run on a clean Docker host.
+With Docker Desktop and Ollama running on the host, run `docker compose up --build`. The container reaches Ollama at `host.docker.internal` and mounts a persistent case-data volume.
+
+The [Docker verification workflow](https://github.com/hitesh175/LexiSyncAI/actions/workflows/docker-verification.yml) builds and starts the app on a GitHub-hosted Linux runner, checks the running server, and verifies the exact §107(2) answer and PDF preview inside the container. That workflow exercises the direct PDF lookup. Model-generated answers use a separate Ollama service.
 
 ## Use the app
 
