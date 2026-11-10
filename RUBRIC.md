@@ -24,7 +24,7 @@ This checklist distinguishes application functionality from the evidence require
 | Fine-tuned retrieval | A frozen-backbone fine-tuning run is reproducible. The tuned scoring head tied the pretrained head at Recall@1, @5 and @10. A measured gain remains open. |
 | Extended ablation | All six text, text + tables, and text + tables + figure conditions ran on four shared questions with and without model review. Structured table evidence helped. The figure observation omitted the relation needed to answer. See RESULTS.md for scores and traces. |
 | Autoencoder | A reproducible page anomaly experiment detected 10/10 blank and 10/10 occluded pages, flagged 0/10 clean pages, and missed 10/10 rotated pages. The detector is an offline experiment on one PDF. |
-| Cross-document evidence | The fixture tests two-document synthesis. Prompts ask for conflicting evidence to be cited on both sides. The two-document historical conflict test abstained after repair. Reliable conflict reconciliation is open. |
+| Cross-document evidence | The historical copyright comparison now cites both editions and the subsection-specific amendment note that explains the different wording. Tests cover missing sources, missing notes, notes from another section, and changes beyond the documented substitution. Broader conflicts still use the existing evidence verification flow. |
 | Public deployment | Open. The tested app is local. |
 | Latency and cost | Benchmark latency, per-answer timings and Ollama token counts are available. The single-PDF rehearsal reports first and repeat question timing, and the URL import latency check compares one verifier optimization. A six-run warm comparison measured a small token reduction with no latency improvement. A broader study is open. |
 

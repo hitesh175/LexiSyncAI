@@ -25,6 +25,7 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 | Hybrid evidence search | Combines BM25 and dense embeddings, reranks candidates, and prioritizes explicit article or section references when matched. |
 | Cited answers | Generates plain-language claims from retrieved passages and attaches exact source excerpts. Click a citation to open its PDF page and highlight the quote when uniquely located. |
 | Verification and abstention | Checks citation integrity and evidence support, allows at most one repair attempt, and abstains when support is insufficient. |
+| Historical version comparison | For an explicit section and amendment question, checks whether a cited amendment note explains a wording change between two editions. |
 | Saved cases and exports | Reopen cases and earlier answers, including abstentions. Download a text record with citations and available official source links. |
 | Analysis details | Shows timing, Ollama token counts, and available repair traces. |
 | Reproducible evaluation | Compares BM25, dense retrieval, fusion, and reranked hybrid retrieval. Includes graded outputs for the copyright and held-out GDPR question sets. |

@@ -13,6 +13,7 @@ from lexic import ABSTAIN, Index, answer, ask_model, ingest
 from preview import render_citation
 from pdf_import import fetch_pdf
 from scan_ocr import read_scan
+from version_comparison import compare_versions
 
 st.set_page_config(page_title="LexiSyncAI", layout="wide")
 st.html((Path(__file__).with_name("workspace.css")).read_text(encoding="utf-8-sig"))
@@ -168,11 +169,16 @@ with research_tab:
         try:
             with st.spinner("Reading your documents and checking the answer…"):
                 started = perf_counter()
-                index = case_index(tuple(passages))
-                hits = index.retrieve(question.strip())
-                retrieved = perf_counter()
                 usage = {"calls": 0, "input_tokens": 0, "output_tokens": 0}
-                result = answer(question.strip(), hits, generate=partial(ask_model, usage=usage))
+                comparison = compare_versions(question.strip(), passages)
+                if comparison is None:
+                    index = case_index(tuple(passages))
+                    hits = index.retrieve(question.strip())
+                    retrieved = perf_counter()
+                    result = answer(question.strip(), hits, generate=partial(ask_model, usage=usage))
+                else:
+                    hits, result = comparison
+                    retrieved = perf_counter()
                 result["usage"] = usage
                 result["timing"] = {"retrieval": retrieved - started, "total": perf_counter() - started}
                 answer_id = store.save_answer(case_id, question.strip(), hits, result)

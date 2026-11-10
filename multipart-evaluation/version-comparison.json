@@ -1,0 +1,52 @@
+{
+  "question": "How do the original 1976 Copyright Act and the 2023 U.S. Code differ on the general term in section 302(a), and what amendment explains the difference?",
+  "pages": 65,
+  "result": {
+    "confidence": "HIGH",
+    "claims": [
+      {
+        "text": "In §302(a), 1976-Copyright-Act.pdf uses “fifty” where 2023-US-Code-302.pdf uses “70”. The cited clauses show the wording in context.",
+        "evidence": [
+          {
+            "id": 1,
+            "quote": "(a) IN GENERAL.—Copyright in a work created on or after Janu ary 1, 1978, subsists from its creation and, except as provided by the following subsections, endures for a term consisting of the life of the author and fifty years after the author's death.",
+            "document": "1976-Copyright-Act.pdf",
+            "page": 32,
+            "section": "§302 (a)"
+          },
+          {
+            "id": 2,
+            "quote": "(a) IN GENERAL.—Copyright in a work created on or after January 1, 1978, subsists from its creation and, except as provided by the following subsections, endures for a term consisting of the life of the author and 70 years after the author’s death.",
+            "document": "2023-US-Code-302.pdf",
+            "page": 1,
+            "section": "§302 (a)"
+          }
+        ]
+      },
+      {
+        "text": "The editorial note attributes this substitution to Pub. L. 105–298 (1998).",
+        "evidence": [
+          {
+            "id": 3,
+            "quote": "AMENDMENTS 1998—Subsecs. (a), (b). Pub. L. 105–298, §102(b)(1), (2), substituted ‘‘70’’ for ‘‘fifty’’.",
+            "document": "2023-US-Code-302.pdf",
+            "page": 3,
+            "section": "Editorial Notes"
+          }
+        ]
+      }
+    ],
+    "trace": [
+      "Matched the two cited clauses to a subsection-specific amendment note."
+    ],
+    "usage": {
+      "calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "timing": {
+      "retrieval": 0.0024362999974982813,
+      "total": 0.002438399998936802
+    }
+  }
+}

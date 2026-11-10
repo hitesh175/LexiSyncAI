@@ -10,11 +10,32 @@ from PIL import Image
 from lexic import Index, Passage, answer, ingest, question_parts
 from preview import render_citation
 from tables import table_cells
+from version_comparison import compare_versions
 
 ROOT = Path(__file__).resolve().parent
 
 
 class ProjectTests(unittest.TestCase):
+    def test_version_comparison_requires_matching_amendment_evidence(self):
+        question = "How do the editions differ in section 42(a), and what amendment explains the difference?"
+        old = Passage("old.pdf", 4, "§42 (a)", "(a) The deadline is thirty days.")
+        new = Passage("new.pdf", 5, "§42 (a)", "(a) The deadline is 60 days.")
+        heading = Passage("new.pdf", 5, "§42", "§42. Deadlines")
+        note = Passage("new.pdf", 6, "Editorial Notes",
+                       "Editorial Notes AMENDMENTS 2000—Subsec. (a). Pub. L. 12–34, §2, substituted “60” for “thirty”.")
+        hits, result = compare_versions(question, [old, heading, new, note])
+        self.assertEqual(hits, [old, new, note])
+        self.assertIn("Pub. L. 12–34 (2000)", result["claims"][1]["text"])
+        for claim in result["claims"]:
+            for citation in claim["evidence"]:
+                self.assertIn(citation["quote"], hits[citation["id"] - 1].text)
+        self.assertIsNone(compare_versions(question, [old, heading, new]))
+        self.assertIsNone(compare_versions(question, [heading, new, note]))
+        other_section = Passage("new.pdf", 6, "§43", "§43. Other deadlines")
+        self.assertIsNone(compare_versions(question, [old, heading, new, other_section, note]))
+        different_rule = Passage("old.pdf", 4, "§42 (a)", "(a) The deadline is thirty business days.")
+        self.assertIsNone(compare_versions(question, [different_rule, heading, new, note]))
+
     def test_benchmark_labels_and_page_render(self):
         docs = {p.name: p.read_bytes() for p in (ROOT / "data").glob("*.pdf")}
         self.assertEqual(len(docs), 2)
