@@ -181,7 +181,8 @@ class ProjectTests(unittest.TestCase):
             calls.append(payload)
             return next(responses)
 
-        result = answer("What is the third fair use factor?", [wrong, correct], generate)
+        question = "What consideration appears in the third fair use factor?"
+        result = answer(question, [wrong, correct], generate)
         self.assertEqual(len(calls), 3)
         self.assertIn("factor 3", calls[1]["retry_feedback"])
         self.assertEqual(result["claims"], [corrected_claim])
@@ -190,7 +191,7 @@ class ProjectTests(unittest.TestCase):
         notes = Passage("sample.pdf", 2, "Historical notes",
                         "The Committee amended the first of the criteria.")
         wrong_claim["evidence"] = [{"id": 1, "quote": notes.text}]
-        result = answer("What is the third fair use factor?", [notes], lambda *_: {"claims": [wrong_claim]})
+        result = answer(question, [notes], lambda *_: {"claims": [wrong_claim]})
         self.assertEqual(result["claims"], [])
         self.assertIn("Abstained after repair.", result["trace"])
 
@@ -201,10 +202,33 @@ class ProjectTests(unittest.TestCase):
                  "evidence": [{"id": 1, "quote": intro.text}]}
         correct = {"text": "The second fair use factor concerns the nature of the copyrighted work.",
                    "evidence": [{"id": 2, "quote": second.text}]}
-        calls = iter([{"claims": [wrong]}, {"claims": [correct]}, {"verdict": "high"}])
-        result = answer("What does the second fair use factor consider?", [intro, second], lambda *_: next(calls))
+        responses = iter([{"claims": [wrong]}, {"claims": [correct]}, {"verdict": "high"}])
+        payloads = []
+
+        def generate(prompt, payload):
+            payloads.append(payload)
+            return next(responses)
+
+        question = "What consideration appears in the second fair use factor?"
+        result = answer(question, [intro, second], generate)
         self.assertEqual(result["claims"], [correct])
         self.assertIn("The draft did not cite the requested fair use factor.", result["trace"])
+        self.assertEqual(list(payloads[1]["passages"]), [2])
+        self.assertEqual(list(payloads[2]["sources"]), [2])
+        self.assertEqual(answer(question, [intro, second],
+                                lambda *_: {"claims": [wrong]})["claims"], [])
+
+    def test_direct_factor_lookup_quotes_the_subsection_or_abstains(self):
+        question = "What does the second fair use factor consider?"
+        second = Passage("law.pdf", 1, "§107 (2)", "(2) the nature of the copyrighted work;")
+        fourth = Passage("law.pdf", 1, "§107 (4)", "(4) the effect on the potential market.")
+
+        def generate(*_):
+            self.fail("A direct lookup should not call the model")
+
+        result = answer(question, [fourth, second], generate)
+        self.assertEqual(result["claims"][0]["evidence"], [{"id": 2, "quote": second.text}])
+        self.assertEqual(answer(question, [fourth], generate)["claims"], [])
 
     def test_claim_attributed_to_an_article_cites_that_article(self):
         rule = Passage("law.pdf", 1, "Article 8 (2)", "2. The controller must respond within one month.")

@@ -207,6 +207,10 @@ The updated path recognizes follow-up clauses after “and” even without a com
 
 Manual review found that the updated answers recovered the GDPR response and extension deadlines, the direct-notification threshold and timing, the missing record-keeping risk trigger, and the third copyright fair-use factor. The response-deadline answer gives the one-month outer limit but omits the initial “without undue delay” qualifier in its prose. The second fair-use factor remains a false abstention even though the correct subsection was retrieved. The two-document teaching-use answer still relies on commentary for part of its support. These are targeted reliability measurements, so the earlier full-fixture accuracy and citation precision numbers remain separate.
 
+**Follow-up on the second fair-use factor.** Restricting the model's repair to the requested subsection still produced a refusal for the second factor. A control with that subsection removed produced an incorrect guess. The app now handles narrowly phrased requests for a single named factor as a direct lookup. It requires a uniquely identified, non-OCR subsection with the correct number and returns its text and PDF location. If the subsection is missing or ambiguous, the lookup abstains. Other numbered-factor questions can still use the model's focused repair, with original citation IDs and verification intact.
+
+In the bundled copyright PDFs, all four direct lookups returned the matching statutory factor. The lookup abstained with the second subsection removed from retrieved evidence, and the regular answer flow abstained on the unrelated royalty-rate question. [Six verification cases](reliability-evaluation/focused-retry.json)
+
 ## Scanned-page OCR evaluation
 
 With **Read scanned pages (OCR)** enabled, Windows OCR processes image-only pages. Recognized text becomes searchable and remains linked to the original PDF page. A citation derived from OCR is labeled as a transcription in the source pane and exported answer.

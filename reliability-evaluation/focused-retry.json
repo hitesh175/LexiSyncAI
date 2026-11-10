@@ -1,0 +1,117 @@
+[
+  {
+    "question": "What does the first fair use factor consider?",
+    "subsection_removed": false,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "§107(1) lists the purpose and character of the use, including whether such use is of a commercial nature or is for nonprofit educational purposes.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(1) the purpose and character of the use, including whether such use is of a commercial nature or is for nonprofit educational purposes;",
+              "document": "17-USC-107.pdf",
+              "page": 1,
+              "section": "§107 (1)"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "Read the wording directly from the requested numbered subsection."
+      ]
+    }
+  },
+  {
+    "question": "What does the second fair use factor consider?",
+    "subsection_removed": false,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "§107(2) lists the nature of the copyrighted work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(2) the nature of the copyrighted work;",
+              "document": "17-USC-107.pdf",
+              "page": 1,
+              "section": "§107 (2)"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "Read the wording directly from the requested numbered subsection."
+      ]
+    }
+  },
+  {
+    "question": "What does the third fair use factor consider?",
+    "subsection_removed": false,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "§107(3) lists the amount and substantiality of the portion used in relation to the copyrighted work as a whole.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(3) the amount and substantiality of the portion used in relation to the copyrighted work as a whole; and",
+              "document": "17-USC-107.pdf",
+              "page": 1,
+              "section": "§107 (3)"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "Read the wording directly from the requested numbered subsection."
+      ]
+    }
+  },
+  {
+    "question": "What does the fourth fair use factor consider?",
+    "subsection_removed": false,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "§107(4) lists the effect of the use upon the potential market for or value of the copyrighted work.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(4) the effect of the use upon the potential market for or value of the copyrighted work.",
+              "document": "17-USC-107.pdf",
+              "page": 1,
+              "section": "§107 (4)"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "Read the wording directly from the requested numbered subsection."
+      ]
+    }
+  },
+  {
+    "question": "What does the second fair use factor consider?",
+    "subsection_removed": true,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": [],
+      "trace": [
+        "The requested subsection could not be identified uniquely."
+      ]
+    }
+  },
+  {
+    "question": "What royalty rate did the parties agree to in the Acme–Northwind licensing contract?",
+    "subsection_removed": false,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": []
+    }
+  }
+]

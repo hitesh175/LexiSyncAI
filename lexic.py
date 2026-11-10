@@ -264,18 +264,40 @@ ARTICLE_REFERENCE = re.compile(r"\barticle\s+(\d+[a-z]?)\s*\(([0-9a-z]+)\)", re.
 
 def fair_use_factor(question):
     match = FACTOR_ORDINAL.search(question)
-    if match and "fair use factor" in match[0].casefold():
+    ordinals = set(tokens(question)) & FACTOR_NUMBERS.keys()
+    if match and len(ordinals) == 1 and "fair use factor" in match[0].casefold():
         return FACTOR_NUMBERS[match[1].lower()]
     return None
 
 
 def answer(question, passages, generate=ask_model):
+    factor = fair_use_factor(question)
+    if factor and re.fullmatch(
+        r"(?:what is the \w+ fair use factor|what does the \w+ fair use factor consider)\??",
+        question.strip(), re.I,
+    ):
+        matches = [(i, p) for i, p in enumerate(passages, 1)
+                   if p.section == f"§107 ({factor})" and p.text.startswith(f"({factor}) ") and not p.ocr]
+        if len(matches) != 1:
+            return {"confidence": "INSUFFICIENT EVIDENCE", "claims": [],
+                    "trace": ["The requested subsection could not be identified uniquely."]}
+        source_id, passage = matches[0]
+        quote = next(iter(source_excerpts(passage.text).values()), passage.text)
+        text = re.sub(r";\s*(?:and)?$", "", quote.removeprefix(f"({factor}) ").strip(), flags=re.I)
+        return {
+            "confidence": "HIGH",
+            "claims": [{"text": f"§107({factor}) lists {text.rstrip('.')}.",
+                        "evidence": [{"id": source_id, "quote": quote}]}],
+            "trace": ["Read the wording directly from the requested numbered subsection."],
+        }
     result = _answer_attempt(question, passages, generate)
     reason = result.pop("retry_feedback", None)
+    retry_sources = result.pop("retry_sources", None)
     if reason:
-        retried = _answer_attempt(question, passages, generate, reason)
+        retried = _answer_attempt(question, passages, generate, reason, retry_sources)
         retried.pop("retry_feedback", None)
         retried.pop("rejection", None)
+        retried.pop("retry_sources", None)
         retried["trace"] = [result.get("rejection", "Verifier rejected the first draft."),
                             f"Reason: {reason}", "Ran one evidence-based repair.",
                             "Accepted the revised draft." if retried["claims"] else "Abstained after repair."]
@@ -289,11 +311,11 @@ def source_excerpts(text):
     ) if len(part.strip()) >= 8}
 
 
-def _answer_attempt(question, passages, generate, feedback=None):
+def _answer_attempt(question, passages, generate, feedback=None, allowed_sources=None):
     refused = {"confidence": "INSUFFICIENT EVIDENCE", "claims": []}
     if not passages:
         return refused
-    sources = {i: p for i, p in enumerate(passages, 1)}
+    sources = {i: p for i, p in enumerate(passages, 1) if allowed_sources is None or i in allowed_sources}
     excerpts = {i: {"document": p.document, "page": p.page, "section": p.section,
                     "excerpts": source_excerpts(p.text), "ocr": p.ocr}
                 for i, p in sources.items()}
@@ -319,8 +341,9 @@ def _answer_attempt(question, passages, generate, feedback=None):
             for citation in claim["evidence"]:
                 citation_id = citation["id"]
                 if type(citation_id) is not int or citation_id not in sources:
+                    available = ", ".join(map(str, sources))
                     return {**refused, "rejection": "A proposed source number was invalid.",
-                            "retry_feedback": f"Use a source ID from 1 to {len(sources)}. "
+                            "retry_feedback": f"Use one of the available source IDs: {available}. "
                                               "Select its numbered excerpt from the provided passages."}
                 if "excerpt" in citation:
                     excerpt_id = citation.pop("excerpt")
@@ -350,13 +373,15 @@ def _answer_attempt(question, passages, generate, feedback=None):
                     numbered_quotes.update(FACTOR_NUMBERS[word.lower()] for word in QUOTE_FACTOR.findall(quote))
             factors = {FACTOR_NUMBERS[word.lower()] for word in FACTOR_ORDINAL.findall(claim["text"])}
             if len(factors) == 1 and numbered_quotes and factors.isdisjoint(numbered_quotes):
-                factor = next(iter(factors))
+                claimed_factor = next(iter(factors))
                 return {**refused, "rejection": "The cited factor number did not match the draft.",
-                        "retry_feedback": f"The draft describes factor {factor}, but its numbered quotes are "
+                        "retry_sources": factor_sources if len(factor_sources) == 1 else None,
+                        "retry_feedback": f"The draft describes factor {claimed_factor}, but its numbered quotes are "
                                           f"{sorted(numbered_quotes)}. Cite the correct factor or abstain."}
             if factor_sources and not any(c["id"] in factor_sources for c in claim["evidence"]):
                 source_ids = ", ".join(map(str, sorted(factor_sources)))
                 return {**refused, "rejection": "The draft did not cite the requested fair use factor.",
+                        "retry_sources": factor_sources if len(factor_sources) == 1 else None,
                         "retry_feedback": f"Cite an excerpt from §107({factor}) in source {source_ids} "
                                           "that directly supports the claim, or abstain."}
             for number, item in ARTICLE_REFERENCE.findall(claim["text"].casefold()):
