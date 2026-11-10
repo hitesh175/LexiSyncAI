@@ -9,7 +9,7 @@ import streamlit as st
 
 from cases import CaseStore, export_answer
 from figures import read_figure
-from lexic import ABSTAIN, Index, answer, ask_model, ingest
+from lexic import ABSTAIN, Index, answer, ask_model, ingest, lookup_numbered_factor
 from preview import render_citation
 from pdf_import import fetch_pdf
 from scan_ocr import read_scan
@@ -95,7 +95,6 @@ if "case_id" not in st.session_state or st.session_state.get("creating_case"):
                         passages, structure = ingest(docs, ocr_reader=read_scan if use_ocr else None)
                         if not passages:
                             raise ValueError("No searchable text was found. For scans, enable OCR and check that Windows has OCR support for the document language.")
-                        case_index(tuple(passages))
                         case_id = store.save_case(case_name, docs, passages, structure, sources)
                         st.session_state.case_id = case_id
                         st.session_state.select_new_case = True
@@ -167,22 +166,32 @@ with research_tab:
     history_key = f"history-{case_id}"
     if submitted and question.strip():
         try:
-            with st.spinner("Reading your documents and checking the answer…"):
-                started = perf_counter()
-                usage = {"calls": 0, "input_tokens": 0, "output_tokens": 0}
-                comparison = compare_versions(question.strip(), passages)
-                if comparison is None:
+            question = question.strip()
+            started = perf_counter()
+            usage = {"calls": 0, "input_tokens": 0, "output_tokens": 0}
+            direct = lookup_numbered_factor(question, passages)
+            if direct is not None:
+                result = direct
+                hits = []
+                if result["claims"]:
+                    citation = result["claims"][0]["evidence"][0]
+                    hits = [passages[citation["id"] - 1]]
+                    citation["id"] = 1
+                retrieved = perf_counter()
+            elif comparison := compare_versions(question, passages):
+                hits, result = comparison
+                retrieved = perf_counter()
+            else:
+                with st.spinner("Searching your documents. The first search can take longer…"):
                     index = case_index(tuple(passages))
-                    hits = index.retrieve(question.strip())
-                    retrieved = perf_counter()
-                    result = answer(question.strip(), hits, generate=partial(ask_model, usage=usage))
-                else:
-                    hits, result = comparison
-                    retrieved = perf_counter()
-                result["usage"] = usage
-                result["timing"] = {"retrieval": retrieved - started, "total": perf_counter() - started}
-                answer_id = store.save_answer(case_id, question.strip(), hits, result)
-                st.session_state[history_key] = answer_id
+                    hits = index.retrieve(question)
+                retrieved = perf_counter()
+                with st.spinner("Writing and checking the cited answer…"):
+                    result = answer(question, hits, generate=partial(ask_model, usage=usage))
+            result["usage"] = usage
+            result["timing"] = {"retrieval": retrieved - started, "total": perf_counter() - started}
+            answer_id = store.save_answer(case_id, question, hits, result)
+            st.session_state[history_key] = answer_id
         except Exception as exc:
             st.error(f"Analysis failed: {exc}")
 

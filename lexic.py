@@ -270,7 +270,7 @@ def fair_use_factor(question):
     return None
 
 
-def answer(question, passages, generate=ask_model):
+def lookup_numbered_factor(question, passages):
     factor = fair_use_factor(question)
     if factor and re.fullmatch(
         r"(?:what is the \w+ fair use factor|what does the \w+ fair use factor consider)\??",
@@ -290,6 +290,13 @@ def answer(question, passages, generate=ask_model):
                         "evidence": [{"id": source_id, "quote": quote}]}],
             "trace": ["Read the wording directly from the requested numbered subsection."],
         }
+    return None
+
+
+def answer(question, passages, generate=ask_model):
+    direct = lookup_numbered_factor(question, passages)
+    if direct is not None:
+        return direct
     result = _answer_attempt(question, passages, generate)
     reason = result.pop("retry_feedback", None)
     retry_sources = result.pop("retry_sources", None)
