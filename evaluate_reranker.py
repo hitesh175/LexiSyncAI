@@ -1,4 +1,5 @@
-"""Fine-tune the cross-encoder scoring head and compare frozen held-out ranks."""
+"""Fine-tune a cross-encoder and compare its ranks on fixed held-out candidates."""
+import argparse
 import csv
 import json
 from pathlib import Path
@@ -29,6 +30,10 @@ def inputs(tokenizer, question, passages):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--pairwise", action="store_true",
+                        help="Tune the final encoder block and head using hard-negative pairs.")
+    args = parser.parse_args()
     torch.manual_seed(42)
     torch.set_num_threads(3)
     model = models()[1]
@@ -54,26 +59,47 @@ def main():
         p.requires_grad_(False)
     for p in net.classifier.parameters():
         p.requires_grad_(True)
-    optimizer = torch.optim.AdamW(net.classifier.parameters(), lr=.0007)
+    if args.pairwise:
+        for p in net.base_model.encoder.layer[-1].parameters():
+            p.requires_grad_(True)
+    optimizer = torch.optim.AdamW([p for p in net.parameters() if p.requires_grad],
+                                  lr=2e-5 if args.pairwise else .0007)
     net.eval()
     pairs = 0
+    training_batches = []
+    for q, passages, gold in train:
+        positive = [p for p in passages if covered(gold, [p])]
+        negative = [p for p in passages if not covered(gold, [p])]
+        if not positive or not negative:
+            continue
+        if args.pairwise:
+            with torch.no_grad():
+                order = net(**inputs(tokenizer, q, negative)).logits.flatten().argsort(descending=True)
+            negative = [negative[i] for i in order[:5].tolist()]
+        else:
+            negative = negative[:5]
+        training_batches.append((inputs(tokenizer, q, positive + negative), len(positive), len(negative)))
     for _ in range(3):
-        for q, passages, gold in train:
-            positive = [p for p in passages if covered(gold, [p])]
-            negative = [p for p in passages if not covered(gold, [p])][:5]
-            if not positive or not negative:
-                continue
-            labels = torch.tensor([1.] * len(positive) + [0.] * len(negative))
+        for batch, positives, negatives in training_batches:
             optimizer.zero_grad()
-            logits = net(**inputs(tokenizer, q, positive + negative)).logits.flatten()
-            torch.nn.functional.binary_cross_entropy_with_logits(logits, labels).backward()
+            logits = net(**batch).logits.flatten()
+            if args.pairwise:
+                margins = logits[:positives, None] - logits[None, positives:]
+                loss = torch.nn.functional.softplus(-margins).mean()
+                pairs += positives * negatives
+            else:
+                labels = torch.tensor([1.] * positives + [0.] * negatives)
+                loss = torch.nn.functional.binary_cross_entropy_with_logits(logits, labels)
+                pairs += positives + negatives
+            loss.backward()
             optimizer.step()
-            pairs += len(labels)
     result = {"train": "copyright", "test": "GDPR", "training_pairs_across_epochs": pairs,
-              "epochs": 3, "candidate_count": 20, "pretrained": baseline, "fine_tuned_head": score()}
+              "epochs": 3, "candidate_count": 20, "pretrained": baseline,
+              "fine_tuned_pairwise" if args.pairwise else "fine_tuned_head": score()}
     output = ROOT / "reranker-evaluation"
     output.mkdir(exist_ok=True)
-    (output / "metrics.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
+    filename = "pairwise.json" if args.pairwise else "metrics.json"
+    (output / filename).write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(json.dumps(result, indent=2))
 
 

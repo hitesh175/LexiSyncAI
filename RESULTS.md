@@ -172,7 +172,12 @@ python evaluate_ablation.py
 python evaluate_figures.py
 python evaluate_anomalies.py
 python evaluate_reranker.py
+python evaluate_reranker.py --pairwise
 ```
+
+The pairwise run trains the final MiniLM encoder block and classifier head for three epochs. For each copyright question it pairs passages that match the reference with up to five highly ranked candidates that do not match it. The loss rewards a higher score for the matching passage. The comparison reuses the previous GDPR evaluation set and identical candidate pools for both models. It is a follow-up experiment, so any improvement on this set would need confirmation on a fresh set before changing the app.
+
+After 165 pair presentations, Recall@1/@5/@10 remained **45.8% / 58.3% / 75.0%**, equal to the pretrained baseline. The candidate pools and gold locations remained fixed. The app retains the pretrained reranker. [Pairwise metrics](reranker-evaluation/pairwise.json)
 
 ### Shared text, table and figure ablation
 
