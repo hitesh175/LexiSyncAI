@@ -211,6 +211,8 @@ Manual review found that the updated answers recovered the GDPR response and ext
 
 In the bundled copyright PDFs, all four direct lookups returned the matching statutory factor. The lookup abstained with the second subsection removed from retrieved evidence, and the regular answer flow abstained on the unrelated royalty-rate question. [Six verification cases](reliability-evaluation/focused-retry.json)
 
+**GDPR-only two-page regression.** The combined draft for the consent-withdrawal and further-copies question supplied malformed citation IDs. After the normal repair failed, the fallback checked each standalone question against its uniquely identified article. It displayed the verified excerpts directly to preserve the statute's qualifications and used the original source IDs for the PDF preview. The two citations point to PDF pages 37 and 43. The Acme Clinic incident question still abstained. [Two saved outputs](reliability-evaluation/gdpr-single-pdf.json)
+
 ## Scanned-page OCR evaluation
 
 With **Read scanned pages (OCR)** enabled, Windows OCR processes image-only pages. Recognized text becomes searchable and remains linked to the original PDF page. A citation derived from OCR is labeled as a transcription in the source pane and exported answer.

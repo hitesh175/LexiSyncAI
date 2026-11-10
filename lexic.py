@@ -308,8 +308,45 @@ def answer(question, passages, generate=ask_model):
         retried["trace"] = [result.get("rejection", "Verifier rejected the first draft."),
                             f"Reason: {reason}", "Ran one evidence-based repair.",
                             "Accepted the revised draft." if retried["claims"] else "Abstained after repair."]
-        return retried
+        result = retried
+    if not result["claims"]:
+        scoped = answer_independent_articles(question, passages, generate)
+        if scoped is not None:
+            return scoped
     return result
+
+
+def answer_independent_articles(question, passages, generate):
+    """Verify each standalone article question against its own unambiguous clause."""
+    parts = question_parts(question)
+    if len(parts) != 2 or not all(re.match(r"^under article\s", part, re.I) for part in parts):
+        return None
+    source_ids = []
+    for part in parts:
+        references = ARTICLE_REFERENCE.findall(part.casefold())
+        if len(references) != 1:
+            return None
+        number, item = references[0]
+        matches = [i for i, p in enumerate(passages, 1)
+                   if p.section.casefold() == f"article {number} ({item})"
+                   and re.match(rf"^{item}\.\s", p.text)]
+        if len(matches) != 1:
+            return None
+        source_ids.append(matches[0])
+    if source_ids[0] == source_ids[1]:
+        return None
+    claims = []
+    for part, source_id in zip(parts, source_ids):
+        checked = _answer_attempt(part, [passages[source_id - 1]], generate)
+        if not checked["claims"]:
+            return None
+        for claim in checked["claims"]:
+            for citation in claim["evidence"]:
+                citation["id"] = source_id
+            claim["text"] = " ".join(citation["quote"] for citation in claim["evidence"])
+        claims.extend(checked["claims"])
+    return {"confidence": "LOW", "claims": claims,
+            "trace": ["The combined draft was withheld. Verified both questions separately against their named articles."]}
 
 
 def source_excerpts(text):
@@ -354,6 +391,8 @@ def _answer_attempt(question, passages, generate, feedback=None, allowed_sources
                                               "Select its numbered excerpt from the provided passages."}
                 if "excerpt" in citation:
                     excerpt_id = citation.pop("excerpt")
+                    if isinstance(excerpt_id, str) and re.fullmatch(r"[0-9]{1,6}", excerpt_id):
+                        excerpt_id = int(excerpt_id)
                     if type(excerpt_id) is not int or excerpt_id not in excerpts[citation_id]["excerpts"]:
                         available = ", ".join(map(str, excerpts[citation_id]["excerpts"])) or "none"
                         return {**refused, "rejection": "A proposed excerpt number was invalid.",

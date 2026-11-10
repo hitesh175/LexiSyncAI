@@ -1,0 +1,44 @@
+[
+  {
+    "question": "Under Article 7(3), what happens to processing already performed before consent was withdrawn, and under Article 15(3), what may the controller charge for further copies?",
+    "result": {
+      "confidence": "LOW",
+      "claims": [
+        {
+          "text": "The withdrawal of consent shall not affect the lawfulness of processing based on consent before its withdrawal.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "The withdrawal of consent shall not affect the lawfulness of processing based on consent before its withdrawal.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 37,
+              "section": "Article 7 (3)"
+            }
+          ]
+        },
+        {
+          "text": "For any further copies requested by the data subject, the controller may charge a reasonable fee based on administrative costs.",
+          "evidence": [
+            {
+              "id": 2,
+              "quote": "For any further copies requested by the data subject, the controller may charge a reasonable fee based on administrative costs.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 43,
+              "section": "Article 15 (3)"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "The combined draft was withheld. Verified both questions separately against their named articles."
+      ]
+    }
+  },
+  {
+    "question": "On what date did Acme Clinic notify its supervisory authority about incident AC-119?",
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": []
+    }
+  }
+]

@@ -18,6 +18,25 @@ ROOT = Path(__file__).resolve().parent
 
 
 class ProjectTests(unittest.TestCase):
+    def test_two_named_articles_can_be_verified_separately(self):
+        question = "Under Article 7(3), what happens to consent, and under Article 15(3), what is the fee?"
+        consent = Passage("law.pdf", 2, "Article 7 (3)", "3. Consent may be withdrawn.")
+        fee = Passage("law.pdf", 4, "Article 15 (3)", "3. A reasonable fee may be charged.")
+        responses = iter([
+            {"claims": []},
+            {"claims": [{"text": "Consent may be withdrawn.", "evidence": [{"id": 1, "excerpt": "1"}]}]},
+            {"verdict": "high"},
+            {"claims": [{"text": "A reasonable fee may be charged.", "evidence": [{"id": 1, "excerpt": 1}]}]},
+            {"verdict": "high"},
+        ])
+        result = answer(question, [consent, fee], lambda *_: next(responses))
+        self.assertEqual([c["evidence"][0]["id"] for c in result["claims"]], [1, 2])
+        self.assertEqual(answer(question, [consent], lambda *_: {"claims": []})["claims"], [])
+        partial = iter([{"claims": []},
+                        {"claims": [{"text": "Consent may be withdrawn.", "evidence": [{"id": 1, "excerpt": 1}]}]},
+                        {"verdict": "high"}, {"claims": []}])
+        self.assertEqual(answer(question, [consent, fee], lambda *_: next(partial))["claims"], [])
+
     def test_case_citation_audit_exports_only_selected_case(self):
         with TemporaryDirectory() as folder:
             store = CaseStore(Path(folder) / "cases.sqlite3")
