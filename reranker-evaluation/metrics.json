@@ -1,0 +1,17 @@
+{
+  "train": "copyright",
+  "test": "GDPR",
+  "training_pairs_across_epochs": 168,
+  "epochs": 3,
+  "candidate_count": 20,
+  "pretrained": {
+    "recall@1": 0.4583333333333333,
+    "recall@5": 0.5833333333333334,
+    "recall@10": 0.75
+  },
+  "fine_tuned_head": {
+    "recall@1": 0.4583333333333333,
+    "recall@5": 0.5833333333333334,
+    "recall@10": 0.75
+  }
+}

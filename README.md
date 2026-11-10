@@ -21,6 +21,7 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 | PDF uploads and official links | Mix local files and supported direct HTTPS PDF links, up to five documents per case. |
 | Scanned-page OCR | On Windows, optionally recognize image-only pages. OCR citations are labeled so readers can compare the transcription with the original image. |
 | Document structure | Extracts text and ruled tables with merged cell context, identifies numbered headings and clauses, and flags image-only pages. |
+| Figure review | Sends a selected page to a local vision model and displays the original alongside its experimental interpretation. |
 | Hybrid evidence search | Combines BM25 and dense embeddings, reranks candidates, and prioritizes explicit article or section references when matched. |
 | Cited answers | Generates plain-language claims from retrieved passages and attaches exact source excerpts. Click a citation to open its PDF page and highlight the quote when uniquely located. |
 | Verification and abstention | Checks citation integrity and evidence support, allows at most one repair attempt, and abstains when support is insufficient. |
@@ -81,6 +82,8 @@ With Docker Desktop and Ollama running on the host, run `docker compose up --bui
 4. Use **Documents** to inspect the files and detected page structure. Use **Previous answers** to reopen an answer and **Download answer and citations** to export it.
 
 For image-only PDFs, turn on **Read scanned pages (OCR)** before saving. It uses Windows OCR with the language resources installed on the device. Pages with unavailable or failed OCR remain flagged and are excluded from text search. A case with no searchable pages displays a setup message. OCR-derived quotes are marked in the preview and export.
+
+For figures, run `ollama pull qwen2.5vl:3b` once, then choose **Documents → Ask about a chart or figure**. Pick a file and PDF page, enter a question and compare the response with the page. Set `OLLAMA_VISION_MODEL` to use a different local vision model. Figure interpretations are shown separately from verified text answers.
 
 Cases are stored in `.lexisync/cases.sqlite3`. Back up this file while the app is closed. Set `LEXISYNC_CASE_DB` to change the location. The app keeps up to four prepared indexes in memory until restart and asks Ollama to keep its model loaded for 30 minutes.
 

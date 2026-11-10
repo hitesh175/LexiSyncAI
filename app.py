@@ -8,6 +8,7 @@ from time import perf_counter
 import streamlit as st
 
 from cases import CaseStore, export_answer
+from figures import read_figure
 from lexic import ABSTAIN, Index, answer, ask_model, ingest
 from preview import render_citation
 from pdf_import import fetch_pdf
@@ -124,6 +125,25 @@ with documents_tab:
         st.text(filename)
         if filename in sources:
             st.link_button("Open official source", sources[filename])
+    with st.expander("Ask about a chart or figure"):
+        st.caption("Choose the PDF page that contains the figure. Compare the experimental answer with the original page.")
+        figure_document = st.selectbox("PDF document", list(docs), key=f"figure-document-{case_id}")
+        page_count = sum(row["document"] == figure_document for row in structure)
+        if page_count:
+            with st.form(f"figure-{case_id}"):
+                figure_page = st.number_input("PDF page number", min_value=1, max_value=page_count, step=1,
+                                              key=f"figure-page-{case_id}-{figure_document}")
+                figure_question = st.text_input("What would you like to know about the figure?", max_chars=500)
+                figure_submitted = st.form_submit_button("Read the figure")
+            if figure_submitted and figure_question.strip():
+                try:
+                    image, _ = render_citation(docs[figure_document], figure_page, "")
+                    st.image(image, caption=f"{figure_document} / PDF page {figure_page}")
+                    with st.spinner("Reading the figure…"):
+                        interpretation = read_figure(image, figure_question.strip())
+                    st.text(interpretation or "The vision model returned no answer.")
+                except Exception as exc:
+                    st.error(f"Could not read this figure. Check that the local vision model is installed and running. {exc}")
     with st.expander("Page and clause details"):
         columns = ("document", "page", "sections", "tables", "image_only", "ocr_status", "empty", "columns")
         headers = ("Document", "PDF page", "Sections", "Tables", "Image only", "OCR", "No text", "Columns")

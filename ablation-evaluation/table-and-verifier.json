@@ -1,0 +1,129 @@
+{
+  "question": "What static starting-amount range does the EDPB table on PDF page 44 give for an Article 83(4) infringement of high seriousness, and what dynamic range does it give for turnover above 500 million?",
+  "runs": [
+    {
+      "structured_table_passages": false,
+      "model_verifier": false,
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The static starting-amount range for an Article 83(4) GDPR infringement of high seriousness is 800,000 to 10 million euros.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Article 83(4) GDPR Low level of seriousness Medium level of High level of seriousness seriousness 40-100% of the starting amount Undertakings with a turnover of €250m up until €500m 0 – 1m 400,000 – 2m 800,000 – 10m 44 Adopted",
+                "page": 44,
+                "section": "7.3"
+              }
+            ]
+          },
+          {
+            "text": "For turnover above 500 million euros, the dynamic range for an Article 83(4) GDPR infringement is 0.4% to 2% of the annual turnover.",
+            "evidence": [
+              {
+                "id": 2,
+                "quote": "Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual",
+                "page": 44,
+                "section": "7.3"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "structured_table_passages": false,
+      "model_verifier": true,
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The static starting-amount range for an Article 83(4) GDPR infringement of high seriousness is 800,000 to 10 million euros.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Article 83(4) GDPR Low level of seriousness Medium level of High level of seriousness seriousness 40-100% of the starting amount Undertakings with a turnover of €250m up until €500m 0 – 1m 400,000 – 2m 800,000 – 10m 44 Adopted",
+                "page": 44,
+                "section": "7.3"
+              }
+            ]
+          },
+          {
+            "text": "For turnover above 500 million euros, the dynamic range for an Article 83(4) GDPR infringement is 0.4% to 2% of the annual turnover.",
+            "evidence": [
+              {
+                "id": 2,
+                "quote": "Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual",
+                "page": 44,
+                "section": "7.3"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "structured_table_passages": true,
+      "model_verifier": false,
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The static starting-amount range for an Article 83(4) GDPR infringement of high seriousness is 2 million to 10 million euros.",
+            "evidence": [
+              {
+                "id": 9,
+                "quote": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Static range | Value: 2m - 10m",
+                "page": 44,
+                "section": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness)"
+              }
+            ]
+          },
+          {
+            "text": "The dynamic range for turnover above 500 million euros in the case of an Article 83(4) GDPR infringement of high seriousness is 0.4% to 2% of the annual turnover.",
+            "evidence": [
+              {
+                "id": 9,
+                "quote": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.4% - 2% of the annual turnover",
+                "page": 44,
+                "section": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "structured_table_passages": true,
+      "model_verifier": true,
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The static starting-amount range for an Article 83(4) GDPR infringement of high seriousness is 2 million to 10 million euros.",
+            "evidence": [
+              {
+                "id": 9,
+                "quote": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Static range | Value: 2m - 10m",
+                "page": 44,
+                "section": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness)"
+              }
+            ]
+          },
+          {
+            "text": "The dynamic range for turnover above 500 million euros in the case of an Article 83(4) GDPR infringement of high seriousness is 0.4% to 2% of the annual turnover.",
+            "evidence": [
+              {
+                "id": 9,
+                "quote": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.4% - 2% of the annual turnover",
+                "page": 44,
+                "section": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness)"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

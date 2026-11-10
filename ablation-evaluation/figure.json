@@ -1,0 +1,38 @@
+[
+  {
+    "image_available": false,
+    "question": "What color is the tallest bar?",
+    "expected": "Not visible",
+    "observed": "Not visible"
+  },
+  {
+    "image_available": false,
+    "question": "What color is the shortest bar?",
+    "expected": "Not visible",
+    "observed": "Not visible"
+  },
+  {
+    "image_available": false,
+    "question": "Who created the chart?",
+    "expected": "Not visible",
+    "observed": "Not visible"
+  },
+  {
+    "image_available": true,
+    "question": "What color is the tallest bar?",
+    "expected": "Green",
+    "observed": "Green"
+  },
+  {
+    "image_available": true,
+    "question": "What color is the shortest bar?",
+    "expected": "Blue",
+    "observed": "Blue"
+  },
+  {
+    "image_available": true,
+    "question": "Who created the chart?",
+    "expected": "Not visible",
+    "observed": "Not visible"
+  }
+]

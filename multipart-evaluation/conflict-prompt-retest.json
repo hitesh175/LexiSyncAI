@@ -1,0 +1,14 @@
+{
+  "question": "How do the original 1976 Copyright Act and the 2023 U.S. Code differ on the general term in section 302(a), and what amendment explains the difference?",
+  "result": {
+    "confidence": "INSUFFICIENT EVIDENCE",
+    "claims": [],
+    "trace": [
+      "Verifier rejected the first draft.",
+      "Reason: The draft incorrectly attributes the 2023 U.S. Code's term of 'life plus 70 years' to section 302(a) without citing the actual text of the 2023 Code. The evidence provided for the 2023 U.S. Code (ID 3) states: '(a) IN GENERAL.—Copyright in a work created on or after January 1, 1978, subsists from its creation and, except as provided by the following subsections, endures for a term consisting of the life of the author and 70 years after the author’s death.' This quote is from a section that appli",
+      "Ran one evidence-based repair.",
+      "Abstained after repair."
+    ]
+  },
+  "pages": 65
+}

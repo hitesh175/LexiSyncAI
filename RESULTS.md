@@ -154,6 +154,25 @@ Three interleaved warm runs per condition used the same question, retrieved pass
 
 The regression table above predates the historical margin-label and multiple-edition exact-match refinements. The conflict checks document the version they exercised.
 
+## Extended feature experiments
+
+| Experiment | Measured result | Scope |
+|---|---|---|
+| Structured table passages and verifier | The static range was incorrectly reported as €800,000–€10 million with structured passages disabled. With them enabled, both the €2–€10 million static range and the 0.4%–2% dynamic range were correct. Turning the model verifier on or off did not change the result. | One EDPB fines question on PDF page 44, four conditions. The ordinary text passages still contained flattened table text. [Answer traces](ablation-evaluation/table-and-verifier.json) |
+| Figure-only evidence | With the chart visible, Qwen2.5-VL 3B answered both answerable questions correctly. It abstained on all three blank-control questions and the one chart question whose answer was absent. Observed hallucinations on missing-evidence prompts **0/4**. | One synthetic chart saved as a raster PDF. The figure reader runs separately from the text verifier. [Raw outputs](ablation-evaluation/figure.json) |
+| Fine-tuned reranker head | Pretrained and fine-tuned Recall@1/@5/@10 were both **45.8% / 58.3% / 75.0%**. | MiniLM backbone frozen. Trained its classifier head on copyright candidates for three epochs, with 168 pair presentations across epochs. Both versions used the same candidate pools on the GDPR holdout. The app uses the pretrained weights. [Metrics](reranker-evaluation/metrics.json) |
+| Autoencoder | Flagged **0/10 clean, 0/10 rotated, 10/10 blank and 10/10 occluded** pages. | 24 GDPR pages for training, eight for calibrating the threshold and ten held-out pages from the same PDF. Anomalies were synthetic. [Metrics](anomaly-evaluation/metrics.json) · [Per-page scores](anomaly-evaluation/page-scores.csv) |
+| Historical conflict retest | A verifier prompt change still caused abstention after repair. | A single 65-page case with two editions. The unsuccessful prompt change was left out of the app. [Retest trace](multipart-evaluation/conflict-prompt-retest.json) |
+
+Run these from the project folder with the application's Python environment. The table and figure checks use local Ollama models. The reranker script loads the same pretrained retrieval models as the app.
+
+```powershell
+python evaluate_ablation.py
+python evaluate_figures.py
+python evaluate_anomalies.py
+python evaluate_reranker.py
+```
+
 ## Scanned-page OCR evaluation
 
 With **Read scanned pages (OCR)** enabled, Windows OCR processes image-only pages. Recognized text becomes searchable and remains linked to the original PDF page. A citation derived from OCR is labeled as a transcription in the source pane and exported answer.

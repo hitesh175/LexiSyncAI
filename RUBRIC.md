@@ -18,11 +18,12 @@ This checklist distinguishes application functionality from the evidence require
 |---|---|
 | OCR | Optional Windows OCR is implemented. Three rasterized public legal pages yielded 1.00% aggregate word error, and unavailable-engine fallback is tested. Degraded and handwritten pages have not been evaluated. |
 | Table extraction | Ruled tables preserve spanning column headers and merged row labels. All 18 manually labeled cells across three tables in the EDPB annex matched their values and row and column labels. Borderless, scanned, and cross-page tables remain open. |
-| Chart or figure reading | Open. |
+| Chart or figure reading | A local vision model inspects one selected PDF page and shows the original for review. A synthetic raster chart yielded 2/2 correct figure-only answers and 0/4 unsupported answers on missing-evidence checks. Performance on real legal figures remains unmeasured. |
 | Bounding-box citations | A uniquely located quote is marked on the rendered page. Rotated pages, absent matches and repeated matches show the full page. The regression test checks one successful and one missing region. A 10-quote sample found 9 correct highlights, 0 incorrect regions and 1 ambiguous full-page fallback. See RESULTS.md for the reference method and sample limitations. |
 | Planner and verifier | A verifier rejection with a reason triggers one repair and a second check. Saved analysis details display the outcome. The repair and step cap are tested. The trace also records the rejection reason. |
-| Fine-tuned retrieval | Open. The retrieval models use pretrained weights. |
-| Extended ablation | Dense versus hybrid and retrieval configuration comparisons are measured. Text versus table versus figure ablation is open. |
+| Fine-tuned retrieval | A frozen-backbone fine-tuning run is reproducible. The tuned scoring head tied the pretrained head at Recall@1, @5 and @10. A measured gain remains open. |
+| Extended ablation | Structured table passages changed the answer from incorrect to correct on one EDPB question, with and without the model verifier. The figure control is a separate synthetic test. A larger shared benchmark remains open. |
+| Autoencoder | A reproducible page anomaly experiment detected 10/10 blank and 10/10 occluded pages, flagged 0/10 clean pages, and missed 10/10 rotated pages. The detector is an offline experiment on one PDF. |
 | Cross-document evidence | The fixture tests two-document synthesis. Prompts ask for conflicting evidence to be cited on both sides. The two-document historical conflict test abstained after repair. Reliable conflict reconciliation is open. |
 | Public deployment | Open. The tested app is local. |
 | Latency and cost | Benchmark latency, per-answer timings and Ollama token counts are available. The single-PDF rehearsal reports first and repeat question timing, and the URL import latency check compares one verifier optimization. A six-run warm comparison measured a small token reduction with no latency improvement. A broader study is open. |

@@ -1,0 +1,12 @@
+{
+  "threshold": 0.0062067401595413685,
+  "train_pages": 24,
+  "calibration_pages": 8,
+  "test_pages": 10,
+  "flagged_by_variant": {
+    "clean": 0,
+    "rotated": 0,
+    "blank": 10,
+    "occluded": 10
+  }
+}
