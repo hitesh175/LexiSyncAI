@@ -212,31 +212,38 @@ with research_tab:
             citations = []
             citation_key = f"citation-{selected_answer}"
             with left, st.container(key="lexi_evidence"):
-                st.markdown("#### Answer and sources")
-                st.caption("Choose a source to see the original PDF page.")
-                for claim in result["claims"]:
-                    st.write(claim["text"])
+                st.markdown("#### Key points")
+                for point, claim in enumerate(result["claims"], 1):
+                    first_source = len(citations)
                     for cite in claim["evidence"]:
-                        p = hits[cite["id"] - 1]
-                        source_index = len(citations)
-                        label = f'Source {source_index + 1} / Page {p.page} / {p.section}'
-                        citations.append((label, p, cite["quote"]))
-                        st.button(label, key=f"source-{selected_answer}-{source_index}",
-                                  on_click=st.session_state.__setitem__, args=(citation_key, source_index))
+                        citations.append((point, hits[cite["id"] - 1], cite["quote"]))
+                    count = len(claim["evidence"])
+                    source_label = "source" if count == 1 else "sources"
+                    st.html(f'<p class="lexi-point"><strong>{point}.</strong><span>{escape(claim["text"])}</span></p>')
+                    if count > 1 or len(result["claims"]) > 1:
+                        st.button(f"View {count} {source_label} for point {point}", type="tertiary",
+                                  key=f"point-{selected_answer}-{point}",
+                                  on_click=st.session_state.__setitem__, args=(citation_key, first_source))
             with right, st.container(key="lexi_pdf"):
-                st.markdown("#### Check the source")
-                selected = st.selectbox("Source to view", range(len(citations)),
-                                        format_func=lambda i: f"Reference {i + 1} / PDF page {citations[i][1].page}",
-                                        key=citation_key)
+                st.markdown("#### Supporting evidence")
+                selected = 0
+                if len(citations) > 1:
+                    selected = st.selectbox(
+                        "Choose a citation", range(len(citations)),
+                        format_func=lambda i: (
+                            f"Point {citations[i][0]} · Citation {i + 1} · p. {citations[i][1].page}"
+                        ),
+                        key=citation_key,
+                    )
                 _, passage, quote = citations[selected]
-                st.caption(f"{passage.document} / {passage.section}")
+                st.caption(f"{passage.document} · PDF page {passage.page} · {passage.section}")
                 if passage.ocr:
                     st.caption("This quote was read by OCR. Check it against the original page.")
                 if passage.section.startswith("Detected table"):
                     st.caption("Table citation shows the extracted row, column, and cell value.")
                 st.html(f'<blockquote class="lexi-excerpt">{escape(quote)}</blockquote>')
                 preview, marked = render_citation(docs[passage.document], passage.page, quote)
-                st.caption("Quoted text highlighted" if marked else "Full page shown. Use the quoted text above to locate the passage.")
+                st.caption("Original PDF · quote highlighted" if marked else "Original PDF · full page")
                 st.image(preview, use_container_width=True)
         st.download_button("Download answer and citations",
                            data=export_answer(case, docs, question, hits, result, sources),

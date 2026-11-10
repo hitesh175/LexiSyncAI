@@ -7,7 +7,6 @@
   --quiet: #53635a;
   --line: #d9ded3;
   --forest: #2c5649;
-  --wash: #e6eee7;
 }
 [data-testid="stMainBlockContainer"] { max-width: 91rem; padding: 3rem 3.25rem 4rem; }
 [data-testid="stSidebar"] { background: var(--rail); border-right: 1px solid var(--line); }
@@ -34,9 +33,13 @@
 .lexi-review-title { scroll-margin-top: 3.5rem; padding-top: .8rem; border-top: 1px solid var(--line); }
 .lexi-review-title h2 { font: 600 1.65rem/1.2 Georgia, serif; margin: 0; padding: 0; color: var(--ink); }
 .lexi-question { color: var(--ink); font-size: 1.08rem; line-height: 1.45; margin: .35rem 0 0; max-width: 72ch; overflow-wrap: anywhere; }
-.st-key-lexi_evidence [data-testid="stButton"] button { width: 100%; justify-content: flex-start; text-align: left; background: var(--wash); border-color: #d4dfd6; color: var(--forest); }
-.st-key-lexi_evidence [data-testid="stButton"] button:hover { border-color: var(--forest); color: var(--ink); }
-.st-key-lexi_evidence [data-testid="stButton"] button p { text-align: left; overflow-wrap: anywhere; }
+.lexi-point { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: .35rem; margin: .35rem 0 0; color: var(--ink); overflow-wrap: anywhere; }
+.lexi-point strong { color: var(--forest); }
+.lexi-point span { white-space: pre-wrap; }
+.st-key-lexi_evidence [data-testid="stButton"] { margin: -.65rem 0 .15rem 1.75rem; }
+.st-key-lexi_evidence [data-testid="stButton"] button { padding-inline: 0; min-height: 2rem; color: var(--forest); text-align: left; }
+.st-key-lexi_evidence [data-testid="stButton"] button p { font-size: .85rem; }
+.st-key-lexi_evidence [data-testid="stButton"] button:hover p { text-decoration: underline; }
 .lexi-excerpt { margin: -.35rem 0 .55rem; padding: .68rem .8rem; border-left: 1px solid #8ca697; color: var(--quiet); font-size: .88rem; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
 .st-key-lexi_pdf { padding: 1rem; background: var(--rail); border: 1px solid var(--line); border-radius: .85rem; min-width: 0; }
 .st-key-lexi_pdf [data-testid="stImage"] img { background: white; border: 1px solid var(--line); }
