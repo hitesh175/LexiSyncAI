@@ -11,7 +11,7 @@ import pdfplumber
 
 from tables import table_caption, table_passages
 
-HEADING = re.compile(r"^(?:§\s*\d+[\w.]*|(?:article|section|clause|table)\s+\d+[\w.]*|\d+(?:\.\d+)+\.?)(?=\s|$)", re.I)
+HEADING = re.compile(r"^(?:§\s*\d+[\w.]*|(?:article|section|sec\.|clause|table)\s+\d+[\w.]*|\d+(?:\.\d+)+\.?)(?=\s|$)", re.I)
 US_CODE_MARGIN = re.compile(r"^\d+\s+US[CE]\s+\d+\.\s+(?=§)", re.I)
 ITEM = re.compile(r"^\([0-9a-z]+\)\s", re.I)
 PARAGRAPH = re.compile(r"^(\d+)\.\s+")
@@ -81,6 +81,7 @@ def ingest(documents, ocr_reader=None):
                         flush()
                     if heading or notes:
                         section = line if notes else re.sub(r"^§\s+", "§", heading.group().rstrip("."))
+                        section = re.sub(r"^sec\.\s+", "Section ", section, flags=re.I)
                         paragraph = ""
                         clause = section
                         labels.append(section)
@@ -125,6 +126,9 @@ def models():
 
 def question_parts(question):
     """Split two explicit question clauses while leaving ordinary lists intact."""
+    separate = re.fullmatch(r"([^?]+\?)\s+([^?]+\?)", question.strip())
+    if separate:
+        return [part.strip() for part in separate.groups()]
     parts = re.split(r",?\s+and\s+(?=(?:what|which|when|how|where|who|why|under)\b)",
                      question.strip(), maxsplit=1, flags=re.I)
     return [part.rstrip("?").strip() + "?" for part in parts]
@@ -242,6 +246,8 @@ unsupported by its own cited excerpts, a calculation is wrong, evidence is misat
 or the draft fails to answer a required part of the question. For a definition, require
 a quote that actually states the definition, not one that only mentions the term.
 If required_parts is supplied, check that each part has direct cited evidence.
+Check the cited condition for the particular action asked about. A condition
+for defining a term or making a different decision cannot justify the action.
 If the sources disagree, require citations for both sides and a supported basis for
 any resolution. Use the source label to distinguish versions. A date inside a rule may
 describe when it applies rather than when the source was published. Check that numbered factors

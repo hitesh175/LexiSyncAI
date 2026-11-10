@@ -68,6 +68,11 @@ class CaseStore:
             docs = dict(db.execute("SELECT name, pdf FROM documents WHERE case_id = ? ORDER BY rowid", (case_id,)))
         return name, docs, [Passage(**p) for p in json.loads(passages)], json.loads(structure)
 
+    def update_document_index(self, case_id, passages, structure):
+        with self.connection() as db:
+            db.execute("UPDATE cases SET passages = ?, structure = ? WHERE id = ?",
+                       (json.dumps([asdict(p) for p in passages]), json.dumps(structure), case_id))
+
     def save_answer(self, case_id, question, hits, result):
         with self.connection() as db:
             return db.execute("INSERT INTO answers(case_id, question, hits, result) VALUES (?, ?, ?, ?)",

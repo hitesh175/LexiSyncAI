@@ -145,6 +145,19 @@ with documents_tab:
                 except Exception as exc:
                     st.error(f"Could not read this figure. Check that the local vision model is installed and running. {exc}")
     with st.expander("Page and clause details"):
+        if st.button("Re-read documents", help="Refresh page and clause labels while keeping saved answers."):
+            try:
+                with st.spinner("Re-reading the saved PDFs…"):
+                    use_ocr = any(row.get("ocr_status") not in (None, "", "disabled") for row in structure)
+                    updated_passages, updated_structure = ingest(docs, ocr_reader=read_scan if use_ocr else None)
+                    if not updated_passages:
+                        raise ValueError("No searchable text was found.")
+                    store.update_document_index(case_id, updated_passages, updated_structure)
+                    st.session_state.case_data = (case, docs, updated_passages, updated_structure)
+                st.success("Documents refreshed. Ask your question again to use the new evidence.")
+                passages, structure = updated_passages, updated_structure
+            except Exception as exc:
+                st.error(f"Could not re-read these documents: {exc}")
         columns = ("document", "page", "sections", "tables", "image_only", "ocr_status", "empty", "columns")
         headers = ("Document", "PDF page", "Sections", "Tables", "Image only", "OCR", "No text", "Columns")
         rows = ["| " + " | ".join(headers) + " |", "| " + " | ".join("---" for _ in headers) + " |"]

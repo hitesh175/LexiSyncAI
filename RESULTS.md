@@ -213,6 +213,8 @@ In the bundled copyright PDFs, all four direct lookups returned the matching sta
 
 **GDPR-only two-page regression.** The combined draft for the consent-withdrawal and further-copies question supplied malformed citation IDs. After the normal repair failed, the fallback checked each standalone question against its uniquely identified article. It displayed the verified excerpts directly to preserve the statute's qualifications and used the original source IDs for the PDF preview. The two citations point to PDF pages 37 and 43. The Acme Clinic incident question still abstained. [Two saved outputs](reliability-evaluation/gdpr-single-pdf.json)
 
+**Unseen ADA PDF.** The initial rehearsal applied the eyeglasses definition to a separate employment-testing question. The app now searches two explicit questions separately, recognizes `SEC.` headings, and asks the verifier to check the cited condition for each action. In the rerun the verifier rejected a mismatched first draft. The repair cited PDF page 4 for ordinary glasses and page 5 for the job-relatedness and business-necessity conditions. The invented individual test score correctly triggered abstention. [Saved rerun](reliability-evaluation/ada-unseen.json) · [Official PDF](https://www.govinfo.gov/content/pkg/PLAW-110publ325/pdf/PLAW-110publ325.pdf)
+
 ## Scanned-page OCR evaluation
 
 With **Read scanned pages (OCR)** enabled, Windows OCR processes image-only pages. Recognized text becomes searchable and remains linked to the original PDF page. A citation derived from OCR is labeled as a transcription in the source pane and exported answer.

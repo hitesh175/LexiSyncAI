@@ -286,6 +286,8 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(len(question_parts("Compare Articles 5, 6, and 7.")), 1)
         self.assertEqual(question_parts("What is the limit and when does it apply?"),
                          ["What is the limit?", "when does it apply?"])
+        self.assertEqual(question_parts("Do glasses count? When is a test allowed?"),
+                         ["Do glasses count?", "When is a test allowed?"])
 
     def test_image_only_ocr_and_engine_unavailable_fallback(self):
         output = BytesIO()
