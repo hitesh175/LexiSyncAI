@@ -1,0 +1,458 @@
+[
+  {
+    "corpus": "GDPR",
+    "mode": "baseline",
+    "id": "3",
+    "question": "How long does Article 12(3) normally give a controller to inform a person about action on a rights request, and when must an extension be communicated?",
+    "reference": "Respond without undue delay and within one month of receipt. A necessary extension of up to two more months must be communicated within the initial month with reasons.",
+    "all_gold_retrieved": true,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": [],
+      "trace": [
+        "A proposed excerpt number was invalid.",
+        "Reason: Select an existing excerpt number for source 2.",
+        "Ran one evidence-based repair.",
+        "Abstained after repair."
+      ]
+    },
+    "seconds": 11.229033099996741
+  },
+  {
+    "corpus": "GDPR",
+    "mode": "baseline",
+    "id": "6",
+    "question": "What risk threshold triggers direct communication to affected people under Article 34(1), and how soon must it happen?",
+    "reference": "A breach likely to result in a high risk to people's rights and freedoms. Communicate without undue delay.",
+    "all_gold_retrieved": true,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": [],
+      "trace": [
+        "Verifier rejected the first draft.",
+        "Reason: The draft fails to directly address the specific risk threshold under Article 34(1) as required by the question. While it references sensitive data types (e.g., genetic, health, criminal convictions) and links them to high risk, it does not explicitly state or cite the exact threshold defined in Article 34(1) — which is the core of the first required part. Moreover, the claim that 'the risk threshold includes breaches involving sensitive data' is inferred and not directly supported by a quote th",
+        "Ran one evidence-based repair.",
+        "Abstained after repair."
+      ]
+    },
+    "seconds": 16.780604900006438
+  },
+  {
+    "corpus": "GDPR",
+    "mode": "baseline",
+    "id": "7",
+    "question": "When is an organisation with fewer than 250 employees still subject to the record-keeping obligations under Article 30(5)?",
+    "reference": "When processing is likely to pose a risk to rights and freedoms, is not occasional, or includes special-category or criminal convictions and offences data.",
+    "all_gold_retrieved": true,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "An organisation with fewer than 250 employees is still subject to record-keeping obligations under Article 30(5) if the processing is not occasional, involves special categories of data (as defined in Article 9(1)), or includes personal data relating to criminal convictions and offences (as defined in Article 10).",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "5. The obligations referred to in paragraphs 1 and 2 shall not apply to an enterprise or an organisation employing fewer than 250 persons unless the processing it carries out is likely to result in a risk to the rights and freedoms of data subjects, the processing is not occasional, or the processing includes special categories of data as referred to in Article 9(1) or personal data relating to criminal convictions and offences referred to in Article 10.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 51,
+              "section": "Article 30 (5)"
+            }
+          ]
+        }
+      ]
+    },
+    "seconds": 6.754650200004107
+  },
+  {
+    "corpus": "GDPR",
+    "mode": "baseline",
+    "id": "13",
+    "question": "On what date did Acme Clinic actually notify its supervisory authority about incident AC-119?",
+    "reference": "The documents contain no record of that incident.",
+    "all_gold_retrieved": null,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": []
+    },
+    "seconds": 1.464256999999634
+  },
+  {
+    "corpus": "Copyright",
+    "mode": "baseline",
+    "id": "5",
+    "question": "What does the second fair use factor consider?",
+    "reference": "Nature of the copyrighted work.",
+    "all_gold_retrieved": false,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": [],
+      "trace": [
+        "A proposed excerpt number was invalid.",
+        "Reason: Select an existing excerpt number for source 2.",
+        "Ran one evidence-based repair.",
+        "Abstained after repair."
+      ]
+    },
+    "seconds": 3.1621345000021392
+  },
+  {
+    "corpus": "Copyright",
+    "mode": "baseline",
+    "id": "6",
+    "question": "What does the third fair use factor require the decision-maker to consider?",
+    "reference": "Amount and substantiality of the portion used in relation to the whole.",
+    "all_gold_retrieved": false,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": [],
+      "trace": [
+        "The cited factor number did not match the draft.",
+        "Reason: The draft describes factor 3, but its numbered quotes are [4]. Cite the correct factor or abstain.",
+        "Ran one evidence-based repair.",
+        "Abstained after repair."
+      ]
+    },
+    "seconds": 3.0321601000032388
+  },
+  {
+    "corpus": "Copyright",
+    "mode": "baseline",
+    "id": "10",
+    "question": "Which right ordinarily covers reproducing a work in copies, and what is the legal effect if a teaching use of such copies qualifies as fair use?",
+    "reference": "Reproduction in copies is an exclusive right. If the teaching use qualifies as fair use, it is not infringement.",
+    "all_gold_retrieved": false,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "The right to reproduce a work in copies is covered under the 'right to reproduce the copyrighted work in copies or phonorecords' as defined in §106.",
+          "evidence": [
+            {
+              "id": 3,
+              "quote": "Reproduction.—Read together with the relevant definitions in section 101, the right ‘‘to reproduce the copyrighted work in copies or phonorecords’’ means the right to produce a material object in which the work is duplicated, transcribed, imitated, or simulated in a fixed form from which it can be ‘‘perceived, reproduced, or otherwise communicated, either directly or with the aid of a machine or device.’’ As under the present law, a copyrighted work would be infringed by reproducing it in whole or in any substantial part, and by duplicating it exactly or by imitation or simulation.",
+              "document": "17-USC-106.pdf",
+              "page": 2,
+              "section": "HISTORICAL AND REVISION NOTES"
+            }
+          ]
+        },
+        {
+          "text": "A teaching use of such copies that qualifies as fair use is not an infringement of copyright under §107.",
+          "evidence": [
+            {
+              "id": 2,
+              "quote": "§107. Limitations on exclusive rights: Fair use Notwithstanding the provisions of sections 106 and 106A, the fair use of a copyrighted work, including such use by reproduction in copies or phonorecords or by any other means specified by that section, for purposes such as criticism, comment, news reporting, teaching (including multiple copies for classroom use), scholarship, or research, is not an infringement of copyright.",
+              "document": "17-USC-107.pdf",
+              "page": 1,
+              "section": "§107"
+            }
+          ]
+        },
+        {
+          "text": "The fair use doctrine includes multiple copies for classroom use, as recognized in the historical revision notes.",
+          "evidence": [
+            {
+              "id": 8,
+              "quote": "The Committee has amended the first of the criteria to be considered—‘‘the purpose and character of the use’’—to state explicitly that this factor includes a consideration of ‘‘whether such use is of a commercial nature or is for non-profit educational purposes.’’ This amendment is not intended to be interpreted as any sort of not-for-profit limitation on educational uses of copyrighted works.",
+              "document": "17-USC-107.pdf",
+              "page": 2,
+              "section": "HISTORICAL AND REVISION NOTES"
+            }
+          ]
+        },
+        {
+          "text": "The legal effect of a teaching use qualifying as fair use is that it is exempt from copyright infringement, even if it involves reproduction in copies.",
+          "evidence": [
+            {
+              "id": 2,
+              "quote": "§107. Limitations on exclusive rights: Fair use Notwithstanding the provisions of sections 106 and 106A, the fair use of a copyrighted work, including such use by reproduction in copies or phonorecords or by any other means specified by that section, for purposes such as criticism, comment, news reporting, teaching (including multiple copies for classroom use), scholarship, or research, is not an infringement of copyright.",
+              "document": "17-USC-107.pdf",
+              "page": 1,
+              "section": "§107"
+            }
+          ]
+        }
+      ]
+    },
+    "seconds": 9.169259599992074
+  },
+  {
+    "corpus": "Copyright",
+    "mode": "baseline",
+    "id": "13",
+    "question": "What royalty rate did the parties agree to in the Acme–Northwind licensing contract?",
+    "reference": "The contract is absent.",
+    "all_gold_retrieved": null,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": []
+    },
+    "seconds": 1.9766358999913791
+  },
+  {
+    "corpus": "GDPR",
+    "mode": "updated",
+    "id": "3",
+    "question": "How long does Article 12(3) normally give a controller to inform a person about action on a rights request, and when must an extension be communicated?",
+    "reference": "Respond without undue delay and within one month of receipt. A necessary extension of up to two more months must be communicated within the initial month with reasons.",
+    "all_gold_retrieved": true,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "Article 12(3) normally gives a controller one month to inform a person about action on a rights request.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "3. The controller shall provide information on action taken on a request under Articles 15 to 22 to the data subject without undue delay and in any event within one month of receipt of the request.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 40,
+              "section": "Article 12 (3)"
+            }
+          ]
+        },
+        {
+          "text": "An extension of the period may be granted for up to two additional months, and the controller must communicate this extension within one month of receipt of the request, together with the reasons for the delay.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "That period may be extended by two further months where necessary, taking into account the complexity and number of the requests.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 40,
+              "section": "Article 12 (3)"
+            },
+            {
+              "id": 1,
+              "quote": "The controller shall inform the data subject of any such extension within one month of receipt of the request, together with the reasons for the delay.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 40,
+              "section": "Article 12 (3)"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "A proposed excerpt number was invalid.",
+        "Reason: Source 2 has these excerpt IDs: 1. Cite a listed ID that supports the claim, or use another source.",
+        "Ran one evidence-based repair.",
+        "Accepted the revised draft."
+      ]
+    },
+    "seconds": 9.807420299999649
+  },
+  {
+    "corpus": "GDPR",
+    "mode": "updated",
+    "id": "6",
+    "question": "What risk threshold triggers direct communication to affected people under Article 34(1), and how soon must it happen?",
+    "reference": "A breach likely to result in a high risk to people's rights and freedoms. Communicate without undue delay.",
+    "all_gold_retrieved": true,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "The risk threshold that triggers direct communication to affected people under Article 34(1) is when the personal data breach is likely to result in a high risk to the rights and freedoms of natural persons.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "1. When the personal data breach is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall communicate the personal data breach to the data subject without undue delay.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 52,
+              "section": "Article 34 (1)"
+            }
+          ]
+        },
+        {
+          "text": "Direct communication to affected individuals must happen without undue delay.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "1. When the personal data breach is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall communicate the personal data breach to the data subject without undue delay.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 52,
+              "section": "Article 34 (1)"
+            }
+          ]
+        },
+        {
+          "text": "The exact wording of Article 34(1) states that communication to data subjects occurs when the breach is likely to result in a high risk to the rights and freedoms of natural persons, and must be made without undue delay.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "1. When the personal data breach is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall communicate the personal data breach to the data subject without undue delay.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 52,
+              "section": "Article 34 (1)"
+            }
+          ]
+        },
+        {
+          "text": "The term 'without undue delay' means as soon as possible, and is consistent with the requirement to act promptly to protect individuals from harm.",
+          "evidence": [
+            {
+              "id": 2,
+              "quote": "83. The GDPR states that communication of a breach to individuals should be made “without undue delay,” which means as soon as possible.",
+              "document": "03-EDPB-Breach-Notification.pdf",
+              "page": 20,
+              "section": "Article 33 (83)"
+            }
+          ]
+        }
+      ],
+      "trace": [
+        "The claim cited commentary instead of the named article.",
+        "Reason: For the claim attributed to Article 34(1), cite its exact wording from source 1.",
+        "Ran one evidence-based repair.",
+        "Accepted the revised draft."
+      ]
+    },
+    "seconds": 11.334409200004302
+  },
+  {
+    "corpus": "GDPR",
+    "mode": "updated",
+    "id": "7",
+    "question": "When is an organisation with fewer than 250 employees still subject to the record-keeping obligations under Article 30(5)?",
+    "reference": "When processing is likely to pose a risk to rights and freedoms, is not occasional, or includes special-category or criminal convictions and offences data.",
+    "all_gold_retrieved": true,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "An organisation with fewer than 250 employees is still subject to record-keeping obligations under Article 30(5) if the processing it carries out is likely to result in a risk to the rights and freedoms of data subjects, or if the processing is not occasional, or if it involves special categories of data as defined in Article 9(1) or personal data relating to criminal convictions and offences as defined in Article 10.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "5. The obligations referred to in paragraphs 1 and 2 shall not apply to an enterprise or an organisation employing fewer than 250 persons unless the processing it carries out is likely to result in a risk to the rights and freedoms of data subjects, the processing is not occasional, or the processing includes special categories of data as referred to in Article 9(1) or personal data relating to criminal convictions and offences referred to in Article 10.",
+              "document": "01-EU-GDPR-Regulation-2016-679.pdf",
+              "page": 51,
+              "section": "Article 30 (5)"
+            }
+          ]
+        }
+      ]
+    },
+    "seconds": 5.835466000004089
+  },
+  {
+    "corpus": "GDPR",
+    "mode": "updated",
+    "id": "13",
+    "question": "On what date did Acme Clinic actually notify its supervisory authority about incident AC-119?",
+    "reference": "The documents contain no record of that incident.",
+    "all_gold_retrieved": null,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": []
+    },
+    "seconds": 0.8194808000116609
+  },
+  {
+    "corpus": "Copyright",
+    "mode": "updated",
+    "id": "5",
+    "question": "What does the second fair use factor consider?",
+    "reference": "Nature of the copyrighted work.",
+    "all_gold_retrieved": true,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": [],
+      "trace": [
+        "The draft did not cite the requested fair use factor.",
+        "Reason: Cite an excerpt from §107(2) in source 1 that directly supports the claim, or abstain.",
+        "Ran one evidence-based repair.",
+        "Abstained after repair."
+      ]
+    },
+    "seconds": 4.869529400006286
+  },
+  {
+    "corpus": "Copyright",
+    "mode": "updated",
+    "id": "6",
+    "question": "What does the third fair use factor require the decision-maker to consider?",
+    "reference": "Amount and substantiality of the portion used in relation to the whole.",
+    "all_gold_retrieved": true,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "The third fair use factor requires the decision-maker to consider the amount and substantiality of the portion used in relation to the copyrighted work as a whole.",
+          "evidence": [
+            {
+              "id": 1,
+              "quote": "(3) the amount and substantiality of the portion used in relation to the copyrighted work as a whole; and",
+              "document": "17-USC-107.pdf",
+              "page": 1,
+              "section": "§107 (3)"
+            }
+          ]
+        }
+      ]
+    },
+    "seconds": 3.8612578000029316
+  },
+  {
+    "corpus": "Copyright",
+    "mode": "updated",
+    "id": "10",
+    "question": "Which right ordinarily covers reproducing a work in copies, and what is the legal effect if a teaching use of such copies qualifies as fair use?",
+    "reference": "Reproduction in copies is an exclusive right. If the teaching use qualifies as fair use, it is not infringement.",
+    "all_gold_retrieved": false,
+    "result": {
+      "confidence": "HIGH",
+      "claims": [
+        {
+          "text": "The right to reproduce a work in copies is covered under the 'right to reproduce the copyrighted work in copies or phonorecords' as defined in §106.",
+          "evidence": [
+            {
+              "id": 3,
+              "quote": "Reproduction.—Read together with the relevant definitions in section 101, the right ‘‘to reproduce the copyrighted work in copies or phonorecords’’ means the right to produce a material object in which the work is duplicated, transcribed, imitated, or simulated in a fixed form from which it can be ‘‘perceived, reproduced, or otherwise communicated, either directly or with the aid of a machine or device.’’ As under the present law, a copyrighted work would be infringed by reproducing it in whole or in any substantial part, and by duplicating it exactly or by imitation or simulation.",
+              "document": "17-USC-106.pdf",
+              "page": 2,
+              "section": "HISTORICAL AND REVISION NOTES"
+            }
+          ]
+        },
+        {
+          "text": "A teaching use of such copies that qualifies as fair use is not an infringement of copyright under §107.",
+          "evidence": [
+            {
+              "id": 2,
+              "quote": "§107. Limitations on exclusive rights: Fair use Notwithstanding the provisions of sections 106 and 106A, the fair use of a copyrighted work, including such use by reproduction in copies or phonorecords or by any other means specified by that section, for purposes such as criticism, comment, news reporting, teaching (including multiple copies for classroom use), scholarship, or research, is not an infringement of copyright.",
+              "document": "17-USC-107.pdf",
+              "page": 1,
+              "section": "§107"
+            }
+          ]
+        },
+        {
+          "text": "The fair use doctrine includes teaching, including multiple copies for classroom use, as a purpose for which reproduction may be lawful.",
+          "evidence": [
+            {
+              "id": 8,
+              "quote": "The Committee has amended the first of the criteria to be considered—‘‘the purpose and character of the use’’—to state explicitly that this factor includes a consideration of ‘‘whether such use is of a commercial nature or is for non-profit educational purposes.’’ This amendment is not intended to be interpreted as any sort of not-for-profit limitation on educational uses of copyrighted works.",
+              "document": "17-USC-107.pdf",
+              "page": 2,
+              "section": "HISTORICAL AND REVISION NOTES"
+            }
+          ]
+        }
+      ]
+    },
+    "seconds": 4.759524299995974
+  },
+  {
+    "corpus": "Copyright",
+    "mode": "updated",
+    "id": "13",
+    "question": "What royalty rate did the parties agree to in the Acme–Northwind licensing contract?",
+    "reference": "The contract is absent.",
+    "all_gold_retrieved": null,
+    "result": {
+      "confidence": "INSUFFICIENT EVIDENCE",
+      "claims": []
+    },
+    "seconds": 1.0938673000055132
+  }
+]

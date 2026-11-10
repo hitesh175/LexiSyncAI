@@ -193,6 +193,20 @@ All conditions retain the app's exact-excerpt checks. The verifier toggle contro
 
 The score counts correct requested facts and correct abstentions. It does not count citation quality separately. The best condition on this sample answered the prose and table questions and abstained on the question with no answer. With model review enabled, a draft cited a table for the prose fact and abstained after the verifier rejected the citation. The chart observation listed the bar colors and omitted relative height. Both drafts that received it incorrectly identified orange as the tallest bar, including the draft accepted by the verifier. The direct figure reader answered that question correctly in the earlier experiment. [All 24 runs and supplied evidence](ablation-evaluation/shared.json)
 
+### Targeted answer reliability regression
+
+This check compares the uploaded baseline (`cd17341`) and the updated hybrid answer flow on eight previously reviewed questions: GDPR IDs 3, 6, 7 and 13, and copyright IDs 5, 6, 10 and 13. It covers two document bundles with one unanswerable control per bundle. The questions were selected because the earlier reviews exposed failures, so the results describe this regression sample rather than performance on new PDFs. [Paired answers and citations](reliability-evaluation/targeted.json)
+
+The updated path recognizes follow-up clauses after “and” even without a comma, identifies valid excerpt numbers during the single repair, and checks that answers about numbered fair-use factors cite the requested factor when available. When a claim explicitly attributes a rule to a named GDPR-style article and its exact subsection was retrieved, the app requires that source in the citations.
+
+| Observation | Baseline | Updated |
+|---|---:|---:|
+| Complete labeled evidence in retrieved passages, answerable questions | 3/6 | 5/6 |
+| False abstentions on answerable questions | 4/6 | 1/6 |
+| Correct abstentions on unanswerable controls | 2/2 | 2/2 |
+
+Manual review found that the updated answers recovered the GDPR response and extension deadlines, the direct-notification threshold and timing, the missing record-keeping risk trigger, and the third copyright fair-use factor. The response-deadline answer gives the one-month outer limit but omits the initial “without undue delay” qualifier in its prose. The second fair-use factor remains a false abstention even though the correct subsection was retrieved. The two-document teaching-use answer still relies on commentary for part of its support. These are targeted reliability measurements, so the earlier full-fixture accuracy and citation precision numbers remain separate.
+
 ## Scanned-page OCR evaluation
 
 With **Read scanned pages (OCR)** enabled, Windows OCR processes image-only pages. Recognized text becomes searchable and remains linked to the original PDF page. A citation derived from OCR is labeled as a transcription in the source pane and exported answer.

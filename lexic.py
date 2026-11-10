@@ -125,7 +125,7 @@ def models():
 
 def question_parts(question):
     """Split two explicit question clauses while leaving ordinary lists intact."""
-    parts = re.split(r",\s+and\s+(?=(?:what|which|when|how|where|who|why|under)\b)",
+    parts = re.split(r",?\s+and\s+(?=(?:what|which|when|how|where|who|why|under)\b)",
                      question.strip(), maxsplit=1, flags=re.I)
     return [part.rstrip("?").strip() + "?" for part in parts]
 
@@ -173,6 +173,8 @@ class Index:
             anchors = []
             references = re.findall(
                 r"(\bArticle\s+|\bSection\s+|§\s*)(\d+[a-z]?)\s*\(([0-9a-z]+)\)", question, re.I)
+            if factor := fair_use_factor(question):
+                references.append(("§", "107", str(factor)))
             for prefix, number, paragraph in references:
                 number, paragraph = number.lower(), paragraph.lower()
                 labels = ({f"article {number} ({paragraph})"} if prefix.strip().lower() == "article"
@@ -216,15 +218,23 @@ Return JSON {"claims":[{"text":"one plain-language claim or inference",
 "evidence":[{"id":1,"excerpt":1}]}]}.
 Each evidence entry selects a numbered excerpt within the given source ID.
 Cite all premises for each inference. Give one concise claim per requested point.
+When the question names a provision, start with the excerpt from that provision.
+Check the source label before selecting an excerpt. A nearby rule or commentary
+that mentions the topic is insufficient. Preserve the quoted rule's conditions,
+exceptions, and alternatives. Keep an explicit OR as OR. Express a mandatory
+obligation as mandatory, including an obligation to give notice.
 Use one short exact excerpt per claim when sufficient. Skip background and examples
 unless requested. For tables, use the cited row, column, and value together. Do not
 treat illustrative amounts as statutory limits. Add another excerpt only for a distinct
 premise or a separate source requested in the question. Prefer the regulation for what
 the law says and the guidance for how it is applied. Select the shortest excerpt that
 supports the whole claim, or cite separate excerpts for separate premises. Use at most six claims.
-If retry_feedback is present, repair the draft or return empty claims."""
+If retry_feedback is present, reread the supplied excerpts, fix the identified
+problem, and check all parts again. Return empty claims if evidence is missing."""
 VERIFY = """You audit each claim against its exact quotes and source labels. Check every citation.
-Each quote must establish the claim or a specific premise necessary for it. Reject
+Each quote must establish the claim or a specific premise necessary for it. A
+mention of a topic does not support its threshold, deadline, or numbered factor.
+Reject added conditions and examples that do not answer the question. Reject
 redundant quotes that support a different rule, and reject an answer when any requested
 comparison, condition, or second part lacks cited evidence. Return {"verdict":"high"},
 {"verdict":"medium"}, {"verdict":"low"}, or {"verdict":"reject"}. Reject if any claim is
@@ -249,6 +259,14 @@ QUOTE_FACTOR = re.compile(
     r"\b(" + "|".join(FACTOR_NUMBERS) + r")\s+of\s+the\s+(?:criteria|factors)\b", re.I)
 LEADING_ITEM = re.compile(r"^\((\d+)\)\s")
 RISK_ALTERNATIVE = re.compile(r"\bunless\b[^,.;]{0,100}\bis likely to ([^,.;]+),[^.;]+,\s+or\b", re.I)
+ARTICLE_REFERENCE = re.compile(r"\barticle\s+(\d+[a-z]?)\s*\(([0-9a-z]+)\)", re.I)
+
+
+def fair_use_factor(question):
+    match = FACTOR_ORDINAL.search(question)
+    if match and "fair use factor" in match[0].casefold():
+        return FACTOR_NUMBERS[match[1].lower()]
+    return None
 
 
 def answer(question, passages, generate=ask_model):
@@ -281,6 +299,11 @@ def _answer_attempt(question, passages, generate, feedback=None):
                 for i, p in sources.items()}
     payload = {"question": question, "passages": excerpts}
     parts = question_parts(question)
+    factor = fair_use_factor(question) if len(parts) == 1 else None
+    factor_sources = {i for i, p in sources.items()
+                      if factor is not None and p.section == f"§107 ({factor})"}
+    requested_articles = {f"article {number} ({item})" for number, item in
+                          ARTICLE_REFERENCE.findall(question.casefold())}
     if len(parts) > 1:
         payload["required_parts"] = parts
     if feedback:
@@ -296,12 +319,16 @@ def _answer_attempt(question, passages, generate, feedback=None):
             for citation in claim["evidence"]:
                 citation_id = citation["id"]
                 if type(citation_id) is not int or citation_id not in sources:
-                    return refused
+                    return {**refused, "rejection": "A proposed source number was invalid.",
+                            "retry_feedback": f"Use a source ID from 1 to {len(sources)}. "
+                                              "Select its numbered excerpt from the provided passages."}
                 if "excerpt" in citation:
                     excerpt_id = citation.pop("excerpt")
                     if type(excerpt_id) is not int or excerpt_id not in excerpts[citation_id]["excerpts"]:
+                        available = ", ".join(map(str, excerpts[citation_id]["excerpts"])) or "none"
                         return {**refused, "rejection": "A proposed excerpt number was invalid.",
-                                "retry_feedback": f"Select an existing excerpt number for source {citation_id}."}
+                                "retry_feedback": f"Source {citation_id} has these excerpt IDs: {available}. "
+                                                  "Cite a listed ID that supports the claim, or use another source."}
                     citation["quote"] = excerpts[citation_id]["excerpts"][excerpt_id]
                 quote = citation["quote"].strip()
                 if len(quote) < 8:
@@ -314,8 +341,9 @@ def _answer_attempt(question, passages, generate, feedback=None):
                     risk = alternative[1].casefold()
                     if f"and is likely to {risk}" in claim["text"].casefold():
                         return {**refused, "rejection": "The draft combined alternatives into one requirement.",
-                                "retry_feedback": "The cited rule lists alternative triggers. Preserve its OR "
-                                                  "relationship and do not turn any trigger into a requirement."}
+                                "retry_feedback": f"Read the full rule in source {citation_id}. "
+                                                  "Use separate alternatives joined by OR. "
+                                                  "Do not make one alternative a condition of the others."}
                 if match := LEADING_ITEM.match(quote):
                     numbered_quotes.add(int(match[1]))
                 if "fair use factor" in claim["text"].lower():
@@ -326,6 +354,20 @@ def _answer_attempt(question, passages, generate, feedback=None):
                 return {**refused, "rejection": "The cited factor number did not match the draft.",
                         "retry_feedback": f"The draft describes factor {factor}, but its numbered quotes are "
                                           f"{sorted(numbered_quotes)}. Cite the correct factor or abstain."}
+            if factor_sources and not any(c["id"] in factor_sources for c in claim["evidence"]):
+                source_ids = ", ".join(map(str, sorted(factor_sources)))
+                return {**refused, "rejection": "The draft did not cite the requested fair use factor.",
+                        "retry_feedback": f"Cite an excerpt from §107({factor}) in source {source_ids} "
+                                          "that directly supports the claim, or abstain."}
+            for number, item in ARTICLE_REFERENCE.findall(claim["text"].casefold()):
+                label = f"article {number} ({item})"
+                if label not in requested_articles:
+                    continue
+                matching = [i for i, p in sources.items() if p.section.casefold() == label]
+                if matching and not any(c["id"] in matching for c in claim["evidence"]):
+                    return {**refused, "rejection": "The claim cited commentary instead of the named article.",
+                            "retry_feedback": f"For the claim attributed to Article {number}({item}), "
+                                              f"cite its exact wording from source {matching[0]}."}
         cited = {item["id"] for claim in draft for item in claim["evidence"]}
         source_labels = {i: {"page": sources[i].page, "section": sources[i].section,
                              "document": sources[i].document, "ocr": sources[i].ocr} for i in sorted(cited)}

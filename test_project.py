@@ -139,6 +139,21 @@ class ProjectTests(unittest.TestCase):
         result = answer("What is the cap?", [passage], generate)
         self.assertEqual(result["claims"][0]["evidence"][0]["quote"], "The cap is EUR 2 million.")
 
+    def test_invalid_citation_repair_lists_valid_excerpt_ids(self):
+        passage = Passage("sample.pdf", 1, "Section 7", "Overview. The cap is EUR 2 million.")
+        bad = {"text": "The cap is EUR 2 million.", "evidence": [{"id": 1, "excerpt": 99}]}
+        repaired = {"text": bad["text"], "evidence": [{"id": 1, "excerpt": 2}]}
+        calls = []
+        responses = iter([{"claims": [bad]}, {"claims": [repaired]}, {"verdict": "high"}])
+
+        def generate(prompt, payload):
+            calls.append(payload)
+            return next(responses)
+
+        result = answer("What is the cap?", [passage], generate)
+        self.assertIn("Source 1 has these excerpt IDs: 1, 2.", calls[1]["retry_feedback"])
+        self.assertEqual(result["claims"][0]["evidence"][0]["quote"], "The cap is EUR 2 million.")
+
     def test_quote_mismatch_repairs_without_accepting_a_paraphrase(self):
         passage = Passage("sample.pdf", 1, "Section 7", "The cap is EUR 2 million.")
         bad = {"text": "The cap is EUR 2 million.",
@@ -179,6 +194,29 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(result["claims"], [])
         self.assertIn("Abstained after repair.", result["trace"])
 
+    def test_fair_use_factor_requires_its_own_subsection_when_available(self):
+        intro = Passage("law.pdf", 1, "§107", "The factors to be considered shall include the following.")
+        second = Passage("law.pdf", 1, "§107 (2)", "(2) the nature of the copyrighted work;")
+        wrong = {"text": "The second fair use factor is market effect.",
+                 "evidence": [{"id": 1, "quote": intro.text}]}
+        correct = {"text": "The second fair use factor concerns the nature of the copyrighted work.",
+                   "evidence": [{"id": 2, "quote": second.text}]}
+        calls = iter([{"claims": [wrong]}, {"claims": [correct]}, {"verdict": "high"}])
+        result = answer("What does the second fair use factor consider?", [intro, second], lambda *_: next(calls))
+        self.assertEqual(result["claims"], [correct])
+        self.assertIn("The draft did not cite the requested fair use factor.", result["trace"])
+
+    def test_claim_attributed_to_an_article_cites_that_article(self):
+        rule = Passage("law.pdf", 1, "Article 8 (2)", "2. The controller must respond within one month.")
+        notes = Passage("notes.pdf", 2, "Guidance", "The controller must respond to requests.")
+        claim = {"text": "Article 8(2) requires a response within one month.",
+                 "evidence": [{"id": 2, "quote": notes.text}]}
+        repaired = {**claim, "evidence": [{"id": 1, "quote": rule.text}]}
+        calls = iter([{"claims": [claim]}, {"claims": [repaired]}, {"verdict": "high"}])
+        result = answer("What deadline does Article 8(2) set?", [rule, notes], lambda *_: next(calls))
+        self.assertEqual(result["claims"], [repaired])
+        self.assertIn("The claim cited commentary instead of the named article.", result["trace"])
+
     def test_repair_does_not_turn_alternative_triggers_into_requirements(self):
         quote = ("The rule does not apply unless the processing is likely to result in a risk, "
                  "the processing is not occasional, or it includes sensitive data.")
@@ -203,6 +241,8 @@ class ProjectTests(unittest.TestCase):
         index._rank = lambda part, k, mode: ranks[part]
         self.assertEqual(index.retrieve(question, k=3), [a, b, c])
         self.assertEqual(len(question_parts("Compare Articles 5, 6, and 7.")), 1)
+        self.assertEqual(question_parts("What is the limit and when does it apply?"),
+                         ["What is the limit?", "when does it apply?"])
 
     def test_image_only_ocr_and_engine_unavailable_fallback(self):
         output = BytesIO()
