@@ -1,0 +1,741 @@
+{
+  "vision_seconds": 2.3748239999986254,
+  "evidence": {
+    "text": [
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "7.3",
+        "text": "undertaking is already reflected in the dynamic legal maximum used to determine the starting amount for further calculation in step 1. - The application of the methodology, including the use of the tables, is illustrated by two examples at the end of this Annex. Step 1: Calculation of the starting amount based on seriousness NB. The more serious the infringement is within its own category, the higher the starting amount is likely to be in this first step. Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "7.3",
+        "text": "turnover turnover turnover Step 2: Adjustment of the starting amount based on the size of the undertaking (only applicable to undertakings to which the static legal range applies) NB. The higher the turnover of the undertaking is within its applicable tier, the higher the starting amount is likely to be in this second step. Article 83(4) GDPR Low level of seriousness Medium level of High level of seriousness seriousness 40-100% of the starting amount Undertakings with a turnover of €250m up until €500m 0 – 1m 400,000 – 2m 800,000 – 10m 44 Adopted",
+        "ocr": false
+      }
+    ],
+    "text + tables": [
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness)",
+        "text": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Low level of seriousness / Static range | Value: 0 - 1m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Low level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0 - 0.2% of the annual turnover\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Medium level of seriousness / Static range | Value: 1m - 2m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Medium level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.2% - 0.4% of the annual turnover\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Static range | Value: 2m - 10m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.4% - 2% of the annual turnover",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness)",
+        "text": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: Low level of seriousness / Static range | Value: 0 – 2m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: Low level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0 - 0.4% of the annual turnover\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: Medium level of seriousness / Static range | Value: 2m - 4m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: Medium level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.4% - 0.8% of the annual turnover\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: High level of seriousness / Static range | Value: 4m - 20m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: High level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.8% - 4% of the annual turnover",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "Detected table 2 (Article 83(4) GDPR)",
+        "text": "Detected table 2 (Article 83(4) GDPR) | Row 2 (Undertakings with a turnover of €250m up until €500m) | Column: Low level of seriousness + Medium level of seriousness + High level of seriousness | Value: 40-100% of the starting amount",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "Detected table 2 (Article 83(4) GDPR)",
+        "text": "Detected table 2 (Article 83(4) GDPR) | Row 3 (Undertakings with a turnover of €250m up until €500m) | Column: Low level of seriousness | Value: 0 – 1m\nDetected table 2 (Article 83(4) GDPR) | Row 3 (Undertakings with a turnover of €250m up until €500m) | Column: Medium level of seriousness | Value: 400,000 – 2m\nDetected table 2 (Article 83(4) GDPR) | Row 3 (Undertakings with a turnover of €250m up until €500m) | Column: High level of seriousness | Value: 800,000 – 10m",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "7.3",
+        "text": "undertaking is already reflected in the dynamic legal maximum used to determine the starting amount for further calculation in step 1. - The application of the methodology, including the use of the tables, is illustrated by two examples at the end of this Annex. Step 1: Calculation of the starting amount based on seriousness NB. The more serious the infringement is within its own category, the higher the starting amount is likely to be in this first step. Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "7.3",
+        "text": "turnover turnover turnover Step 2: Adjustment of the starting amount based on the size of the undertaking (only applicable to undertakings to which the static legal range applies) NB. The higher the turnover of the undertaking is within its applicable tier, the higher the starting amount is likely to be in this second step. Article 83(4) GDPR Low level of seriousness Medium level of High level of seriousness seriousness 40-100% of the starting amount Undertakings with a turnover of €250m up until €500m 0 – 1m 400,000 – 2m 800,000 – 10m 44 Adopted",
+        "ocr": false
+      }
+    ],
+    "text + tables + figures": [
+      {
+        "document": "synthetic-chart.pdf",
+        "page": 1,
+        "section": "Vision model observation",
+        "text": "A is blue, B is green, C is orange",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness)",
+        "text": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Low level of seriousness / Static range | Value: 0 - 1m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Low level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0 - 0.2% of the annual turnover\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Medium level of seriousness / Static range | Value: 1m - 2m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Medium level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.2% - 0.4% of the annual turnover\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Static range | Value: 2m - 10m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.4% - 2% of the annual turnover",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness)",
+        "text": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: Low level of seriousness / Static range | Value: 0 – 2m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: Low level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0 - 0.4% of the annual turnover\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: Medium level of seriousness / Static range | Value: 2m - 4m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: Medium level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.4% - 0.8% of the annual turnover\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: High level of seriousness / Static range | Value: 4m - 20m\nDetected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 4 (83(5)(6) GDPR) | Column: High level of seriousness / Dynamic range in the case of a turnover > 500 m | Value: 0.8% - 4% of the annual turnover",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "Detected table 2 (Article 83(4) GDPR)",
+        "text": "Detected table 2 (Article 83(4) GDPR) | Row 2 (Undertakings with a turnover of €250m up until €500m) | Column: Low level of seriousness + Medium level of seriousness + High level of seriousness | Value: 40-100% of the starting amount",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "Detected table 2 (Article 83(4) GDPR)",
+        "text": "Detected table 2 (Article 83(4) GDPR) | Row 3 (Undertakings with a turnover of €250m up until €500m) | Column: Low level of seriousness | Value: 0 – 1m\nDetected table 2 (Article 83(4) GDPR) | Row 3 (Undertakings with a turnover of €250m up until €500m) | Column: Medium level of seriousness | Value: 400,000 – 2m\nDetected table 2 (Article 83(4) GDPR) | Row 3 (Undertakings with a turnover of €250m up until €500m) | Column: High level of seriousness | Value: 800,000 – 10m",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "7.3",
+        "text": "undertaking is already reflected in the dynamic legal maximum used to determine the starting amount for further calculation in step 1. - The application of the methodology, including the use of the tables, is illustrated by two examples at the end of this Annex. Step 1: Calculation of the starting amount based on seriousness NB. The more serious the infringement is within its own category, the higher the starting amount is likely to be in this first step. Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual",
+        "ocr": false
+      },
+      {
+        "document": "02-EDPB-Administrative-Fines.pdf",
+        "page": 44,
+        "section": "7.3",
+        "text": "turnover turnover turnover Step 2: Adjustment of the starting amount based on the size of the undertaking (only applicable to undertakings to which the static legal range applies) NB. The higher the turnover of the undertaking is within its applicable tier, the higher the starting amount is likely to be in this second step. Article 83(4) GDPR Low level of seriousness Medium level of High level of seriousness seriousness 40-100% of the starting amount Undertakings with a turnover of €250m up until €500m 0 – 1m 400,000 – 2m 800,000 – 10m 44 Adopted",
+        "ocr": false
+      }
+    ]
+  },
+  "runs": [
+    {
+      "mode": "text",
+      "verifier": false,
+      "kind": "text",
+      "question": "How many examples illustrate the application of the methodology at the end of the EDPB annex?",
+      "matches_reference": true,
+      "seconds": 2.2243560000060825,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 857,
+        "output_tokens": 44
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "Two examples illustrate the application of the methodology at the end of the EDPB annex.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "undertaking is already reflected in the dynamic legal maximum used to determine the starting amount for further calculation in step 1. - The application of the methodology, including the use of the tables, is illustrated by two examples at the end of this Annex."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text",
+      "verifier": false,
+      "kind": "table",
+      "question": "What is the static starting-amount range for an Article 83(4) infringement of high seriousness?",
+      "matches_reference": false,
+      "seconds": 1.6007470000040485,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 860,
+        "output_tokens": 99
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The static starting-amount range for a high level of seriousness under Article 83(4) GDPR is 1m to 2m of annual turnover.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual"
+              }
+            ]
+          },
+          {
+            "text": "This range corresponds to 0.4% to 2% of the annual turnover for a high level of seriousness under Article 83(4) GDPR.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text",
+      "verifier": false,
+      "kind": "figure",
+      "question": "What color is the tallest bar in the chart?",
+      "matches_reference": false,
+      "seconds": 0.1731551999982912,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 848,
+        "output_tokens": 5
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": []
+      }
+    },
+    {
+      "mode": "text",
+      "verifier": false,
+      "kind": "unanswerable",
+      "question": "What is the name of the person who created the chart?",
+      "matches_reference": true,
+      "seconds": 0.3061586000112584,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 850,
+        "output_tokens": 5
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": []
+      }
+    },
+    {
+      "mode": "text",
+      "verifier": true,
+      "kind": "text",
+      "question": "How many examples illustrate the application of the methodology at the end of the EDPB annex?",
+      "matches_reference": true,
+      "seconds": 1.9084344000002602,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 1312,
+        "output_tokens": 124
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "Two examples illustrate the application of the methodology at the end of the EDPB annex.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "undertaking is already reflected in the dynamic legal maximum used to determine the starting amount for further calculation in step 1. - The application of the methodology, including the use of the tables, is illustrated by two examples at the end of this Annex."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text",
+      "verifier": true,
+      "kind": "table",
+      "question": "What is the static starting-amount range for an Article 83(4) infringement of high seriousness?",
+      "matches_reference": false,
+      "seconds": 4.579570899993996,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 1725,
+        "output_tokens": 314
+      },
+      "result": {
+        "confidence": "MEDIUM",
+        "claims": [
+          {
+            "text": "The static starting-amount range for a high level of seriousness under Article 83(4) GDPR is 1m to 2m of annual turnover.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual"
+              }
+            ]
+          },
+          {
+            "text": "This range corresponds to a static range of 1m - 2m of annual turnover for high level of seriousness under Article 83(4) GDPR.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text",
+      "verifier": true,
+      "kind": "figure",
+      "question": "What color is the tallest bar in the chart?",
+      "matches_reference": false,
+      "seconds": 0.1990255000127945,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 848,
+        "output_tokens": 5
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": []
+      }
+    },
+    {
+      "mode": "text",
+      "verifier": true,
+      "kind": "unanswerable",
+      "question": "What is the name of the person who created the chart?",
+      "matches_reference": true,
+      "seconds": 0.19190780000644736,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 850,
+        "output_tokens": 5
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": []
+      }
+    },
+    {
+      "mode": "text + tables",
+      "verifier": false,
+      "kind": "text",
+      "question": "How many examples illustrate the application of the methodology at the end of the EDPB annex?",
+      "matches_reference": true,
+      "seconds": 1.2243108999973629,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2156,
+        "output_tokens": 44
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "Two examples illustrate the application of the methodology at the end of the EDPB annex.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Static range | Value: 2m - 10m"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text + tables",
+      "verifier": false,
+      "kind": "table",
+      "question": "What is the static starting-amount range for an Article 83(4) infringement of high seriousness?",
+      "matches_reference": true,
+      "seconds": 4.405135799999698,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 4334,
+        "output_tokens": 289
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The static starting-amount range for an Article 83(4) GDPR infringement of high seriousness is 2m - 10m.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Static range | Value: 2m - 10m"
+              }
+            ]
+          }
+        ],
+        "trace": [
+          "A proposed excerpt number was invalid.",
+          "Reason: Select an existing excerpt number for source 4.",
+          "Ran one evidence-based repair.",
+          "Accepted the revised draft."
+        ]
+      }
+    },
+    {
+      "mode": "text + tables",
+      "verifier": false,
+      "kind": "figure",
+      "question": "What color is the tallest bar in the chart?",
+      "matches_reference": false,
+      "seconds": 1.2455942999949912,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2147,
+        "output_tokens": 42
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The tallest bar in the chart is not described in the provided passages, so its color cannot be determined.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Low level of seriousness / Static range | Value: 0 - 1m"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text + tables",
+      "verifier": false,
+      "kind": "unanswerable",
+      "question": "What is the name of the person who created the chart?",
+      "matches_reference": true,
+      "seconds": 0.7604625999956625,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2149,
+        "output_tokens": 5
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": []
+      }
+    },
+    {
+      "mode": "text + tables",
+      "verifier": true,
+      "kind": "text",
+      "question": "How many examples illustrate the application of the methodology at the end of the EDPB annex?",
+      "matches_reference": false,
+      "seconds": 5.619469199999003,
+      "usage": {
+        "calls": 4,
+        "input_tokens": 5364,
+        "output_tokens": 364
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": [],
+        "trace": [
+          "Verifier rejected the first draft.",
+          "Reason: The draft claims that 'two examples illustrate the application of the methodology at the end of the EDPB annex', but the provided evidence only references a single table entry (Table 1, Step 1) and does not contain any explicit mention of 'examples' illustrating the methodology. The quote cited is about a calculation based on GDPR Article 83(4) and does not describe or support the existence of two examples. There is no cited evidence for the number of examples, nor is there any indication that t",
+          "Ran one evidence-based repair.",
+          "Abstained after repair."
+        ]
+      }
+    },
+    {
+      "mode": "text + tables",
+      "verifier": true,
+      "kind": "table",
+      "question": "What is the static starting-amount range for an Article 83(4) infringement of high seriousness?",
+      "matches_reference": true,
+      "seconds": 6.609580999996979,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 3247,
+        "output_tokens": 437
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The static starting-amount range for an Article 83(4) GDPR infringement of high seriousness is 2m - 10m.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: High level of seriousness / Static range | Value: 2m - 10m"
+              }
+            ]
+          },
+          {
+            "text": "This range is derived from Table 1 (Row 3, 83(4) GDPR) under the 'High level of seriousness / Static range' column.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "Detected table 1 (Step 1: Calculation of the starting amount based on seriousness) | Row 3 (83(4) GDPR) | Column: Low level of seriousness / Static range | Value: 0 - 1m"
+              }
+            ]
+          },
+          {
+            "text": "The value is confirmed in Table 2 (Row 3, Undertakings with a turnover of €250m up to €500m) under the 'High level of seriousness' column, which specifies 800,000 – 10m, but this is a scaled range and not the base static range.",
+            "evidence": [
+              {
+                "id": 4,
+                "quote": "Detected table 2 (Article 83(4) GDPR) | Row 3 (Undertakings with a turnover of €250m up until €500m) | Column: Medium level of seriousness | Value: 400,000 – 2m"
+              }
+            ]
+          },
+          {
+            "text": "The base static range for high seriousness under Article 83(4) GDPR is therefore 2m - 10m, as per the primary table in Section 7.3.",
+            "evidence": [
+              {
+                "id": 5,
+                "quote": "Low level of seriousness Medium level of High level of seriousness seriousness Dynamic Dynamic Dynamic range range in the range in the Static Static in the case of a Static case of a case of a range range turnover range turnover turnover > 500 m > 500 m > 500 m 83(4) GDPR 0 - 1m 0 - 0.2% of the 1m - 2m 0.2% - 0.4% of 2m - 10m 0.4% - 2% of annual the annual the annual turnover turnover turnover 83(5)(6) GDPR 0 – 2m 0 - 0.4% of the 2m - 4m 0.4% - 0.8% of 4m - 20m 0.8% - 4% of annual the annual the annual"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text + tables",
+      "verifier": true,
+      "kind": "figure",
+      "question": "What color is the tallest bar in the chart?",
+      "matches_reference": false,
+      "seconds": 4.503473600008874,
+      "usage": {
+        "calls": 3,
+        "input_tokens": 4766,
+        "output_tokens": 291
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": [],
+        "trace": [
+          "A proposed excerpt number was invalid.",
+          "Reason: Select an existing excerpt number for source 3.",
+          "Ran one evidence-based repair.",
+          "Abstained after repair."
+        ]
+      }
+    },
+    {
+      "mode": "text + tables",
+      "verifier": true,
+      "kind": "unanswerable",
+      "question": "What is the name of the person who created the chart?",
+      "matches_reference": true,
+      "seconds": 0.23533239999960642,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2149,
+        "output_tokens": 5
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": []
+      }
+    },
+    {
+      "mode": "text + tables + figures",
+      "verifier": false,
+      "kind": "text",
+      "question": "How many examples illustrate the application of the methodology at the end of the EDPB annex?",
+      "matches_reference": true,
+      "seconds": 1.253745499998331,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2208,
+        "output_tokens": 44
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "Two examples illustrate the application of the methodology at the end of the EDPB annex.",
+            "evidence": [
+              {
+                "id": 6,
+                "quote": "undertaking is already reflected in the dynamic legal maximum used to determine the starting amount for further calculation in step 1. - The application of the methodology, including the use of the tables, is illustrated by two examples at the end of this Annex."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text + tables + figures",
+      "verifier": false,
+      "kind": "table",
+      "question": "What is the static starting-amount range for an Article 83(4) infringement of high seriousness?",
+      "matches_reference": false,
+      "seconds": 2.4155088999978034,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 4438,
+        "output_tokens": 112
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The static starting-amount range for an Article 83(4) GDPR infringement of high seriousness is 800,000 – 10 million euros.",
+            "evidence": [
+              {
+                "id": 5,
+                "quote": "Detected table 2 (Article 83(4) GDPR) | Row 3 (Undertakings with a turnover of €250m up until €500m) | Column: High level of seriousness | Value: 800,000 – 10m"
+              }
+            ]
+          }
+        ],
+        "trace": [
+          "A proposed excerpt number was invalid.",
+          "Reason: Select an existing excerpt number for source 5.",
+          "Ran one evidence-based repair.",
+          "Accepted the revised draft."
+        ]
+      }
+    },
+    {
+      "mode": "text + tables + figures",
+      "verifier": false,
+      "kind": "figure",
+      "question": "What color is the tallest bar in the chart?",
+      "matches_reference": false,
+      "seconds": 1.1898815000022296,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2199,
+        "output_tokens": 30
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The tallest bar in the chart is orange.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "A is blue, B is green, C is orange"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text + tables + figures",
+      "verifier": false,
+      "kind": "unanswerable",
+      "question": "What is the name of the person who created the chart?",
+      "matches_reference": true,
+      "seconds": 0.8151811999996426,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2201,
+        "output_tokens": 5
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": []
+      }
+    },
+    {
+      "mode": "text + tables + figures",
+      "verifier": true,
+      "kind": "text",
+      "question": "How many examples illustrate the application of the methodology at the end of the EDPB annex?",
+      "matches_reference": true,
+      "seconds": 2.1454665000055684,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 2663,
+        "output_tokens": 126
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "Two examples illustrate the application of the methodology at the end of the EDPB annex.",
+            "evidence": [
+              {
+                "id": 6,
+                "quote": "undertaking is already reflected in the dynamic legal maximum used to determine the starting amount for further calculation in step 1. - The application of the methodology, including the use of the tables, is illustrated by two examples at the end of this Annex."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text + tables + figures",
+      "verifier": true,
+      "kind": "table",
+      "question": "What is the static starting-amount range for an Article 83(4) infringement of high seriousness?",
+      "matches_reference": false,
+      "seconds": 4.127026199988904,
+      "usage": {
+        "calls": 3,
+        "input_tokens": 4938,
+        "output_tokens": 273
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The static starting-amount range for an Article 83(4) GDPR infringement of high seriousness is 800,000 – 10 million euros.",
+            "evidence": [
+              {
+                "id": 5,
+                "quote": "Detected table 2 (Article 83(4) GDPR) | Row 3 (Undertakings with a turnover of €250m up until €500m) | Column: High level of seriousness | Value: 800,000 – 10m"
+              }
+            ]
+          }
+        ],
+        "trace": [
+          "A proposed excerpt number was invalid.",
+          "Reason: Select an existing excerpt number for source 5.",
+          "Ran one evidence-based repair.",
+          "Accepted the revised draft."
+        ]
+      }
+    },
+    {
+      "mode": "text + tables + figures",
+      "verifier": true,
+      "kind": "figure",
+      "question": "What color is the tallest bar in the chart?",
+      "matches_reference": false,
+      "seconds": 2.6174989999999525,
+      "usage": {
+        "calls": 2,
+        "input_tokens": 2588,
+        "output_tokens": 172
+      },
+      "result": {
+        "confidence": "HIGH",
+        "claims": [
+          {
+            "text": "The tallest bar in the chart is orange.",
+            "evidence": [
+              {
+                "id": 1,
+                "quote": "A is blue, B is green, C is orange"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "text + tables + figures",
+      "verifier": true,
+      "kind": "unanswerable",
+      "question": "What is the name of the person who created the chart?",
+      "matches_reference": true,
+      "seconds": 0.19986649999918882,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2201,
+        "output_tokens": 5
+      },
+      "result": {
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "claims": []
+      }
+    }
+  ]
+}

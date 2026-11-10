@@ -8,7 +8,7 @@ from figures import read_figure
 from preview import render_citation
 
 
-def main():
+def chart_page():
     chart = Image.new("RGB", (480, 280), "white")
     draw = ImageDraw.Draw(chart)
     draw.line((65, 230, 415, 230), fill="black", width=3)
@@ -19,6 +19,11 @@ def main():
     document = BytesIO()
     chart.save(document, format="PDF")
     page, _ = render_citation(document.getvalue(), 1, "")
+    return page
+
+
+def main():
+    page = chart_page()
     control = Image.new("RGB", page.size, "white")
     questions = [
         ("What color is the tallest bar?", "Green"),

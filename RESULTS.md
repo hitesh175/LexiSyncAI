@@ -173,6 +173,20 @@ python evaluate_anomalies.py
 python evaluate_reranker.py
 ```
 
+### Shared text, table and figure ablation
+
+Run `python evaluate_shared_ablation.py` with the local text and vision models running. All six conditions use the same four questions. They cover an EDPB prose fact, an EDPB table range, a fact visible only in the synthetic chart, and a question about the chart that cannot be answered. The passages come from a fixed PDF page, which isolates evidence availability from retrieval ranking. Ordinary text can include flattened table cells. The figure condition adds one vision-model observation generated from the chart before the four questions are asked.
+
+All conditions retain the app's exact-excerpt checks. The verifier toggle controls the additional model review and its retry. The text verifier checks the vision model's observation as text. It does not independently inspect the image. This is a controlled evaluation separate from the app's figure reader.
+
+| Evidence supplied | Correct without model review | Correct with model review |
+|---|---:|---:|
+| Text | 2/4 | 2/4 |
+| Text + structured tables | 3/4 | 2/4 |
+| Text + structured tables + figure observation | 2/4 | 2/4 |
+
+The score counts correct requested facts and correct abstentions. It does not count citation quality separately. The best condition on this sample answered the prose and table questions and abstained on the question with no answer. With model review enabled, a draft cited a table for the prose fact and abstained after the verifier rejected the citation. The chart observation listed the bar colors and omitted relative height. Both drafts that received it incorrectly identified orange as the tallest bar, including the draft accepted by the verifier. The direct figure reader answered that question correctly in the earlier experiment. [All 24 runs and supplied evidence](ablation-evaluation/shared.json)
+
 ## Scanned-page OCR evaluation
 
 With **Read scanned pages (OCR)** enabled, Windows OCR processes image-only pages. Recognized text becomes searchable and remains linked to the original PDF page. A citation derived from OCR is labeled as a transcription in the source pane and exported answer.
