@@ -27,6 +27,6 @@ Create a case with the four PDFs in the EU GDPR Source Pack. For the cross-docum
 
 Open the two statutory citations on PDF pages 82 and 83 of the regulation, then open PDF page 9, section 2.2 of the EDPB fines guidance. This shows the distinction between the legal maximum and the guidance on the starting amount. Use the speeding question for the out-of-scope example.
 
-The tested answer included some repeated citations. The benchmark in RESULTS.md predates the switch to numbered source excerpts and explicit Article paragraph prioritization. The GDPR rehearsal is a separate targeted check.
+The tested answer included some repeated citations. [RESULTS.md](RESULTS.md) separates earlier baselines from later retrieval and citation checks. The GDPR rehearsal is a separate targeted check.
 
 For a separately tested single-PDF walkthrough with timed questions, see [Single-PDF rehearsal](rehearsal/README.md).

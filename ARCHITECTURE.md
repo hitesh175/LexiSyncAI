@@ -7,10 +7,10 @@
 | Responsibility | Module | Output |
 |---|---|---|
 | Create or reopen a case | `app.py`, `pdf_import.py`, `cases.py` | A saved case with PDFs, original links when supplied, and searchable passages |
-| Extract and index | `lexic.py` | Page and section labels, scan flags, basic table data, BM25 and dense indexes |
+| Extract and index | `lexic.py`, `tables.py`, `scan_ocr.py` | Page and section labels, scan flags, optional Windows OCR, merged table headers and cells, BM25 and dense indexes |
 | Retrieve evidence | `lexic.py` | Fused and reranked passages, including explicitly referenced clauses when matched |
-| Draft and check the answer | `lexic.py`, Ollama | Exact source excerpts, a verifier result, and at most one repair attempt |
-| Review and save | `app.py`, `preview.py`, `cases.py` | Original PDF page, quote highlight where available, answer history and export |
+| Draft and check the answer | `lexic.py`, `version_comparison.py`, Ollama | Exact excerpts, verifier result and one repair per draft. Explicit version comparisons and simple factor lookups can use the source text directly. |
+| Review and save | `app.py`, `preview.py`, `cases.py` | Original PDF page, quote highlight where available, answer history, text export and case-wide citation audit |
 | Evaluate | `evaluate.py`, `RESULTS.md` | Retrieval recall, manual accuracy and citation precision, abstention and latency |
 
 ## Proposed Vercel Workflow extension

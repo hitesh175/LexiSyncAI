@@ -8,6 +8,8 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 - [Architecture](#architecture)
 - [Technology used](#technology-used)
 - [Run on Windows](#run-on-windows)
+  - [Manual setup](#manual-setup)
+  - [Docker](#docker)
 - [Use the app](#use-the-app)
 - [Evaluation](#evaluation)
   - [Results at a glance](#results-at-a-glance)
@@ -24,7 +26,8 @@ LexiSyncAI answers questions about public legal PDFs. Each supported claim links
 | Figure review | Sends a selected page to a local vision model and displays the original alongside its experimental interpretation. |
 | Hybrid evidence search | Combines BM25 and dense embeddings, reranks candidates, and prioritizes explicit article or section references when matched. |
 | Cited answers | Generates plain-language claims from retrieved passages and attaches exact source excerpts. Click a citation to open its PDF page and highlight the quote when uniquely located. |
-| Verification and abstention | Checks citation integrity and evidence support, allows at most one repair attempt, and abstains when support is insufficient. |
+| Verification and abstention | Checks exact excerpts and claim support, allows one repair per draft, and abstains when support is insufficient. |
+| Separate questions | Searches and verifies two standalone questions separately so each answer stays tied to its own evidence. |
 | Historical version comparison | For an explicit section and amendment question, checks whether a cited amendment note explains a wording change between two editions. |
 | Saved cases and exports | Reopen cases and earlier answers, including abstentions. Download a text record with citations and available official source links. |
 | Case citation audit | Download a CSV covering all saved answers in a case, with cited claims, exact excerpts, PDF locations, source links, and abstentions. |
@@ -53,12 +56,13 @@ See the [scalable diagram](architecture.svg) and [architecture notes](ARCHITECTU
 | Dense retrieval | Sentence Transformers, all-MiniLM-L6-v2, NumPy | Finds passages with related meaning |
 | Reranking | Reciprocal rank fusion, MS MARCO MiniLM cross-encoder | Combines rankings and scores question–passage pairs |
 | Local generation | Ollama, Qwen3-4B-Instruct default | Drafts answers and checks evidence support |
+| Optional vision | Qwen2.5-VL 3B through Ollama | Answers questions about a selected figure or chart page |
 | Local storage | SQLite | Saves cases, PDFs, passages, source links, and answer history |
-| Setup and validation | Windows launcher, Docker Compose, Python unittest | Runs the app and checks core behavior |
+| Setup and validation | Windows launcher, Docker Compose, GitHub Actions, Python unittest | Runs the app and checks core behavior locally and in a container |
 
 ## Run on Windows
 
-Install Python 3.11 or 3.12 and Ollama on a fresh Windows machine. Double-click **Launch LexiSyncAI.cmd** and keep the launcher window open. The launcher prepares dependencies and the local language model when needed. The retrieval models download on the first indexing run.
+Install Python 3.11 or 3.12 and Ollama on a fresh Windows machine. Double-click **Launch LexiSyncAI.cmd**, open the address printed in the launcher, and keep its window open. First-time setup can take several minutes. The retrieval models download on the first question that needs search.
 
 ### Manual setup
 
@@ -74,16 +78,16 @@ Open the local address printed in the terminal.
 
 ### Docker
 
-With Docker Desktop and Ollama running on the host, run `docker compose up --build`. The container reaches Ollama at `host.docker.internal` and mounts a persistent case-data volume.
+With Docker Desktop and Ollama running on the host, run `docker compose up --build` from the repository folder and open `http://127.0.0.1:8501`. The container reaches Ollama at `host.docker.internal` and mounts a persistent case-data volume. Pull the text model on the host using the command under [Manual setup](#manual-setup).
 
-The [Docker verification workflow](https://github.com/hitesh175/LexiSyncAI/actions/workflows/docker-verification.yml) builds and starts the app on a GitHub-hosted Linux runner, checks the running server, and verifies the exact §107(2) answer and PDF preview inside the container. That workflow exercises the direct PDF lookup. Model-generated answers use a separate Ollama service.
+The [passing Docker verification run](https://github.com/hitesh175/LexiSyncAI/actions/runs/42876317987) built and started the app on a GitHub-hosted Linux runner, passed all 20 tests, and verified the exact §107(2) answer and PDF preview inside the container. The run exercised the direct PDF lookup. The clean Windows checkout test separately verified a model-generated GDPR answer and an abstention. [Workflow history](https://github.com/hitesh175/LexiSyncAI/actions/workflows/docker-verification.yml)
 
 ## Use the app
 
 1. Select **Add a new case**, choose your PDFs, and select **Save documents**. The case name is optional. A single PDF is supported for the unseen-document exam.
 2. To import from a link, expand **Use official PDF links instead** and paste one direct HTTPS PDF link per line. Supported publishers include EUR-Lex, EDPB, GovInfo, UK legislation, and selected German federal publishers. Linked PDFs have a 25 MB limit. If a publisher blocks downloads, save its PDF and upload it.
-3. Enter a question and select **Get answer**. Select a numbered source to see the exact quote and original PDF page.
-4. Use **Documents** to inspect the files and detected page structure. Use **Previous answers** to reopen an answer and **Download answer and citations** to export it.
+3. Enter a question and select **Get answer**. Under a numbered answer point, click **View sources** to see its exact quote and original PDF page.
+4. Use **Documents → Page and clause details** to inspect the detected structure. **Re-read documents** refreshes the index for saved PDFs. Ask the question again to generate an updated answer. Use **Previous answers** to review saved results and **Download answer and citations** to export one.
 5. Under **Previous answers**, choose **Download case citation audit (CSV)** to review the entire case in a spreadsheet.
 
 For image-only PDFs, turn on **Read scanned pages (OCR)** before saving. It uses Windows OCR with the language resources installed on the device. Pages with unavailable or failed OCR remain flagged and are excluded from text search. A case with no searchable pages displays a setup message. OCR-derived quotes are marked in the preview and export.
@@ -123,6 +127,15 @@ The [merged table evaluation](RESULTS.md#merged-table-evaluation) matched values
 The Windows OCR sample produced **1.00% aggregate word error** on three clean rasterized legal pages. See the [OCR evaluation](RESULTS.md#scanned-page-ocr-evaluation) for the sample, fallback, and limitations.
 
 ## Assignment materials
+
+| Material | File or link |
+|---|---|
+| Source code | [GitHub repository](https://github.com/hitesh175/LexiSyncAI) |
+| Architecture | [One-page diagram](architecture.svg) and [implementation notes](ARCHITECTURE.md) |
+| Presentation | [Four-slide demo deck](LexiSyncAI-Demo.pptx) |
+| Demo preparation | [Five-minute script](DEMO.md) and [single-PDF rehearsal](rehearsal/README.md) |
+| Evaluation and rubric | [Results and limitations](RESULTS.md) and [assignment coverage](RUBRIC.md) |
+| One-command run evidence | [Passing Docker verification](https://github.com/hitesh175/LexiSyncAI/actions/runs/42876317987) |
 
 The four numbered EU GDPR PDFs in the repository root form the GDPR source pack. The copyright sample PDFs come from the 2023 U.S. Code. [Section 106](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec106.pdf) · [Section 107](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec107.pdf)
 

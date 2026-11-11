@@ -10,7 +10,7 @@ This checklist distinguishes application functionality from the evidence require
 | Extended features, 15 marks | See the feature-by-feature inventory below. Partial features still need their rubric-specific measurements. |
 | Code and documentation, 10 marks | Pinned direct dependencies and model revisions, Git history, tests, Windows launcher, Docker Compose setup, setup guide and one-page architecture diagram. The README links to the GitHub Actions run history for container verification. |
 | Attendance and assignments, 20 marks | Assessed separately by the professor. |
-| Submission | Documentation, slides and local source history are ready to review. The GitHub URL and eCampus submission are pending. |
+| Submission | Submit the documentation and presentation on eCampus. The repository is public. [Repository](https://github.com/hitesh175/LexiSyncAI) · [Passing Docker run](https://github.com/hitesh175/LexiSyncAI/actions/runs/42876317987) · [Demo slides](LexiSyncAI-Demo.pptx) · [Architecture diagram](architecture.svg) |
 
 ## Extended features
 
