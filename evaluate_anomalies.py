@@ -37,7 +37,7 @@ def distort(image, variant):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=ROOT / "anomaly-evaluation")
+    parser.add_argument("--output", type=Path, default=ROOT / "evaluation-results" / "anomaly-evaluation")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     torch.manual_seed(42)

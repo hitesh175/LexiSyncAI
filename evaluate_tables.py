@@ -18,7 +18,7 @@ def normalize(value):
 def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=ROOT / "table-evaluation" / "results.csv")
+    parser.add_argument("--output", type=Path, default=ROOT / "evaluation-results" / "table-evaluation" / "results.csv")
     args = parser.parse_args()
     with (ROOT / "table-evaluation" / "gold.psv").open(encoding="utf-8-sig") as stream:
         gold = list(csv.DictReader(stream, delimiter="|"))
@@ -40,6 +40,7 @@ def main():
             result[f"observed_{field}"] = actual
             result[f"{field}_correct"] = bool(cell and normalize(actual) == normalize(row[field]))
         results.append(result)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", newline="", encoding="utf-8-sig") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(results[0]))
         writer.writeheader()

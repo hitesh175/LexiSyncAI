@@ -13,6 +13,8 @@ The fixed corpus contains nine PDF pages across two 2023 U.S. Code extracts. The
 
 Reranked hybrid recovered all required clauses for 8 of 12 answerable questions at ten passages, compared with 6 of 12 for dense retrieval. Dense performed better at five passages. Hybrid added about 552 ms per query on this CPU run. Index startup took about 98 s, including first-time model loading and downloads. See `retrieval-metrics.json` for the raw aggregate.
 
+In the historical runs, the BM25 query path also encoded the query with MiniLM before returning its keyword ranking. This affected the reported BM25 latency. The current BM25 query skips that encoding. The evaluation still prepares the shared index before timing individual queries.
+
 ## Local generation smoke check
 
 Using passages extracted from the §107 PDF, the local Ollama model answered the fourth-factor question with a matching statutory quote and abstained when asked about the absent Acme–Northwind contract. These two checks exercised generation and verification with a supplied passage set. See the full evaluation command in the README for per-question outputs and manual review sheets.
@@ -165,7 +167,7 @@ The regression table above predates the historical margin-label and multiple-edi
 | Autoencoder | Flagged **0/10 clean, 0/10 rotated, 10/10 blank and 10/10 occluded** pages. | 24 GDPR pages for training, eight for calibrating the threshold and ten held-out pages from the same PDF. Anomalies were synthetic. [Metrics](anomaly-evaluation/metrics.json) · [Per-page scores](anomaly-evaluation/page-scores.csv) |
 | Historical conflict retest | A verifier prompt change still caused abstention after repair. | A single 65-page case with two editions. The unsuccessful prompt change was left out of the app. [Retest trace](multipart-evaluation/conflict-prompt-retest.json) |
 
-Run these from the project folder with the application's Python environment. The table and figure checks use local Ollama models. The reranker script loads the same pretrained retrieval models as the app.
+Run these from the project folder with the application's Python environment. New outputs go under `evaluation-results/`. The table and figure checks use local Ollama models. The reranker script loads the same pretrained retrieval models as the app.
 
 ```powershell
 python evaluate_ablation.py
@@ -249,6 +251,6 @@ The table extractor maps each cell's physical rectangle to its row and leaf colu
 
 Expected values and labels were transcribed from the rendered PDF pages. The comparison normalizes whitespace and dash variants while keeping amounts, units and labels intact. The sample includes two-level column headers, horizontally merged values and vertically merged row labels. All three tables are from the same ruled annex, so these results do not establish accuracy on unrelated layouts, borderless tables, or scanned tables. The extractor does not join table continuations across pages.
 
-Run `python evaluate_tables.py` to regenerate [the cell-by-cell results](table-evaluation/results.csv) from the [manual annotations](table-evaluation/gold.psv). The source is the [official EDPB fines guidance](https://www.edpb.europa.eu/system/files/2023-06/edpb_guidelines_042022_calculationofadministrativefines_en.pdf).
+Run `python evaluate_tables.py` to write a fresh cell-by-cell comparison to `evaluation-results/table-evaluation/results.csv`. [Recorded results](table-evaluation/results.csv) · [Manual annotations](table-evaluation/gold.psv) · [Official EDPB fines guidance](https://www.edpb.europa.eu/system/files/2023-06/edpb_guidelines_042022_calculationofadministrativefines_en.pdf)
 
 In a separate end-to-end check, the model answered a comparison of the static and dynamic starting ranges for the same high-seriousness row. It cited two different columns of row 3 in the first table on PDF page 44. These are illustrative ranges in the guidance, and the test scored cell selection rather than regulatory interpretation. [Recorded answer and source locations](table-evaluation/answer.json)

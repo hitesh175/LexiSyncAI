@@ -2,6 +2,7 @@ __pycache__/
 .venv/
 evaluation-results/
 .env
+.env.*
 .runtime/
 local-runtime.txt
 .lexisync/

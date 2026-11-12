@@ -30,8 +30,8 @@ def main():
             results.append({"structured_table_passages": tables, "model_verifier": verify,
                             "result": result})
             print(tables, verify, result["confidence"], flush=True)
-    output = ROOT / "ablation-evaluation"
-    output.mkdir(exist_ok=True)
+    output = ROOT / "evaluation-results" / "ablation-evaluation"
+    output.mkdir(parents=True, exist_ok=True)
     (output / "table-and-verifier.json").write_text(json.dumps(
         {"question": QUESTION, "runs": results}, ensure_ascii=False, indent=2), encoding="utf-8")
 

@@ -96,8 +96,8 @@ def main():
     result = {"train": "copyright", "test": "GDPR", "training_pairs_across_epochs": pairs,
               "epochs": 3, "candidate_count": 20, "pretrained": baseline,
               "fine_tuned_pairwise" if args.pairwise else "fine_tuned_head": score()}
-    output = ROOT / "reranker-evaluation"
-    output.mkdir(exist_ok=True)
+    output = ROOT / "evaluation-results" / "reranker-evaluation"
+    output.mkdir(parents=True, exist_ok=True)
     filename = "pairwise.json" if args.pairwise else "metrics.json"
     (output / filename).write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(json.dumps(result, indent=2))

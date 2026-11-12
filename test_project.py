@@ -4,6 +4,7 @@ from io import BytesIO, StringIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 import pdfplumber
 import pypdfium2 as pdfium
@@ -18,6 +19,17 @@ ROOT = Path(__file__).resolve().parent
 
 
 class ProjectTests(unittest.TestCase):
+    def test_bm25_query_does_not_run_the_dense_model(self):
+        from rank_bm25 import BM25Okapi
+
+        index = Index.__new__(Index)
+        index.passages = [Passage("law.pdf", 1, "Section 1", "deadline is thirty days"),
+                          Passage("law.pdf", 2, "Section 2", "payment by bank transfer"),
+                          Passage("law.pdf", 3, "Section 3", "appeals by written notice")]
+        index.bm25 = BM25Okapi([p.text.split() for p in index.passages])
+        with patch("lexic.models", side_effect=AssertionError("BM25 used a dense model")):
+            self.assertEqual(index.retrieve("deadline", k=1, mode="bm25"), index.passages[:1])
+
     def test_standalone_questions_only_see_their_own_passage(self):
         parts = ["Do glasses count?", "When is a test allowed?"]
         hits = [Passage("law.pdf", 4, "Section 4", "Ordinary glasses are considered."),

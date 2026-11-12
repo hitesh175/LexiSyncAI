@@ -56,8 +56,8 @@ def main():
                                  matches_reference=match, seconds=perf_counter() - started,
                                  usage=usage, result=result))
                 print(mode, verify, kind, match, flush=True)
-    output = ROOT / "ablation-evaluation" / "shared.json"
-    output.parent.mkdir(exist_ok=True)
+    output = ROOT / "evaluation-results" / "ablation-evaluation" / "shared.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps({
         "vision_seconds": vision_seconds,
         "evidence": {mode: [asdict(p) for p in evidence] for mode, evidence in modes.items()},

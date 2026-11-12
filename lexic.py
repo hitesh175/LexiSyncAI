@@ -159,6 +159,9 @@ class Index:
 
     def _rank(self, question, k, mode):
         search = question
+        if mode == "bm25":
+            sparse = np.argsort(-self.bm25.get_scores(tokens(search)), kind="stable")
+            return [self.passages[i] for i in sparse[:k]]
         if mode in ("fusion", "hybrid") and MONETARY_QUESTION.search(question) and PENALTY_QUESTION.search(question):
             search += " What are the maximum administrative fines for infringements, including any percentage of annual turnover?"
         query = models()[0].encode(search, normalize_embeddings=True)
@@ -166,8 +169,6 @@ class Index:
         if mode == "dense":
             return [self.passages[i] for i in dense[:k]]
         sparse = np.argsort(-self.bm25.get_scores(tokens(search)), kind="stable")
-        if mode == "bm25":
-            return [self.passages[i] for i in sparse[:k]]
         fused = {}
         for ranking in (dense, sparse):
             for rank, i in enumerate(ranking[:30], 1):

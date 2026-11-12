@@ -48,7 +48,7 @@ def rasterize(path, page_number):
 def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=Path("ocr-evaluation"))
+    parser.add_argument("--output", type=Path, default=ROOT / "evaluation-results" / "ocr-evaluation")
     directory = parser.parse_args().output
     directory.mkdir(parents=True, exist_ok=True)
     rows = []

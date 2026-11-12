@@ -1,7 +1,10 @@
 .git
+.env
+.env.*
 .venv
 .runtime
 .lexisync
 local-runtime.txt
 __pycache__
 evaluation-results
+region-results

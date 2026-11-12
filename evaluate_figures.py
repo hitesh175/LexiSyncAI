@@ -37,8 +37,8 @@ def main():
             print(image_available, question, observed, flush=True)
             runs.append(dict(image_available=image_available, question=question,
                              expected=expected if image_available else "Not visible", observed=observed))
-    output = Path(__file__).resolve().parent / "ablation-evaluation"
-    output.mkdir(exist_ok=True)
+    output = Path(__file__).resolve().parent / "evaluation-results" / "ablation-evaluation"
+    output.mkdir(parents=True, exist_ok=True)
     (output / "figure.json").write_text(json.dumps(runs, indent=2), encoding="utf-8")
 
 
