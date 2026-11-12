@@ -109,7 +109,7 @@ Use `--retrieval-only` to skip generation. The evaluator reports recall at 1, 5,
 
 ### Results at a glance
 
-The table summarizes the multipart retrieval rerun on the 15-question GDPR fixture. Correct answers include correct abstentions. Response time is measured after index preparation.
+The table summarizes a recorded multipart retrieval rerun on 15 GDPR questions. Correct answers include correct abstentions. Response time excludes index preparation, model downloads, and first-run setup.
 
 | Metric | Dense | Reranked hybrid |
 |---|---:|---:|
@@ -120,7 +120,11 @@ The table summarizes the multipart retrieval rerun on the 15-question GDPR fixtu
 | False abstentions on answerable questions | 2/12 | 2/12 |
 | Mean response time | **5.27 s** | 5.46 s |
 
-Hybrid citation precision rose from 86.7% to 88.0% compared with the earlier run on the same fixture, while answer correctness fell from 13/15 to 12/15. The separate quote-highlight sample produced **9 correct highlights, 0 wrong highlights, and 1 full-page fallback** for a repeated quote. See the [benchmark report](RESULTS.md#multipart-evidence-and-citation-region-evaluation) for methodology, build details, and failure cases.
+Hybrid citation precision rose from 86.7% to 88.0% compared with the earlier run on the same fixture, while answer correctness fell from 13/15 to 12/15. In the recorded 15-question copyright benchmark, dense retrieval produced **10/15 correct answers** and reranked hybrid produced **8/15**. [GDPR rerun](RESULTS.md#multipart-evidence-and-citation-region-evaluation) · [Copyright benchmark](RESULTS.md#current-build-benchmark)
+
+The later reliability checks used eight selected questions from both sets. Among the six answerable questions, false abstentions fell from **4/6 to 1/6**. Both unanswerable questions still triggered abstention. The ADA follow-up also verified that the source button for the employment-testing answer opened the supporting page. [Targeted regression and ADA follow-up](RESULTS.md#targeted-answer-reliability-regression)
+
+The separate quote-highlight sample produced **9 correct highlights, 0 wrong highlights, and 1 full-page fallback** for a repeated quote. [Citation region sample](RESULTS.md#citation-region-sample)
 
 The [merged table evaluation](RESULTS.md#merged-table-evaluation) matched values, row labels, and column labels for all 18 manually checked cells across three EDPB tables.
 
@@ -141,6 +145,6 @@ The four numbered EU GDPR PDFs in the repository root form the GDPR source pack.
 
 ## Known limitations
 
-- Extraction uses layout heuristics. Complex columns, footnotes, and spanning tables may need manual review. Image-only pages remain flagged and are searchable only when OCR succeeds.
-- Exact quotes can still be misinterpreted. Confidence labels describe the verifier’s judgment and are uncalibrated.
-- The benchmark results describe the recorded fixtures. See [Results](RESULTS.md) for the build and conditions of each run.
+- **PDF extraction.** Complex columns, footnotes, and tables spanning several pages can affect the extracted text. Image-only pages become searchable only if Windows OCR succeeds. The OCR score comes from three clean rasterized pages.
+- **Answer and citation quality.** The app can miss relevant passages, cite a real quote that fails to support a claim, or abstain on an answerable question. For two standalone questions, it checks one top-ranked passage per question. A missed passage can cause the combined response to abstain. Confidence labels describe the app’s evidence checks and are uncalibrated.
+- **Evaluation scope.** The full GDPR and copyright benchmarks use 15 questions each. The later reliability, OCR, table, figure, and highlighting checks cover smaller samples. The first question that needs retrieval may take longer than the reported response times. [Evaluation details](RESULTS.md)
