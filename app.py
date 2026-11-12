@@ -54,7 +54,7 @@ with st.sidebar:
     history_slot = st.empty()
 
     if saved:
-        st.button("Add a new case", use_container_width=True,
+        st.button("Add a new case", width="stretch",
                   on_click=st.session_state.__setitem__, args=("creating_case", True))
 
 if "case_id" not in st.session_state or st.session_state.get("creating_case"):
@@ -72,7 +72,7 @@ if "case_id" not in st.session_state or st.session_state.get("creating_case"):
                              placeholder="For example, EU data protection",
                              help="If left blank, we use the first PDF filename.")
         use_ocr = st.checkbox("Read scanned pages (OCR)", help="Optional. Uses Windows OCR and the installed Windows language resources.")
-        if st.button("Save documents", type="primary", use_container_width=True):
+        if st.button("Save documents", type="primary", width="stretch"):
             urls = [line.strip() for line in links.splitlines() if line.strip()]
             if not 1 <= len(uploads) + len(urls) <= 5:
                 st.error("Add 1–5 PDFs in total, using uploads, links, or both.")
@@ -221,7 +221,7 @@ with research_tab:
                 st.download_button("Download case citation audit (CSV)",
                                    data=store.export_citation_audit(case_id, sources),
                                    file_name=f"lexisync-case-{case_id}-citation-audit.csv",
-                                   mime="text/csv", on_click="ignore", use_container_width=True)
+                                   mime="text/csv", on_click="ignore", width="stretch")
         question, hits, result = store.open_answer(case_id, selected_answer)
         st.html(f"""<header class="lexi-review-title">
             <h2>Answer</h2><p class="lexi-question">{escape(question)}</p>
@@ -270,11 +270,11 @@ with research_tab:
                 st.html(f'<blockquote class="lexi-excerpt">{escape(quote)}</blockquote>')
                 preview, marked = render_citation(docs[passage.document], passage.page, quote)
                 st.caption("Original PDF · quote highlighted" if marked else "Original PDF · full page")
-                st.image(preview, use_container_width=True)
+                st.image(preview, width="stretch")
         st.download_button("Download answer and citations",
                            data=export_answer(case, docs, question, hits, result, sources),
                            file_name=f"lexisync-case-{case_id}-answer-{selected_answer}.txt",
-                           mime="text/plain; charset=utf-8", use_container_width=True)
+                           mime="text/plain; charset=utf-8", width="stretch")
         if result.get("trace") or result.get("timing"):
             with st.expander("Analysis details"):
                 if timing := result.get("timing"):

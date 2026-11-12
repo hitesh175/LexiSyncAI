@@ -59,7 +59,7 @@ jobs:
               citation = claim["evidence"][0]
               source = hits[citation["id"] - 1]
               assert (source.document, source.page, source.section) == (pdf.name, 1, "§107 (2)")
-              assert citation["quote"] in source.text and app.get("imgs")
+              assert citation["quote"] in source.text and app.get("image")
               print("PASS: Exact §107(2) answer, citation on PDF page 1, and PDF preview.")
           PY
       - name: Download the Ollama model
@@ -113,7 +113,7 @@ jobs:
                   and "be able to demonstrate compliance" in cite["quote"].lower()
                   for claim in result["claims"] for cite in claim["evidence"]
               ), result
-              assert app.get("imgs")
+              assert app.get("image")
               print("PASS: Ollama generated and verified an answer citing Article 5(2), PDF page 36.")
 
               _, result = ask("On what date did Acme Clinic notify its supervisory authority about incident AC-119?")
