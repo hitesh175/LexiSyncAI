@@ -80,7 +80,7 @@ Open the local address printed in the terminal.
 
 With Docker Desktop and Ollama running on the host, run `docker compose up --build` from the repository folder and open `http://127.0.0.1:8501`. The container reaches Ollama at `host.docker.internal` and mounts a persistent case-data volume. Pull the text model on the host using the command under [Manual setup](#manual-setup).
 
-The [passing Docker verification run](https://github.com/hitesh175/LexiSyncAI/actions/runs/42876317987) built and started the app on a GitHub-hosted Linux runner, passed all 20 tests, and verified the exact §107(2) answer and PDF preview inside the container. The run exercised the direct PDF lookup. The clean Windows checkout test separately verified a model-generated GDPR answer and an abstention. [Workflow history](https://github.com/hitesh175/LexiSyncAI/actions/workflows/docker-verification.yml)
+GitHub Actions builds the app on Linux, checks the running server, runs the unit tests, and verifies a direct PDF lookup. It also starts an Ollama container and checks that the app generates a GDPR answer with the correct citation and abstains when the source lacks the answer. [Docker verification runs](https://github.com/hitesh175/LexiSyncAI/actions/workflows/docker-verification.yml)
 
 ## Use the app
 
@@ -139,7 +139,7 @@ The Windows OCR sample produced **1.00% aggregate word error** on three clean ra
 | Presentation | [Four-slide demo deck](LexiSyncAI-Demo.pptx) |
 | Demo preparation | [Five-minute script](DEMO.md) and [single-PDF rehearsal](rehearsal/README.md) |
 | Evaluation and rubric | [Results and limitations](RESULTS.md) and [assignment coverage](RUBRIC.md) |
-| One-command run evidence | [Passing Docker verification](https://github.com/hitesh175/LexiSyncAI/actions/runs/42876317987) |
+| One-command run evidence | [Passing Docker and Ollama verification](https://github.com/hitesh175/LexiSyncAI/actions/runs/43192993865) |
 
 The four numbered EU GDPR PDFs in the repository root form the GDPR source pack. The copyright sample PDFs come from the 2023 U.S. Code. [Section 106](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec106.pdf) · [Section 107](https://www.govinfo.gov/content/pkg/USCODE-2023-title17/pdf/USCODE-2023-title17-chap1-sec107.pdf)
 
