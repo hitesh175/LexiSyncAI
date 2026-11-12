@@ -111,7 +111,7 @@ Use `--retrieval-only` to skip generation. The evaluator reports recall at 1, 5,
 
 The table summarizes a recorded multipart retrieval rerun on 15 GDPR questions. Correct answers include correct abstentions. Response time excludes index preparation, model downloads, and first-run setup.
 
-| Metric | Dense | Reranked hybrid |
+| Metric | Dense |  hybrid |
 |---|---:|---:|
 | Annotated evidence recall at 10 | 62.5% | **100.0%** |
 | Correct answers | 9/15 | **12/15** |
