@@ -1,0 +1,10 @@
+services:
+  app:
+    environment:
+      OLLAMA_URL: http://ollama:11434
+      OMP_NUM_THREADS: "2"
+  ollama:
+    image: ollama/ollama:0.40.16
+    environment:
+      OLLAMA_MAX_LOADED_MODELS: "1"
+      OLLAMA_NUM_PARALLEL: "1"

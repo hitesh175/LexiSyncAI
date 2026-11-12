@@ -50,11 +50,17 @@ try {
     if (Test-Path -LiteralPath 'local-runtime.txt') {
         $workspaceRuntime = (Get-Content -LiteralPath 'local-runtime.txt' -Raw).Trim()
     }
+    if (-not $env:HF_HOME -and (Test-Path -LiteralPath (Join-Path (Split-Path $workspaceRuntime) 'hf'))) {
+        $env:HF_HOME = Join-Path (Split-Path $workspaceRuntime) 'hf'
+    }
+    $hash = (Get-FileHash -LiteralPath 'requirements.txt' -Algorithm SHA256).Hash
+    $sharedStamp = Join-Path $workspaceRuntime 'requirements.sha256'
     if ((Test-Path -LiteralPath $cachedPython) -and
-        -not (Test-Path -LiteralPath (Join-Path $workspaceRuntime 'streamlit\__init__.py'))) {
+        (-not (Test-Path -LiteralPath (Join-Path $workspaceRuntime 'streamlit\__init__.py')) -or
+         -not (Test-Path -LiteralPath $sharedStamp) -or
+         (Get-Content -LiteralPath $sharedStamp -Raw).Trim() -ne $hash)) {
         $workspaceRuntime = Join-Path $PSScriptRoot '.runtime'
         $stamp = Join-Path $workspaceRuntime 'requirements.sha256'
-        $hash = (Get-FileHash -LiteralPath 'requirements.txt' -Algorithm SHA256).Hash
         if (-not (Test-Path -LiteralPath (Join-Path $workspaceRuntime 'streamlit\__init__.py')) -or
             -not (Test-Path -LiteralPath $stamp) -or (Get-Content -LiteralPath $stamp -Raw).Trim() -ne $hash) {
             Write-Host 'Preparing dependencies with the available Python runtime. This is a one-time setup.'
@@ -78,9 +84,6 @@ try {
     if ((Test-Path -LiteralPath $cachedPython) -and
         (Test-Path -LiteralPath (Join-Path $workspaceRuntime 'streamlit\__init__.py'))) {
         $env:LEXISYNC_LOCAL_RUNTIME = $workspaceRuntime
-        if (-not $env:HF_HOME -and (Test-Path -LiteralPath (Join-Path (Split-Path $workspaceRuntime) 'hf'))) {
-            $env:HF_HOME = Join-Path (Split-Path $workspaceRuntime) 'hf'
-        }
         & $cachedPython -c "import os,sys,runpy; sys.path.insert(0,os.environ['LEXISYNC_LOCAL_RUNTIME']); runpy.run_module('streamlit',run_name='__main__')" @streamlitArgs
     } else {
         if (-not (Test-Path -LiteralPath $venvPython)) {
@@ -101,7 +104,6 @@ try {
             }
         }
         $stamp = Join-Path $PSScriptRoot '.venv\lexisync-requirements.sha256'
-        $hash = (Get-FileHash -LiteralPath 'requirements.txt' -Algorithm SHA256).Hash
         if (-not (Test-Path -LiteralPath $stamp) -or (Get-Content -LiteralPath $stamp -Raw).Trim() -ne $hash) {
             Write-Host 'Installing the app dependencies. This is a one-time setup.'
             & $venvPython -m pip install -r requirements.txt

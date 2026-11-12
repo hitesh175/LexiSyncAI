@@ -12,7 +12,10 @@ jobs:
   docker:
     name: Build, launch, and test LexiSyncAI
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 25
+    env:
+      COMPOSE_FILE: compose.yaml:.github/compose.ollama.yml
+      OLLAMA_MODEL: kamekichi128/qwen3-4b-instruct-2507:latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -59,9 +62,67 @@ jobs:
               assert citation["quote"] in source.text and app.get("imgs")
               print("PASS: Exact §107(2) answer, citation on PDF page 1, and PDF preview.")
           PY
+      - name: Download the Ollama model
+        run: |
+          for attempt in {1..20}; do
+            if docker compose exec -T ollama ollama list; then
+              docker compose exec -T ollama ollama pull "$OLLAMA_MODEL"
+              exit $?
+            fi
+            sleep 2
+          done
+          exit 1
+      - name: Verify model-generated answers through Ollama
+        run: |
+          docker compose exec -T app python - <<'PY'
+          import os
+          from pathlib import Path
+          from tempfile import TemporaryDirectory
+
+          from streamlit.testing.v1 import AppTest
+
+          from cases import CaseStore
+          from lexic import ingest
+
+          with TemporaryDirectory() as temp:
+              os.environ["LEXISYNC_CASE_DB"] = str(Path(temp) / "ollama-smoke.sqlite3")
+              pdf = Path("01-EU-GDPR-Regulation-2016-679.pdf")
+              documents = {pdf.name: pdf.read_bytes()}
+              passages, structure = ingest(documents)
+              store = CaseStore(os.environ["LEXISYNC_CASE_DB"])
+              case_id = store.save_case("Ollama smoke test", documents, passages, structure)
+              app = AppTest.from_file("app.py").run()
+
+              def ask(question):
+                  next(w for w in app.text_input if w.label == "Type your question").set_value(question)
+                  next(w for w in app.button if w.label == "Get answer").click().run(timeout=480)
+                  assert not app.exception and not app.error, (app.exception, app.error)
+                  answer_id = store.list_answers(case_id)[0][0]
+                  saved, hits, result = store.open_answer(case_id, answer_id)
+                  assert saved == question and result["usage"]["calls"] > 0, result
+                  return hits, result
+
+              hits, result = ask(
+                  "Under Article 5(2), who must be able to demonstrate compliance with the data processing principles?"
+              )
+              assert result["usage"]["calls"] >= 2, result
+              assert any("controller" in claim["text"].lower() for claim in result["claims"]), result
+              assert any(
+                  hits[cite["id"] - 1].page == 36
+                  and hits[cite["id"] - 1].section == "Article 5 (2)"
+                  and "be able to demonstrate compliance" in cite["quote"].lower()
+                  for claim in result["claims"] for cite in claim["evidence"]
+              ), result
+              assert app.get("imgs")
+              print("PASS: Ollama generated and verified an answer citing Article 5(2), PDF page 36.")
+
+              _, result = ask("On what date did Acme Clinic notify its supervisory authority about incident AC-119?")
+              assert result["confidence"] == "INSUFFICIENT EVIDENCE" and not result["claims"], result
+              print("PASS: Ollama abstained on the missing incident date.")
+          PY
       - name: Show app logs on failure
         if: failure()
-        run: docker compose logs --no-color app
+        run: docker compose logs --no-color app ollama
       - name: Stop the container
         if: always()
         run: docker compose down --volumes
